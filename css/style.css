@@ -14,13 +14,12 @@ Table of Contents
 
 3 - Content Area
 
-  3.1 About Us
+  3.1 Global Warming
     3.1.1 Quick Facts
-    3.1.2 Quotes
-  3.2 African Data
-  3.3 Malaria Mosquitoes
-  3.4 Prevent Malaria
-  3.5 Moving Forward
+  3.2 Temperature Change
+  3.3 CO2 Emissions
+  3.4 Opinions
+  3.5 Work Cited
   3.6 Footer
 
 
@@ -41,7 +40,6 @@ Table of Contents
 body {
     font-family: "Sintony", sans-serif;
     color: #eaf2e3;
-    background-color: #3a2c41;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -60,6 +58,18 @@ a {
     color: transparent;
 }
 
+.cd-section {
+    /* vertically align its content*/
+    padding:100px 0;
+    display: table;
+    width: 100%;
+    height: 100vh;
+}
+
+.section-padding{
+    padding: 100px 0px;
+
+}
 
 /* --------------------------------------------------------------------------
  * 2 - Header Area
@@ -124,7 +134,6 @@ a {
         display: none;
     }
 }
-
 .vertical-nav {
     position: fixed;
     z-index: 1;
@@ -151,6 +160,7 @@ a {
     background-color: rgba(234, 242, 227, 0.9);
 }
 .vertical-nav a {
+    right: 20px;
     display: block;
     padding: 1em;
     color: #3a2c41;
@@ -160,8 +170,49 @@ a {
 .vertical-nav a.active {
     color: #c0a672;
 }
+.vertical-nav.open {
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+    -webkit-overflow-scrolling: touch;
+}
+.vertical-nav.open + .cd-nav-trigger {
+    background-color: transparent;
+}
+.vertical-nav.open + .cd-nav-trigger span {
+    background-color: rgba(58, 44, 65, 0);
+}
+.vertical-nav.open + .cd-nav-trigger span::before, .vertical-nav.open + .cd-nav-trigger span::after {
+    /* transform dots in 'X' icon */
+    height: 3px;
+    width: 20px;
+    border-radius: 0;
+    left: -8px;
+}
+.vertical-nav.open + .cd-nav-trigger span::before {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+    top: 1px;
+}
+.vertical-nav.open + .cd-nav-trigger span::after {
+    -webkit-transform: rotate(135deg);
+    -moz-transform: rotate(135deg);
+    -ms-transform: rotate(135deg);
+    -o-transform: rotate(135deg);
+    transform: rotate(135deg);
+    bottom: 0;
+}
 
 @media only screen and (min-width: 800px) {
+    .label {
+        display: none !important;
+    }
+
     .vertical-nav {
         /* reset style */
         right: 0;
@@ -213,8 +264,8 @@ a {
     }
     .vertical-nav a {
         position: relative;
-        padding: 3em 0 0;
-        margin: 1.4em auto;
+        padding: 1.5em 0 0;
+        margin: 1em auto;
         border-bottom: none;
         font-size: 1.2rem;
         color: #eaf2e3;
@@ -252,87 +303,11 @@ a {
         -moz-transition: -moz-transform 0.4s, background-color 0.2s;
         transition: transform 0.4s, background-color 0.2s;
     }
-    .vertical-nav a::after {
-        /* icon */
-        opacity: 0;
-        top: 8px;
-        height: 16px;
-        width: 16px;
-        background: url(../img/cd-nav-icons.svg) no-repeat;
-        -webkit-transform: translateX(-50%) scale(0);
-        -moz-transform: translateX(-50%) scale(0);
-        -ms-transform: translateX(-50%) scale(0);
-        -o-transform: translateX(-50%) scale(0);
-        transform: translateX(-50%) scale(0);
-        -webkit-transition: -webkit-transform 0.4s 0s, opacity 0.1s 0.3s;
-        -moz-transition: -moz-transform 0.4s 0s, opacity 0.1s 0.3s;
-        transition: transform 0.4s 0s, opacity 0.1s 0.3s;
-    }
+
     .vertical-nav a.active::before, .no-touch .vertical-nav a:hover::before {
         background-color: #c0a672;
     }
-    .vertical-nav li:first-of-type a::after {
-        /* change icon using image sprites */
-        background-position: 0px -48px;
-        /* fix bug with transitions - set scale(0.01) rather than scale(0) */
-        -webkit-transform: translateX(-50%) translateY(4.5em) scale(0.01);
-        -moz-transform: translateX(-50%) translateY(4.5em) scale(0.01);
-        -ms-transform: translateX(-50%) translateY(4.5em) scale(0.01);
-        -o-transform: translateX(-50%) translateY(4.5em) scale(0.01);
-        transform: translateX(-50%) translateY(4.5em) scale(0.01);
-    }
-    .vertical-nav li:first-of-type a::before {
-        -webkit-transform: translateX(-50%) translateY(4.5em) scale(0.25);
-        -moz-transform: translateX(-50%) translateY(4.5em) scale(0.25);
-        -ms-transform: translateX(-50%) translateY(4.5em) scale(0.25);
-        -o-transform: translateX(-50%) translateY(4.5em) scale(0.25);
-        transform: translateX(-50%) translateY(4.5em) scale(0.25);
-    }
-    .vertical-nav li:nth-of-type(2) a::after {
-        background-position: 0px -32px;
-        -webkit-transform: translateX(-50%) translateY(1.5em) scale(0.01);
-        -moz-transform: translateX(-50%) translateY(1.5em) scale(0.01);
-        -ms-transform: translateX(-50%) translateY(1.5em) scale(0.01);
-        -o-transform: translateX(-50%) translateY(1.5em) scale(0.01);
-        transform: translateX(-50%) translateY(1.5em) scale(0.01);
-    }
-    .vertical-nav li:nth-of-type(2) a::before {
-        -webkit-transform: translateX(-50%) translateY(1.5em) scale(0.25);
-        -moz-transform: translateX(-50%) translateY(1.5em) scale(0.25);
-        -ms-transform: translateX(-50%) translateY(1.5em) scale(0.25);
-        -o-transform: translateX(-50%) translateY(1.5em) scale(0.25);
-        transform: translateX(-50%) translateY(1.5em) scale(0.25);
-    }
-    .vertical-nav li:nth-of-type(3) a::after {
-        background-position: 0px -16px;
-        -webkit-transform: translateX(-50%) translateY(-1.5em) scale(0.01);
-        -moz-transform: translateX(-50%) translateY(-1.5em) scale(0.01);
-        -ms-transform: translateX(-50%) translateY(-1.5em) scale(0.01);
-        -o-transform: translateX(-50%) translateY(-1.5em) scale(0.01);
-        transform: translateX(-50%) translateY(-1.5em) scale(0.01);
-    }
-    .vertical-nav li:nth-of-type(3) a::before {
-        -webkit-transform: translateX(-50%) translateY(-1.5em) scale(0.25);
-        -moz-transform: translateX(-50%) translateY(-1.5em) scale(0.25);
-        -ms-transform: translateX(-50%) translateY(-1.5em) scale(0.25);
-        -o-transform: translateX(-50%) translateY(-1.5em) scale(0.25);
-        transform: translateX(-50%) translateY(-1.5em) scale(0.25);
-    }
-    .vertical-nav li:nth-of-type(4) a::after {
-        background-position: 0px 0px;
-        -webkit-transform: translateX(-50%) translateY(-4.5em) scale(0.01);
-        -moz-transform: translateX(-50%) translateY(-4.5em) scale(0.01);
-        -ms-transform: translateX(-50%) translateY(-4.5em) scale(0.01);
-        -o-transform: translateX(-50%) translateY(-4.5em) scale(0.01);
-        transform: translateX(-50%) translateY(-4.5em) scale(0.01);
-    }
-    .vertical-nav li:nth-of-type(4) a::before {
-        -webkit-transform: translateX(-50%) translateY(-4.5em) scale(0.25);
-        -moz-transform: translateX(-50%) translateY(-4.5em) scale(0.25);
-        -ms-transform: translateX(-50%) translateY(-4.5em) scale(0.25);
-        -o-transform: translateX(-50%) translateY(-4.5em) scale(0.25);
-        transform: translateX(-50%) translateY(-4.5em) scale(0.25);
-    }
+
     .vertical-nav .label {
         display: block;
         /* Force Hardware Acceleration */
@@ -353,11 +328,11 @@ a {
         transition: transform 0.4s;
     }
     .no-touch .vertical-nav:hover a::before, .no-touch .vertical-nav:hover a::after, .touch .vertical-nav li:nth-of-type(n) a::before, .touch .vertical-nav li:nth-of-type(n) a::after {
-        -webkit-transform: translateX(-50%) scale(1);
-        -moz-transform: translateX(-50%) scale(1);
-        -ms-transform: translateX(-50%) scale(1);
-        -o-transform: translateX(-50%) scale(1);
-        transform: translateX(-50%) scale(1);
+        -webkit-transform: translateX(-50%) scale(.75);
+        -moz-transform: translateX(-50%) scale(.75);
+        -ms-transform: translateX(-50%) scale(.75);
+        -o-transform: translateX(-50%) scale(.75);
+        transform: translateX(-50%) scale(.75);
         /* set a rotation to fix bug on Firefox - http://gielberkers.com/how-to-fix-shaking-css-transitions-in-firefox/ */
         -moz-transform: translateX(-50%) scale(1) rotate(0.02deg);
     }
@@ -379,15 +354,11 @@ a {
  * 3 - Content Area
  * -------------------------------------------------------------------------- */
 
-/* ================  3.1 - About Us ================ */
+/* ================  3.1 - Home ================ */
 
-.cd-section {
-    /* vertically align its content*/
-    padding: 50px 0px;
-    display: table;
-    width: 100%;
-    height: 100vh;
-    background: #1C6BA0;
+.black {
+    color: black !important;
+    font-size: 20px !important;
 }
 
 #section1 {
@@ -397,26 +368,30 @@ a {
     background-attachment: fixed;
 }
 
-
+/* ================  3.2 - Global Warming ================ */
 #section2 {
     background-color: #fbd54e;
 }
+
+/* ================  3.3 - Temperature Change ================ */
 
 #section3 {
     background-color: #fcb43e;
 }
 
+/* ================  3.4 - CO2 Emissions ================ */
+
 #section4{
     background-color: #ef392e;
 }
 
-#section5 {
-    background-color: #ef392e;
-}
+/* ================  3.5 - Opinions ================ */
 
-.cd-section:nth-of-type(even) {
+#section5 {
     background-color: #70557e;
 }
+
+
 .cd-section > div {
     /* vertically align <div> inside <section> */
     display: table-cell;
@@ -469,29 +444,55 @@ a {
     background: url(../img/cd-arrow-bottom.svg) no-repeat center center;
 }
 
-.menu {
+@media only screen and (max-width: 800px) {
+    .menu {
+        display: none !important;
+    }
+
+    .label {
+        color: blue !important;
+        font-size: 15px !important;
+    }
+
+    li a {
+        text-decoration: none !important;
+    }
+
+}
+
+
+
+#main-nav {
     position: fixed;
-    background: #eee;
-    top:0;
     left: 0;
+    top:0;
+    list-style: none;
+    margin: 0;
     width: 100%;
     display: table;
+    table-layout: fixed;
     z-index: 100;
 }
-.menu-item {
+#main-nav li {
     display: table-cell;
-    height: 50px;
-    vertical-align: middle;
-    padding: 20px 0px 20px 60px;
+    *float: left;
+    height: 25px;
+    text-align: center;
     text-transform: uppercase;
-    font-weight: 400;
-    font-size: 18px;
-    color: #fff;
-    -webkit-transition: background 0.3s ease;
-    -moz-transition: background 0.3s ease;
-    transition: background 0.3s ease;
+    letter-spacing: 2px;
 }
-.menu-item:hover {
+
+#main-nav li a {
+    display: block;
+    padding: 30px;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    font-weight: bold;
+    color: #fff;
+}
+
+#main-nav li:hover {
     cursor: pointer;
 }
 

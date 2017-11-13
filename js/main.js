@@ -1,10 +1,11 @@
 jQuery(document).ready(function($){
 	var	scrolling = false;
-	var contentSections = $('.cd-section'),
+	var contentSections = $('.scroller'),
 		verticalNavigation = $('.vertical-nav'),
 		navigationItems = verticalNavigation.find('a'),
 		navTrigger = $('.cd-nav-trigger'),
-		scrollArrow = $('.cd-scroll-down');
+		scrollArrow = $('.cd-scroll-down'),
+		learnMore = $('#learn');
 
 	$(window).on('scroll', checkScroll);
 
@@ -18,6 +19,12 @@ jQuery(document).ready(function($){
     //smooth scroll to the second section
     scrollArrow.on('click', function(event){
     	event.preventDefault();
+        smoothScroll($(this.hash));
+    });
+
+    //smooth scroll to the second section
+    learnMore.on('click', function(event){
+        event.preventDefault();
         smoothScroll($(this.hash));
     });
 

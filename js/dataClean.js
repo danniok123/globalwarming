@@ -53,8 +53,5 @@ d3.csv("data/GlobalLandTemperaturesByState.csv", function(error, data) {
         }
     }
 
-    annual_state_data = annual_state_data.filter(function(d, i) {
-        return d[i] >= 1940
-    });
     console.log(annual_state_data)
 });
