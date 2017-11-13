@@ -2,6 +2,7 @@ jQuery(document).ready(function($){
 	var	scrolling = false;
 	var contentSections = $('.scroller'),
 		verticalNavigation = $('.vertical-nav'),
+		horizontalNavigation = $('.menu'),
 		navigationItems = verticalNavigation.find('a'),
 		navTrigger = $('.cd-nav-trigger'),
 		scrollArrow = $('.cd-scroll-down'),
@@ -14,6 +15,11 @@ jQuery(document).ready(function($){
         event.preventDefault();
         smoothScroll($(this.hash));
         verticalNavigation.removeClass('open');
+    });
+
+    horizontalNavigation.on('click', 'a', function(event){
+        event.preventDefault();
+        smoothScroll($(this.hash));
     });
 
     //smooth scroll to the second section
