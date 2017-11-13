@@ -2,10 +2,142 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Global Warming</title>
+
+
+
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/animate.css">
+
+    <script src="js/modernizr.js"></script>
 </head>
+
 <body>
-<h1>Hi</h1>
+	<nav class="vertical-nav">
+		<ul>
+			<li><a href="#section1" class="active"><span class="label">Home</span></a></li>
+			<li><a href="#section2"><span class="label">Events</span></a></li>
+			<li><a href="#section3"><span class="label">Help</span></a></li>
+			<li><a href="#section4"><span class="label">Share</span></a></li>
+		</ul>
+	</nav><!-- .vertical-nav -->
+
+
+	<nav class="menu">
+		<a href="#section1" class="menu-item home">Home</a>
+		<a href="#section2" class="menu-item about">What is it</a>
+		<a href="#section3" class="menu-item temp">Temperature Change</a>
+		<a href="#section4" class="menu-item emission">CO2 Emissions</a>
+		<a href="#section5" class="menu-item opinion">Opinions</a>
+	</nav>
+	<button class="cd-nav-trigger cd-image-replace">Open navigation<span aria-hidden="true"></span></button>
+
+	<section id="section1" class="cd-section">
+		<div class="content-wrapper wow bounceInUp">
+			<h1>What on earth</h1>
+			<p class="lead"> Learn more about how Global Warming impacts all of us</p>
+			<a href="#section2" id="wowz" class="btn btn-info btn-lg" role="button">Explore and Learn More</a>
+		</div>
+	</section><!-- cd-section -->
+
+	<!-- About Malaria Section-->
+	<section id="section2" class="cd-section section-padding">
+		<div class="container">
+			<div class="row">
+				<div id="about-text" class="col-md-12 text-center">
+					<div class="section-title wow fadeInDown">
+						<h2>Global Warming</h2>
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-6">
+					<div class="wow slideInUp">
+						<div class="about-descr">
+							<h3>What is it?</h3>
+							<p class="lead" style="font-size: 17px">Malaria is caused by the Plasmodium parasite and is transmitted by female Anopheles mosquitoes which bite
+								between dusk and dawn. People infected with malaria often experience fever, chills and flu-like illness at first.
+								Left untreated, the disease can lead to severe complications and, in some cases, death.</p>
+						</div>
+					</div>
+					<div class="wow slideInUp" data-wow-delay="0.3s">
+						<div class="about-descr">
+							<h3>What causes it?</h3>
+							<p class="lead" style="font-size: 17px">Four of these – P. falciparum, P. vivax, P. malariae and P. ovale – are human malaria species that are spread
+								from one person to another via the bite of female mosquitoes of the genus Anopheles. There are about 400
+								different species of Anopheles mosquitoes, but only 30 of these are vectors of major importance. In recent
+								years, human cases of malaria due to P. knowlesi have been recorded – this species causes malaria among
+								monkeys in certain forested areas of South-East Asia. Current information suggests that P. knowlesi malaria is
+								not spread from person to person, but rather occurs in people when an Anopheles mosquito infected by a
+								monkey then bites and infects humans (zoonotic transmission). P. falciparum and P. vivax are the most
+								prevalent, and P. falciparum is the most dangerous, with the highest rates of complications and mortality. This
+								deadly form of malaria is a serious public health concern in most countries in sub-Saharan Africa.
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-6">
+					<div class="wow slideInUp" data-wow-delay="0.3s">
+						<div class="about-descr">
+							<h3>Symptoms</h3>
+							<p class="lead" style="font-size: 17px">If you have any of the following symptoms,
+								it's important to go to the hospital! The incubation period can vary a lot from 7 to 30 days.</p>
+							<div id="symptoms"></div>
+							<p>*Symptoms from <a href="https://www.cdc.gov/malaria/about/disease.html" target="_blank">CDC</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="section3" class="cd-section">
+		<div class="content-wrapper">
+			<h2>Help</h2>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto numquam, totam iusto officia earum perferendis, culpa ad atque eveniet praesentium nobis expedita similique beatae tenetur. Distinctio vel tenetur, id cum.</p>
+		</div>
+	</section><!-- cd-section -->
+
+	<section id="section4" class="cd-section">
+		<div class="content-wrapper">
+			<h2>Share</h2>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto numquam, totam iusto officia earum perferendis, culpa ad atque eveniet praesentium nobis expedita similique beatae tenetur. Distinctio vel tenetur, id cum.</p>
+		</div>
+	</section><!-- cd-section -->
+
+	<section id="section5" class="cd-section">
+		<div class="content-wrapper">
+			<h2>Share</h2>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto numquam, totam iusto officia earum perferendis, culpa ad atque eveniet praesentium nobis expedita similique beatae tenetur. Distinctio vel tenetur, id cum.</p>
+		</div>
+	</section><!-- cd-section -->
+
+    <script src="js/colorbrewer.js"></script>
+
+	<!-- Load JS libraries -->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/queue.min.js"></script>
+	<script src="js/topojson.js"></script>
+	<script src="js/d3.min.js"></script>
+	<script src="js/main.js"></script>
+
+	<script src="js/wow.js"></script>
+	<!-- Custom Visualizations -->
+	<script src="js/vis-choropleth.js"></script>
+	<script src="js/dataClean.js"></script>
+
+	<script>
+        $(document).ready(function () {
+
+            wow = new WOW({
+                    mobile: false,       // default
+                }
+            )
+            wow.init();
+        });
+
+	</script>
 
 </body>
 </html>
