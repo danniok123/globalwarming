@@ -74,9 +74,7 @@
 <div class="container" id="happen">
     <div class="row clearfix">
     </div>
-    <div class="col-md-1 column">
-    </div>
-    <div class="col-md-10 column">
+    <div class="col-md-12 column">
         <div id="barClass" class="progress">
             <div id="bar" class="progress-bar" role="progressbar" style="width:1%">
             </div>
@@ -96,15 +94,33 @@
                 <button id="start">Start Quiz</button>
                 <div id="answers"></div>
 
-                <h3><p id="results"></p></h3>
+                <div id="results">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <form class="form-inline">
+                                <div class="form-group">
+                                    <label for="africaD">Questions</label>
+                                    <select class="form-control" id="africaD">
+                                        <option value="q1" onclick='change(this.value)' selected>Do you think Global Warming is happening?</option>
+                                        <option value="q2" onclick='change(this.value)'>If global warming was happening, do you think it's...</option>
+                                        <option value="q3" onclick='change(this.value)'>How much do you think global warming will harm people in the United States</option>
+                                        <option value="q4" onclick='change(this.value)'>Which comes closest to your own view?</option>
+                                        <option value="q5" onclick='change(this.value)'>Are you worried about global warming?</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <h3 id="resultsText"></h3>
+                    <div id="barChart"></div>
+                    <div id="mapChart"></div>
+                </div>
 
             </div>
             <div class="panel-footer">
                 <button id="back" disabled>Back</button>
                 <button id="next">Next</button>
             </div>
-        </div>
-        <div class="col-md-1 column">
         </div>
     </div>
 </div>
@@ -113,6 +129,12 @@
 </html>
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+
+<script src="js/queue.min.js"></script>
+<script src="js/topojson.js"></script>
+<script src="js/d3.min.js"></script>
+<script src="js/d3-tip.js"></script>
+<script src="js/vis-bar.js"></script>
 <script>
 
     function newQuestion(params) {
@@ -129,7 +151,7 @@
             "Caused mostly by natural changes in the environment", "Neither because global warming isn’t happening"]],
         ["<p>How much do you think global warming will harm people in the\n" +
         "United States<p/>", ["Not at all", "Only a little", "A moderate amount", "A great deal", "Don’t know"]],
-        ["<p>Which comes closest to your own view? <p/>", ["Most scientists think global warming is happening",
+        ["<p>Which comes closest to your own view?<p/>", ["Most scientists think global warming is happening",
             "There is a lot of disagreement among scientists about whether or not global warming is happening",
             "Most scientists think global warming is not happening", "Don’t know enough to say"]],
         ["<p>Are you worried about global warming?<p/>", ["Not at all", "Only a little", "A moderate amount", "A great deal", "Don’t know"]]
@@ -174,7 +196,9 @@
         }
 
         function results() {
-            $("#results").text("Wow").show(1000);
+            var content = "";
+            $("#resultsText").text("You answered: ").show(1000);
+            $("#results").show(1000);
             $("#question, #answers, #next, #back").hide(10);
             console.log(answers);
         }
@@ -183,6 +207,7 @@
 
         $("#back").hide();
         $("#next").hide();
+        $("#resultsText").hide();
         $("#results").hide();
 
 
@@ -223,8 +248,8 @@
         // update the bar when moving backwards
         $("#back").on('click', function() {
             if ( number === totalQuestions) {
-                $("#results").hide();
-                $("#question, #answers, #next, #results").show(2500);
+                $("#resultsText").hide();
+                $("#question, #answers, #next, #resultsText").show(2500);
             }
 
             if (number > 0)
