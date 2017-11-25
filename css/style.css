@@ -25,40 +25,14 @@ Table of Contents
 
 */
 
-/* --------------------------------------------------------------------------
- * 1 - General Area
- * -------------------------------------------------------------------------- */
-
-/* ================ 1.1 - Global ================ */
-
-*, *::after, *::before {
-    box-sizing: border-box;
+#home {
+    color: white;
+    font-size: 50px !important;
+    background-image: url("../img/space.jpg");
+    background-attachment: fixed;
 }
 
-
-
-body {
-    font-family: "Sintony", sans-serif;
-    color: #eaf2e3;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-    color: #c0a672;
-    text-decoration: none;
-}
-
-.cd-image-replace {
-    /* replace text with image */
-    display: inline-block;
-    overflow: hidden;
-    text-indent: 100%;
-    white-space: nowrap;
-    color: transparent;
-}
-
-.cd-section {
+.home-section {
     /* vertically align its content*/
     padding:100px 0;
     display: table;
@@ -66,475 +40,408 @@ a {
     height: 100vh;
 }
 
-.section-padding{
-    padding: 100px 0px;
-
+.home-section h1 {
+    text-transform: uppercase;
 }
 
-/* --------------------------------------------------------------------------
- * 2 - Header Area
- * -------------------------------------------------------------------------- */
-
-/* ================ 2.1 - Navigation ================ */
-.cd-nav-trigger {
-    display: block;
-    position: fixed;
-    z-index: 2;
-    bottom: 30px;
-    right: 5%;
-    height: 44px;
-    width: 44px;
-    border-radius: 0.25em;
-    background: rgba(234, 242, 227, 0.9);
-    /* reset button style */
-    cursor: pointer;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    -ms-appearance: none;
-    -o-appearance: none;
-    appearance: none;
-    border: none;
-    outline: none;
-}
-.cd-nav-trigger span {
-    /* central dot */
-    position: absolute;
-    height: 4px;
-    width: 4px;
-    background-color: #3a2c41;
-    border-radius: 50%;
-    left: 50%;
-    top: 50%;
-    bottom: auto;
-    right: auto;
-    -webkit-transform: translateX(-50%) translateY(-50%);
-    -moz-transform: translateX(-50%) translateY(-50%);
-    -ms-transform: translateX(-50%) translateY(-50%);
-    -o-transform: translateX(-50%) translateY(-50%);
-    transform: translateX(-50%) translateY(-50%);
-}
-.cd-nav-trigger span::before, .cd-nav-trigger span::after {
-    /* bottom and top dots */
-    content: '';
-    position: absolute;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background-color: #3a2c41;
-    border-radius: inherit;
-}
-.cd-nav-trigger span::before {
-    top: -9px;
-}
-.cd-nav-trigger span::after {
-    bottom: -9px;
-}
-@media only screen and (min-width: 800px) {
-    .cd-nav-trigger {
-        display: none;
-    }
-}
-.vertical-nav {
-    position: fixed;
-    z-index: 1;
-    right: 5%;
-    bottom: 30px;
-    width: 90%;
-    max-width: 400px;
-    max-height: 90%;
-    overflow-y: auto;
-    -webkit-transform: scale(0);
-    -moz-transform: scale(0);
-    -ms-transform: scale(0);
-    -o-transform: scale(0);
-    transform: scale(0);
-    -webkit-transform-origin: right bottom;
-    -moz-transform-origin: right bottom;
-    -ms-transform-origin: right bottom;
-    -o-transform-origin: right bottom;
-    transform-origin: right bottom;
-    -webkit-transition: -webkit-transform 0.2s;
-    -moz-transition: -moz-transform 0.2s;
-    transition: transform 0.2s;
-    border-radius: 0.25em;
-    background-color: rgba(234, 242, 227, 0.9);
-}
-.vertical-nav a {
-    right: 20px;
-    display: block;
-    padding: 1em;
-    color: #3a2c41;
-    font-weight: bold;
-    border-bottom: 1px solid rgba(58, 44, 65, 0.1);
-}
-.vertical-nav a.active {
-    color: #c0a672;
-}
-.vertical-nav.open {
-    -webkit-transform: scale(1);
-    -moz-transform: scale(1);
-    -ms-transform: scale(1);
-    -o-transform: scale(1);
-    transform: scale(1);
-    -webkit-overflow-scrolling: touch;
-}
-.vertical-nav.open + .cd-nav-trigger {
-    background-color: transparent;
-}
-.vertical-nav.open + .cd-nav-trigger span {
-    background-color: rgba(58, 44, 65, 0);
-}
-.vertical-nav.open + .cd-nav-trigger span::before, .vertical-nav.open + .cd-nav-trigger span::after {
-    /* transform dots in 'X' icon */
-    height: 3px;
-    width: 20px;
-    border-radius: 0;
-    left: -8px;
-}
-.vertical-nav.open + .cd-nav-trigger span::before {
-    -webkit-transform: rotate(45deg);
-    -moz-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    -o-transform: rotate(45deg);
-    transform: rotate(45deg);
-    top: 1px;
-}
-.vertical-nav.open + .cd-nav-trigger span::after {
-    -webkit-transform: rotate(135deg);
-    -moz-transform: rotate(135deg);
-    -ms-transform: rotate(135deg);
-    -o-transform: rotate(135deg);
-    transform: rotate(135deg);
-    bottom: 0;
-}
-
-@media only screen and (min-width: 800px) {
-    .label {
-        display: none !important;
-    }
-
-    .vertical-nav {
-        /* reset style */
-        right: 0;
-        top: 0;
-        bottom: auto;
-        height: 100vh;
-        width: 90px;
-        max-width: none;
-        max-height: none;
-        -webkit-transform: scale(1);
-        -moz-transform: scale(1);
-        -ms-transform: scale(1);
-        -o-transform: scale(1);
-        transform: scale(1);
-        background-color: transparent;
-        /* vertically align its content*/
-        display: table;
-    }
-    .vertical-nav::before {
-        /* this is the navigation background */
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.8);
-        -webkit-transform: translateX(100%);
-        -moz-transform: translateX(100%);
-        -ms-transform: translateX(100%);
-        -o-transform: translateX(100%);
-        transform: translateX(100%);
-        -webkit-transition: -webkit-transform 0.4s;
-        -moz-transition: -moz-transform 0.4s;
-        transition: transform 0.4s;
-    }
-    .no-touch .vertical-nav:hover::before, .touch .vertical-nav::before {
-        -webkit-transform: translateX(0);
-        -moz-transform: translateX(0);
-        -ms-transform: translateX(0);
-        -o-transform: translateX(0);
-        transform: translateX(0);
-    }
-    .vertical-nav ul {
-        /* vertically align <ul> inside <nav>*/
-        display: table-cell;
-        vertical-align: middle;
-        text-align: center;
-    }
-    .vertical-nav a {
-        position: relative;
-        padding: 1.5em 0 0;
-        margin: 1em auto;
-        border-bottom: none;
-        font-size: 1.2rem;
-        color: #eaf2e3;
-    }
-    .vertical-nav a.active {
-        color: #eaf2e3;
-    }
-    .vertical-nav a::before, .vertical-nav a::after {
-        /* used to create the filled circle and the background icon */
-        content: '';
-        position: absolute;
-        left: 50%;
-        /* Force Hardware Acceleration */
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-        -webkit-transform: translateZ(0);
-        -moz-transform: translateZ(0);
-        -ms-transform: translateZ(0);
-        -o-transform: translateZ(0);
-        transform: translateZ(0);
-    }
-    .vertical-nav a::before {
-        /* filled circle */
-        top: 0;
-        height: 32px;
-        width: 32px;
-        border-radius: 50%;
-        background: #eaf2e3;
-        -webkit-transform: translateX(-50%) scale(0.25);
-        -moz-transform: translateX(-50%) scale(0.25);
-        -ms-transform: translateX(-50%) scale(0.25);
-        -o-transform: translateX(-50%) scale(0.25);
-        transform: translateX(-50%) scale(0.25);
-        -webkit-transition: -webkit-transform 0.4s, background-color 0.2s;
-        -moz-transition: -moz-transform 0.4s, background-color 0.2s;
-        transition: transform 0.4s, background-color 0.2s;
-    }
-
-    .vertical-nav a.active::before, .no-touch .vertical-nav a:hover::before {
-        background-color: #c0a672;
-    }
-
-    .vertical-nav .label {
-        display: block;
-        /* Force Hardware Acceleration */
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-        -webkit-transform: translateZ(0);
-        -moz-transform: translateZ(0);
-        -ms-transform: translateZ(0);
-        -o-transform: translateZ(0);
-        transform: translateZ(0);
-        -webkit-transform: translateX(100%);
-        -moz-transform: translateX(100%);
-        -ms-transform: translateX(100%);
-        -o-transform: translateX(100%);
-        transform: translateX(100%);
-        -webkit-transition: -webkit-transform 0.4s;
-        -moz-transition: -moz-transform 0.4s;
-        transition: transform 0.4s;
-    }
-    .no-touch .vertical-nav:hover a::before, .no-touch .vertical-nav:hover a::after, .touch .vertical-nav li:nth-of-type(n) a::before, .touch .vertical-nav li:nth-of-type(n) a::after {
-        -webkit-transform: translateX(-50%) scale(.75);
-        -moz-transform: translateX(-50%) scale(.75);
-        -ms-transform: translateX(-50%) scale(.75);
-        -o-transform: translateX(-50%) scale(.75);
-        transform: translateX(-50%) scale(.75);
-        /* set a rotation to fix bug on Firefox - http://gielberkers.com/how-to-fix-shaking-css-transitions-in-firefox/ */
-        -moz-transform: translateX(-50%) scale(1) rotate(0.02deg);
-    }
-    .no-touch .vertical-nav:hover a::after, .touch .vertical-nav a::after {
-        opacity: 1;
-        -webkit-transition: -webkit-transform 0.4s, opacity 0s;
-        -moz-transition: -moz-transform 0.4s, opacity 0s;
-        transition: transform 0.4s, opacity 0s;
-    }
-    .no-touch .vertical-nav:hover .label, .touch .vertical-nav .label {
-        -webkit-transform: translateX(0);
-        -moz-transform: translateX(0);
-        -ms-transform: translateX(0);
-        -o-transform: translateX(0);
-        transform: translateX(0);
-    }
-}
-/* --------------------------------------------------------------------------
- * 3 - Content Area
- * -------------------------------------------------------------------------- */
-
-/* ================  3.1 - Home ================ */
-
-.black {
-    color: black !important;
-    font-size: 20px !important;
-}
-
-#section1 {
-    color: white;
-    font-size: 50px !important;
-    background-image: url("../img/space.jpg");
-    background-attachment: fixed;
-}
-
-/* ================  3.2 - Global Warming ================ */
-#section2 {
-    background-color: #fbd54e;
-}
-
-/* ================  3.3 - Temperature Change ================ */
-
-#section3 {
-    background-color: #fcb43e;
-}
-
-/* ================  3.4 - CO2 Emissions ================ */
-
-#section4{
-    background-color: #ef392e;
-}
-
-/* ================  3.5 - Opinions ================ */
-
-#section5 {
-    background-color: #70557e;
-}
-
-
-.cd-section > div {
+.home-section > div {
     /* vertically align <div> inside <section> */
     display: table-cell;
     vertical-align: middle;
     text-align: center;
 }
-.cd-section h1 {
-    font-size: 70px !important;
-    margin: 0 auto;
-    text-transform: uppercase;
-    line-height: 1.4;
+
+/* --------------------------------------------------------------------------
+ * 1 - General Area
+ * -------------------------------------------------------------------------- */
+
+/* ================ 1.1 - Global ================ */
+
+
+/* Adapted from https://codepen.io/metaprinter/pen/mqJMdQ */
+
+.component {
+    position: relative;
+    margin-bottom: 3em;
+    height: 15em;
+    font-family: 'Lato', Arial, sans-serif;
 }
 
-.cd-section h2 {
-    margin: 0 auto;
+.cn-button {
+    position: absolute;
+    top: 150%;
+    left: 50%;
+    z-index: 11;
+    margin-top: -5em;
+    margin-left: -5em;
+    padding: 0;
+    width: 10em;
+    height: 10em;
+    border: none;
+    border-radius: 50%;
+    background: none;
+    color: #5f259f;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.0em;
     text-transform: uppercase;
-    line-height: 1.4;
-}
-.cd-section h1 b, .cd-section h2 b {
-    color: #584c5e;
-}
-.cd-section p {
-    margin: 1em auto 0;
-    line-height: 1.6;
-    width: 90%;
-    max-width: 680px;
-    color: rgba(234, 242, 227, 0.6);
-}
-@media only screen and (min-width: 800px) {
-    .cd-section h1, .cd-section h2 {
-        font-size: 3rem;
-    }
-    .cd-section p {
-        font-size: 2rem;
-    }
+    cursor: pointer;
+    -webkit-backface-visibility: hidden;
 }
 
-.cd-scroll-down {
+.csstransforms .cn-wrapper {
+    position: absolute;
+    top: 150%;
+    left: 50%;
+    z-index: 10;
+    margin-top: -13em;
+    margin-left: -13.5em;
+    width: 27em;
+    height: 27em;
+    border-radius: 50%;
+    background: transparent;
+    opacity: 0;
+    -webkit-transition: all .3s ease 0.3s;
+    -moz-transition: all .3s ease 0.3s;
+    transition: all .3s ease 0.3s;
+    -webkit-transform: scale(0.1);
+    -ms-transform: scale(0.1);
+    -moz-transform: scale(0.1);
+    transform: scale(0.1);
+    pointer-events: none;
+    overflow: hidden;
+}
+
+/*cover to prevent extra space of anchors from being clickable*/
+.csstransforms .cn-wrapper:after{
+    content:".";
+    display:block;
+    font-size:2em;
+    width:6.2em;
+    height:6.2em;
     position: absolute;
     left: 50%;
-    right: auto;
-    -webkit-transform: translateX(-50%);
-    -moz-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    -o-transform: translateX(-50%);
-    transform: translateX(-50%);
-    bottom: 20px;
-    width: 44px;
-    height: 44px;
-    background: url(../img/cd-arrow-bottom.svg) no-repeat center center;
+    margin-left: -3.1em;
+    top:50%;
+    margin-top: -3.1em;
+    border-radius: 50%;
+    z-index:10;
+    color: transparent;
 }
 
-@media only screen and (max-width: 800px) {
-    .menu {
-        display: none !important;
-    }
-
-    .label {
-        color: blue !important;
-        font-size: 15px !important;
-    }
-
-    li a {
-        text-decoration: none !important;
-    }
-
+.csstransforms .opened-nav {
+    border-radius: 50%;
+    opacity: 1;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    transition: all .3s ease;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+    pointer-events: auto;
 }
-
-
-
-#main-nav {
-    position: fixed;
-    left: 0;
-    top:0;
+.cn-wrapper ul{
+    position: relative;
     list-style: none;
     margin: 0;
-    width: 100%;
-    display: table;
-    table-layout: fixed;
-    z-index: 100;
 }
-#main-nav li {
-    display: table-cell;
-    *float: left;
-    height: 25px;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+.csstransforms .cn-wrapper li {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    overflow: hidden;
+    margin-top: -1.3em;
+    margin-left: -10em;
+    width: 10em;
+    height: 10em;
+    font-size: 1.5em;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    transition: all .3s ease;
+    -webkit-transform: rotate(60deg) skew(60deg);
+    -moz-transform: rotate(60deg) skew(60deg);
+    -ms-transform: rotate(60deg) skew(60deg);
+    transform: rotate(60deg) skew(60deg);
+    -webkit-transform-origin: 100% 100%;
+    -moz-transform-origin: 100% 100%;
+    transform-origin: 100% 100%;
+    pointer-events: none;
 }
 
-#main-nav li a {
+.csstransforms .cn-wrapper li a {
+    position: absolute;
+    right: -7.25em;
+    bottom: -7.25em;
     display: block;
-    padding: 30px;
+    width: 14.5em;
+    height: 14.5em;
+    border-radius: 50%;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background: #429a67;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.2em;
+    line-height: 2;
+    -webkit-transform: skew(-30deg) rotate(-60deg) scale(1);
+    -moz-transform: skew(-30deg) rotate(-60deg) scale(1);
+    -ms-transform: skew(-30deg) rotate(-60deg) scale(1);
+    transform: skew(-31deg) rotate(-60deg) scale(1);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    pointer-events: auto;
+}
+.csstransforms .opened-nav li a {
+    background: -webkit-radial-gradient(transparent 0, #5f259f 0);
+    background: -moz-radial-gradient(transparent 0, #5f259f 0);
+    background: radial-gradient(transparent 0, #5f259f 0);
+}
+
+.csstransforms .cn-wrapper li a span {
+    position: relative;
+    top: 1.8em;
+    display: block;
+    font-size: .5em;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.csstransforms .cn-wrapper li a:hover,
+.csstransforms .cn-wrapper li a:active,
+.csstransforms .cn-wrapper li a:focus {
+    opacity:0.8;
+}
+
+.csstransforms .cn-wrapper li a:focus {
+    position: fixed; /* fix the displacement bug in webkit browsers when using tab key */
+}
+
+.csstransforms .opened-nav li {
+    -webkit-transition: all .3s ease .3s;
+    -moz-transition: all .3s ease .3s;
+    transition: all .3s ease .3s;
+}
+
+.csstransforms .opened-nav li:first-child {
+    -webkit-transform: rotate(0deg) skew(30deg);
+    -moz-transform: rotate(0deg) skew(30deg);
+    -ms-transform: rotate(0deg) skew(30deg);
+    transform: rotate(0deg) skew(31deg);
+}
+
+.csstransforms .opened-nav li:nth-child(2) {
+    -webkit-transform: rotate(12deg) skew(30deg);
+    -moz-transform: rotate(12deg) skew(30deg);
+    -ms-transform: rotate(12deg) skew(30deg);
+    transform: rotate(60deg) skew(31deg);
+}
+
+.csstransforms .opened-nav  li:nth-child(3) {
+    -webkit-transform: rotate(44deg) skew(30deg);
+    -moz-transform: rotate(44deg) skew(30deg);
+    -ms-transform: rotate(44deg) skew(30deg);
+    transform: rotate(120deg) skew(31deg);
+}
+
+.csstransforms .opened-nav li:nth-child(4) {
+    -webkit-transform: rotate(76deg) skew(30deg);
+    -moz-transform: rotate(76deg) skew(30deg);
+    -ms-transform: rotate(76deg) skew(30deg);
+    transform: rotate(180deg) skew(31deg);
+}
+
+.csstransforms .opened-nav li:nth-child(5) {
+    -webkit-transform: rotate(108deg) skew(30deg);
+    -moz-transform: rotate(108deg) skew(30deg);
+    -ms-transform: rotate(108deg) skew(30deg);
+    transform: rotate(240deg) skew(31deg);
+}
+
+.csstransforms .opened-nav li:nth-child(6) {
+    -webkit-transform: rotate(140deg) skew(30deg);
+    -moz-transform: rotate(140deg) skew(30deg);
+    -ms-transform: rotate(140deg) skew(30deg);
+    transform: rotate(300deg) skew(31deg);
+}
+
+.no-csstransforms .cn-wrapper {
+    overflow: hidden;
+    margin: 10em auto;
+    padding: .5em;
+    text-align: center;
+}
+
+.no-csstransforms .cn-wrapper ul {
+    display: inline-block;
+}
+
+.no-csstransforms .cn-wrapper li {
+    float: left;
+    width: 5em;
+    height: 5em;
+    background-color: #fff;
+    text-align: center;
+    font-size: 1em;
+    line-height: 5em;
+}
+
+.no-csstransforms .cn-wrapper li a {
+    display: block;
     width: 100%;
     height: 100%;
+    color: inherit;
     text-decoration: none;
-    font-weight: bold;
+}
+
+
+.turquoise {
+
+    background: #75c3bc !important;
+}
+
+.green {
+    background: #7e9642 !important;
+}
+
+.brown {
+    background: #432f19 !important;
+}
+
+.tan {
+    background: #eeeace !important;
+    color: black !important;
+}
+
+.olive {
+    background: #159587 !important;
+}
+
+.brown2{
+    background: #906647 !important;
+}
+.no-csstransforms .cn-wrapper li a:hover,
+.no-csstransforms .cn-wrapper li a:active,
+.no-csstransforms .cn-wrapper li a:focus {
+    background-color: #f8f8f8;
+}
+
+.no-csstransforms .cn-wrapper li.active a{
+    background-color: #6F325C;
     color: #fff;
 }
 
-#main-nav li:hover {
-    cursor: pointer;
+.no-csstransforms .cn-button {
+    display: none;
 }
 
-.home {
-    background: #ccdd59;
-}
-.home:hover,
-.home.menu-active {
-    background: #bfd42f;
-}
-.about {
-    background: #fbd54e;
-}
-.about:hover,
-.about.menu-active {
-    background: #fac91c;
-}
-.temp {
-    background: #fcb43e;
-}
-.temp:hover,
-.temp.menu-active {
-    background: #fba00c;
-}
-.emission {
-    background: #ef392e;
-}
-.emission:hover,
-.emission.menu-active {
-    background: #d91c11;
+@media only screen and (max-width: 620px) {
+    .no-csstransforms li {
+        width: 4em;
+        height: 4em;
+        line-height: 4em;
+    }
 }
 
-.opinion {
-    background: #70557e;
-}
-.opinion:hover,
-.opinion.menu-active {
-    background: #644c71;
+@media only screen and (max-width: 500px) {
+    .no-ccstransforms .cn-wrapper {
+        padding: .5em;
+    }
+
+    .no-csstransforms .cn-wrapper li {
+        width: 4em;
+        height: 4em;
+        font-size: .9em;
+        line-height: 4em;
+    }
 }
 
-.menu-active {
-    cursor: auto !important;
+@media only screen and (max-width: 480px) {
+    .csstransforms .cn-wrapper {
+        font-size: .68em;
+    }
+
+    .cn-button {
+        font-size: 1em;
+    }
+}
+
+@media only screen and (max-width:420px) {
+    .no-csstransforms .cn-wrapper li {
+        width: 100%;
+        height: 3em;
+        line-height: 3em;
+    }
+}
+
+img {
+    width: 80%;
 }
 
 
+
+/* The Overlay (background) */
+.overlay {
+    /* Height & width depends on how you want to reveal the overlay (see JS below) */
+    height: 100%;
+    width: 0;
+    position: fixed; /* Stay in place */
+    z-index: 15; /* Sit on top */
+    left: 0;
+    top: 0;
+    background-color: rgb(255,255,255); /* Black fallback color */
+    background-color: rgba(255,255,255, 0.9); /* Black w/opacity */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+}
+
+/* Position the content inside the overlay */
+.overlay-content {
+    position: relative;
+    top: 25%; /* 25% from the top */
+    width: 100%; /* 100% width */
+    text-align: center; /* Centered text/links */
+    margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+}
+
+/* The navigation links inside the overlay */
+.overlay a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 36px;
+    color: #818181;
+    display: block; /* Display block instead of inline */
+    transition: 0.3s; /* Transition effects on hover (color) */
+}
+
+/* When you mouse over the navigation links, change their color */
+.overlay a:hover, .overlay a:focus {
+    color: #f1f1f1;
+}
+
+/* Position the close button (top right corner) */
+.overlay .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+}
+
+/* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
+@media screen and (max-height: 450px) {
+    .overlay a {font-size: 20px}
+    .overlay .closebtn {
+        font-size: 40px;
+        top: 15px;
+        right: 35px;
+    }
+}
+
+#container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: -1;
+}

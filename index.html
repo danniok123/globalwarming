@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Global Warming</title>
+	<meta charset="UTF-8">
+	<title>Global Warming</title>
 
 
 
@@ -10,44 +10,45 @@
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/animate.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
 
-    <script src="js/modernizr.js"></script>
+	<script src="js/modernizr.js"></script>
 </head>
 
 <body>
-	<nav class="vertical-nav">
-		<ul>
-			<li><a href="#section1" class="active"><span class="label">Home</span></a></li>
-			<li><a href="#section2"><span class="label">Global Warming</span></a></li>
-			<li><a href="#section3"><span class="label">Temperature Change</span></a></li>
-			<li><a href="#section4"><span class="label">CO2 Emissions</span></a></li>
-			<li><a href="#section5"><span class="label">Opinions</span></a></li>
-		</ul>
-	</nav><!-- .vertical-nav -->
 
+<section id="home" class="home-section">
+	<div class="wow bounceInUp">
+		<h1>What on earth</h1>
+		<p class="lead"><b>Learn more about how Global Warming impacts all of us</b></p>
+		<a href="#main" id="learn" class="btn btn-info btn-lg" role="button">Explore and Learn More</a>
+		<a href="quiz.html" class="btn btn-info btn-lg" role="button">Take a Quiz</a>
+	</div>
+</section>
 
-	<nav class="menu">
-		<ul id="main-nav">
-			<li class="home"><a href="#section1"  id="home">Home</a></li>
-			<li class="about"><a href="#section2">Global Warming</a></li>
-			<li class="temp"><a href="#section3">Temperature Change</a></li>
-			<li class="emission"><a href="#section4">CO2 Emissions</a></li>
-			<li class="opinion"><a href="#section5">Opinions</a></li>
-		</ul>
-	</nav>
-	<button class="cd-nav-trigger cd-image-replace">Open navigation<span aria-hidden="true"></span></button>
+<div id="main">
+	<div id="container"></div>
+	<div class="component csstransforms">
+		<button class="cn-button" id="cn-button"><img src="img/earthsick.png"></button>
+		<div class="cn-wrapper opened-nav" id="cn-wrapper">
+			<ul>
+				<li><a href="#" class="green"><span>What Next</span></a></li>
+				<li><a href="#" id="back" class="brown"><span>Home</span></a></li>
+				<li><a onclick="openNav()" class="tan"><span>About</span></a></li>
+				<li><a href="#" class="olive"><span>Temperatures</span></a></li>
+				<li><a class="brown2" ><span>C02 Emissions</span></a></li>
 
-	<section id="section1" class="cd-section scroller">
-		<div class="content-wrapper wow bounceInUp">
-			<h1>What on earth</h1>
-			<p class="lead"><b>Learn more about how Global Warming impacts all of us</b></p>
-			<a href="#section2" id="learn" class="btn btn-info btn-lg" role="button">Explore and Learn More</a>
+				<li ><a href="#" class = "turquoise"><span>Opinions</span></a></li>
+			</ul>
 		</div>
-	</section><!-- cd-section -->
+	</div>
 
-	<!-- About Global Warming Section-->
-	<section id="section2" class="section-padding scroller">
-		<div class="container">
+	<div id="myNav" class="overlay">
+
+		<!-- Button to close the overlay navigation -->
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+		<div class="container overlay-content">
 			<div class="row">
 				<div class="col-md-12 col-sm-12 col-xs-12 text-center">
 					<div class="wow fadeInDown">
@@ -85,93 +86,53 @@
 				</div>
 			</div>
 		</div>
-	</section>
-	<!-- End Global Warming Section-->
-
-	<!-- About Global Warming Section-->
-	<section id="section3" class="section-padding scroller">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12 col-sm-12 col-xs-12 text-center">
-					<div class="wow fadeInDown">
-						<h1>Temperature Change</h1>
-						<h4>Lorem ipsum</h4>
-					</div>
-				</div>
-				<div class="col-md-6 col-sm-6 col-xs-6 text-center">
-					<div class="wow slideInUp">
-						<div class="about-descr">
-							<h3>Visualization</h3>
-							<img src="http://via.placeholder.com/350x150">
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6 col-sm-6 col-xs-6 text-center">
-					<div class="wow slideInUp">
-						<div class="about-descr">
-							<h3>Visualization</h3>
-							<img src="http://via.placeholder.com/350x150">
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- End Global Warming Section-->
+	</div>
+</div>
 
 
-	<section id="section4" class="cd-section scroller">
-		<div class="content-wrapper wow fadeInDown">
-			<h2>CO2 Emissions</h2>
-			<p>
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vestibulum quam ac tristique faucibus.
-				Proin quis nibh eget lacus ullamcorper congue et sed lectus. Sed vestibulum quam sed sem rhoncus,
-				commodo congue risus pharetra. Vivamus fringilla porttitor mollis. Sed in tortor eleifend,
-				pellentesque tellus sed, congue metus. Praesent tempor sagittis nulla, ac iaculis eros ultricies
-				vel. Vivamus eu bibendum eros. Nunc at ligula sed enim posuere luctus.
-			</p>
-		</div>
-	</section><!-- cd-section -->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/starfield.js"></script>
+<script src="js/wow.js"></script>
+<script>
 
-	<section id="section5" class="cd-section scroller">
-		<div class="content-wrapper wow fadeInDown">
-			<h2>Opinions</h2>
-			<p>
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vestibulum quam ac tristique faucibus.
-				Proin quis nibh eget lacus ullamcorper congue et sed lectus. Sed vestibulum quam sed sem rhoncus,
-				commodo congue risus pharetra. Vivamus fringilla porttitor mollis. Sed in tortor eleifend,
-				pellentesque tellus sed, congue metus. Praesent tempor sagittis nulla, ac iaculis eros ultricies
-				vel. Vivamus eu bibendum eros. Nunc at ligula sed enim posuere luctus.
-			</p>
-		</div>
-	</section><!-- cd-section -->
+    $("#main").hide();
 
-    <script src="js/colorbrewer.js"></script>
+    $("#learn").click(function () {
 
-	<!-- Load JS libraries -->
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/queue.min.js"></script>
-	<script src="js/topojson.js"></script>
-	<script src="js/d3.min.js"></script>
-	<script src="js/main.js"></script>
+        $("#home").hide();
+        $("#main").show();
+    });
 
-	<script src="js/wow.js"></script>
-	<!-- Custom Visualizations -->
-	<script src="js/vis-choropleth.js"></script>
-	<script src="js/dataClean.js"></script>
 
-	<script>
-        $(document).ready(function () {
+    $("#back").click(function () {
 
-            wow = new WOW({
-                    mobile: false,       // default
-                }
-            )
-            wow.init();
-        });
+        $("#main").hide();
+        $("#home").show();
+    });
 
-	</script>
 
+    $(document).ready(function () {
+
+        wow = new WOW({
+                mobile: false,       // default
+            }
+        )
+        wow.init();
+    });
+    function openNav() {
+        document.getElementById("myNav").style.width = "100%";
+    }
+
+    /* Close when someone clicks on the "x" symbol inside the overlay */
+    function closeNav() {
+        document.getElementById("myNav").style.width = "0%";
+    }
+
+    var container = document.getElementById('container');
+    var starfield = new Starfield();
+    starfield.initialise(container);
+    starfield.start();
+</script>
 </body>
 </html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Global Warming</title>
+
+
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <style>
+        body {
+            background-color: #d7d7d7;
+            color: #545454;
+        }
+
+
+        #barClass {
+            width: 100%;
+            height: 20px;
+            background-color: white;
+        }
+
+        #bar {
+            background-color: #4CAF50;
+        }
+
+        #start, #next, #back {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 12px 42px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 12px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .rbuts {
+            padding: 10px;
+            color: #7AA3CC;
+        }
+    </style>
+
+    <script src="js/modernizr.js"></script>
+</head>
+<body>
+<div class="container">
+
+    <div class="navbar navbar-inverse navbar-static-top">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">What On Earth</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li ><a href="index.html">Home</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- /navbar -->
+<div class="container" id="happen">
+    <div class="row clearfix">
+    </div>
+    <div class="col-md-1 column">
+    </div>
+    <div class="col-md-10 column">
+        <div id="barClass" class="progress">
+            <div id="bar" class="progress-bar" role="progressbar" style="width:1%">
+            </div>
+        </div>
+        <div class="panel panel-primary" id="content">
+            <div class="panel-heading">
+                <h3 class="panel-title" id="question">
+                </h3>
+            </div>
+            <div class="panel-body">
+
+
+                <div id='title'>
+                    <h3>What On Earth</h3>
+                    <p>Let's see what you think about Global Warming</p>
+                </div>
+                <button id="start">Start Quiz</button>
+                <div id="answers"></div>
+
+                <h3><p id="results"></p></h3>
+
+            </div>
+            <div class="panel-footer">
+                <button id="back" disabled>Back</button>
+                <button id="next">Next</button>
+            </div>
+        </div>
+        <div class="col-md-1 column">
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script>
+
+    function newQuestion(params) {
+        var tmp = {
+            question:  params[0],
+            choices: params[1]
+        };
+        return tmp;
+    }
+
+    var allQuestions = [
+        ["<p>Do you think Global Warming is happening?<p/>", ["Yes", "No", "Don't Know"]],
+        ["<p>If global warming was happening, do you think it's...<p/>", ["Caused mostly by human activities", "Caused by human activities and natural changes",
+            "Caused mostly by natural changes in the environment", "Neither because global warming isn’t happening"]],
+        ["<p>How much do you think global warming will harm people in the\n" +
+        "United States<p/>", ["Not at all", "Only a little", "A moderate amount", "A great deal", "Don’t know"]],
+        ["<p>Which comes closest to your own view? <p/>", ["Most scientists think global warming is happening",
+            "There is a lot of disagreement among scientists about whether or not global warming is happening",
+            "Most scientists think global warming is not happening", "Don’t know enough to say"]],
+        ["<p>Are you worried about global warming?<p/>", ["Not at all", "Only a little", "A moderate amount", "A great deal", "Don’t know"]]
+    ].map(newQuestion);
+
+    var number = 0, totalQuestions = allQuestions.length, answers = [];
+
+    $(document).ready(function() {
+
+        function newQuestionAnswers() {
+            $("#content").fadeOut(500, function() {
+                $("#answers").empty();
+                var query = allQuestions[number];
+                $("#question").html(query.question);
+
+                for(var i = 0; i < query.choices.length; i++) {
+                    $("#answers").append("<input type='radio' name='answers' id='radio" + i + "' value='answer" + i
+                        + "'><label class='rbuts' for='test" + i + "'>" + " " + query.choices[i] + "</label><br>");
+                }
+                if(answers.length > number)
+                    $("#radio" + answers[number]).prop("checked", true);
+                if (number > 0)
+                    $("#back").prop("disabled", false);
+            });
+            $("#content").fadeIn(500);
+        }
+
+        function nextAnswer() {
+            var querys = allQuestions[number];
+            for(var i = 0; i < $("input").length; i++) {
+                if ($("#radio" + i).is(":checked")) {
+                    answers[number] = querys.choices[i];
+                    break;
+                }
+                else if ( i === $("input").length -1 && !$("#radio" +i).is(":checked")) {
+                    $("#next").after("<p id='warning'>Please select an answer!</p>");
+                    return false;
+                }
+            }
+            number += 1;
+            return true;
+        }
+
+        function results() {
+            $("#results").text("Wow").show(1000);
+            $("#question, #answers, #next, #back").hide(10);
+            console.log(answers);
+        }
+
+
+
+        $("#back").hide();
+        $("#next").hide();
+        $("#results").hide();
+
+
+        $("#start").on('click', function() {
+            $("#title").hide();
+            $("#start").hide();
+            $("#next").show(1000);
+            $("#bar").width('5%');
+            newQuestionAnswers();
+        });
+
+
+        $("#next").on('click', function() {
+            $("#back").show(100);
+            $("#warning").remove();
+            if(nextAnswer()) {
+                if (number < totalQuestions)
+                    newQuestionAnswers();
+                else
+                    results();
+            }
+
+            // When progressing, update the bar
+            if (number > 0)
+                $("#back").prop("disabled", false);
+            $("#bar").width('20%');
+
+            if (number > 1)
+                $("#bar").width('40%');
+            if (number > 2)
+                $("#bar").width('60%');
+            if (number > 3)
+                $("#bar").width('80%');
+            if (number > 4)
+                $("#bar").width('100%');
+        });
+
+        // update the bar when moving backwards
+        $("#back").on('click', function() {
+            if ( number === totalQuestions) {
+                $("#results").hide();
+                $("#question, #answers, #next, #results").show(2500);
+            }
+
+            if (number > 0)
+                $("#bar").width('5%');
+            if (number > 1)
+                $("#bar").width('20%');
+            if (number > 2)
+                $("#bar").width('40%');
+            if (number > 3)
+                $("#bar").width('60%');
+            if (number > 4)
+                $("#bar").width('80%');
+
+            number -= 1;
+            $("#back").prop("disabled", true);
+            newQuestionAnswers();
+
+        });
+    });
+</script>
+</body>
+</html>
