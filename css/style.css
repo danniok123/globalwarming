@@ -13,10 +13,10 @@ Table of Contents
   2.1 Navigation
 
 3 - Content Area
-
-  3.1 Global Warming
+  3.0 Home
+  3.1 About
     3.1.1 Quick Facts
-  3.2 Temperature Change
+  3.2 Weather
   3.3 CO2 Emissions
   3.4 Opinions
   3.5 Work Cited
@@ -25,31 +25,6 @@ Table of Contents
 
 */
 
-#home {
-    color: white;
-    font-size: 50px !important;
-    background-image: url("../img/space.jpg");
-    background-attachment: fixed;
-}
-
-.home-section {
-    /* vertically align its content*/
-    padding:100px 0;
-    display: table;
-    width: 100%;
-    height: 100vh;
-}
-
-.home-section h1 {
-    text-transform: uppercase;
-}
-
-.home-section > div {
-    /* vertically align <div> inside <section> */
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
-}
 
 /* --------------------------------------------------------------------------
  * 1 - General Area
@@ -58,145 +33,131 @@ Table of Contents
 /* ================ 1.1 - Global ================ */
 
 
-/* Adapted from https://codepen.io/metaprinter/pen/mqJMdQ */
+/* ================ 1.2 - HTML Headings ================ */
 
-.component {
-    position: relative;
-    margin-bottom: 3em;
-    height: 15em;
-    font-family: 'Lato', Arial, sans-serif;
+
+/* ================ 1.3 - Section Styles ================ */
+.section-padding{
+    padding: 100px 0px;
+
 }
 
-.cn-button {
-    position: absolute;
-    top: 150%;
-    left: 50%;
-    z-index: 11;
-    margin-top: -5em;
-    margin-left: -5em;
-    padding: 0;
-    width: 10em;
-    height: 10em;
-    border: none;
-    border-radius: 50%;
-    background: none;
-    color: #5f259f;
-    text-align: center;
-    font-weight: 700;
-    font-size: 1.0em;
+.section-padding h1 {
     text-transform: uppercase;
-    cursor: pointer;
-    -webkit-backface-visibility: hidden;
+}
+
+.title {
+    padding-bottom: 50px;
+}
+
+/* --------------------------------------------------------------------------
+ * 2 -  Navigation Area
+ * -------------------------------------------------------------------------- */
+
+/* ================ 2.1 - Navigation ================ */
+
+/* Adapted from https://tympanus.net/codrops/2013/08/09/building-a-circular-navigation-with-css-transforms/ */
+
+.csstransforms * {
+    position: relative;
 }
 
 .csstransforms .cn-wrapper {
-    position: absolute;
-    top: 150%;
-    left: 50%;
+    font-size: 1em;
+    width: 26em;
+    height: 26em;
+    overflow: hidden;
+    position: fixed;
     z-index: 10;
-    margin-top: -13em;
-    margin-left: -13.5em;
-    width: 27em;
-    height: 27em;
+    bottom: -13em;
+    left: 50%;
     border-radius: 50%;
-    background: transparent;
-    opacity: 0;
-    -webkit-transition: all .3s ease 0.3s;
-    -moz-transition: all .3s ease 0.3s;
-    transition: all .3s ease 0.3s;
+    margin-left: -13em;
     -webkit-transform: scale(0.1);
     -ms-transform: scale(0.1);
     -moz-transform: scale(0.1);
     transform: scale(0.1);
     pointer-events: none;
-    overflow: hidden;
-}
-
-/*cover to prevent extra space of anchors from being clickable*/
-.csstransforms .cn-wrapper:after{
-    content:".";
-    display:block;
-    font-size:2em;
-    width:6.2em;
-    height:6.2em;
-    position: absolute;
-    left: 50%;
-    margin-left: -3.1em;
-    top:50%;
-    margin-top: -3.1em;
-    border-radius: 50%;
-    z-index:10;
-    color: transparent;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    transition: all .3s ease;
 }
 
 .csstransforms .opened-nav {
     border-radius: 50%;
-    opacity: 1;
-    -webkit-transition: all .3s ease;
-    -moz-transition: all .3s ease;
-    transition: all .3s ease;
+    pointer-events: auto;
     -webkit-transform: scale(1);
     -moz-transform: scale(1);
     -ms-transform: scale(1);
     transform: scale(1);
-    pointer-events: auto;
 }
-.cn-wrapper ul{
-    position: relative;
-    list-style: none;
-    margin: 0;
+
+.cn-overlay.on-overlay {
+    visibility: visible;
+    opacity: 1;
 }
+
+.cn-button {
+    border: none;
+    background: none;
+    text-align: center;
+    font-size: 1.8em;
+    padding-bottom: 1em;
+    height: 4em;
+    width: 4em;
+    position: fixed;
+    left: 50%;
+    margin-left: -2.1em;
+    bottom: -1.3em;
+    cursor: pointer;
+    z-index: 11;
+}
+
+.cn-button:hover,
+.cn-button:active,
+.cn-button:focus {
+    color: #aa1010;
+}
+
 .csstransforms .cn-wrapper li {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    overflow: hidden;
-    margin-top: -1.3em;
-    margin-left: -10em;
+    font-size: 1.5em;
     width: 10em;
     height: 10em;
-    font-size: 1.5em;
-    -webkit-transition: all .3s ease;
-    -moz-transition: all .3s ease;
-    transition: all .3s ease;
-    -webkit-transform: rotate(60deg) skew(60deg);
-    -moz-transform: rotate(60deg) skew(60deg);
-    -ms-transform: rotate(60deg) skew(60deg);
-    transform: rotate(60deg) skew(60deg);
     -webkit-transform-origin: 100% 100%;
     -moz-transform-origin: 100% 100%;
+    -ms-transform-origin: 100% 100%;
     transform-origin: 100% 100%;
-    pointer-events: none;
+    overflow: hidden;
+    left: 50%;
+    top: 50%;
+    margin-top: -1.3em;
+    margin-left: -10em;
+    -webkit-transition: border .3s ease;
+    -moz-transition: border .3s ease;
+    transition: border .3s ease;
 }
 
 .csstransforms .cn-wrapper li a {
-    position: absolute;
-    right: -7.25em;
-    bottom: -7.25em;
     display: block;
-    width: 14.5em;
+    font-size: 1.18em;
     height: 14.5em;
+    width: 14.5em;
+    position: absolute;
+    bottom: -7.25em;
+    right: -7.25em;
     border-radius: 50%;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    background: #429a67;
+    text-decoration: none;
     color: #fff;
     text-align: center;
-    text-decoration: none;
-    font-size: 1.2em;
-    line-height: 2;
-    -webkit-transform: skew(-30deg) rotate(-60deg) scale(1);
-    -moz-transform: skew(-30deg) rotate(-60deg) scale(1);
-    -ms-transform: skew(-30deg) rotate(-60deg) scale(1);
-    transform: skew(-31deg) rotate(-60deg) scale(1);
+    -webkit-transform: skew(-50deg) rotate(-70deg) scale(1);
+    -ms-transform: skew(-50deg) rotate(-70deg) scale(1);
+    -moz-transform: skew(-50deg) rotate(-70deg) scale(1);
+    transform: skew(-50deg) rotate(-70deg) scale(1);
     -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    pointer-events: auto;
-}
-.csstransforms .opened-nav li a {
-    background: -webkit-radial-gradient(transparent 0, #5f259f 0);
-    background: -moz-radial-gradient(transparent 0, #5f259f 0);
-    background: radial-gradient(transparent 0, #5f259f 0);
+    -webkit-transition: opacity 0.3s, color 0.3s;
+    -moz-transition: opacity 0.3s, color 0.3s;
+    transition: opacity 0.3s, color 0.3s;
 }
 
 .csstransforms .cn-wrapper li a span {
@@ -205,84 +166,92 @@ Table of Contents
     display: block;
     font-size: .5em;
     font-weight: 700;
-    text-transform: uppercase;
-}
-.csstransforms .cn-wrapper li a:hover,
-.csstransforms .cn-wrapper li a:active,
-.csstransforms .cn-wrapper li a:focus {
-    opacity:0.8;
 }
 
-.csstransforms .cn-wrapper li a:focus {
-    position: fixed; /* fix the displacement bug in webkit browsers when using tab key */
+
+
+/* for a central angle x, the list items must be skewed by 90-x degrees
+in our case x=40deg so skew angle is 50deg
+items should be rotated by x, minus (sum of angles - 180)2s (for this demo) */
+
+.csstransforms .cn-wrapper li:first-child {
+    -webkit-transform: rotate(-10deg) skew(50deg);
+    -ms-transform: rotate(-10deg) skew(50deg);
+    -moz-transform: rotate(-10deg) skew(50deg);
+    transform: rotate(-10deg) skew(50deg);
 }
 
-.csstransforms .opened-nav li {
-    -webkit-transition: all .3s ease .3s;
-    -moz-transition: all .3s ease .3s;
-    transition: all .3s ease .3s;
+.csstransforms .cn-wrapper li:nth-child(2) {
+    -webkit-transform: rotate(30deg) skew(50deg);
+    -ms-transform: rotate(30deg) skew(50deg);
+    -moz-transform: rotate(30deg) skew(50deg);
+    transform: rotate(30deg) skew(50deg);
 }
 
-.csstransforms .opened-nav li:first-child {
-    -webkit-transform: rotate(0deg) skew(30deg);
-    -moz-transform: rotate(0deg) skew(30deg);
-    -ms-transform: rotate(0deg) skew(30deg);
-    transform: rotate(0deg) skew(31deg);
+.csstransforms .cn-wrapper li:nth-child(3) {
+    -webkit-transform: rotate(70deg) skew(50deg);
+    -ms-transform: rotate(70deg) skew(50deg);
+    -moz-transform: rotate(70deg) skew(50deg);
+    transform: rotate(70deg) skew(50deg)
 }
 
-.csstransforms .opened-nav li:nth-child(2) {
-    -webkit-transform: rotate(12deg) skew(30deg);
-    -moz-transform: rotate(12deg) skew(30deg);
-    -ms-transform: rotate(12deg) skew(30deg);
-    transform: rotate(60deg) skew(31deg);
+.csstransforms .cn-wrapper li:nth-child(4) {
+    -webkit-transform: rotate(110deg) skew(50deg);
+    -ms-transform: rotate(110deg) skew(50deg);
+    -moz-transform: rotate(110deg) skew(50deg);
+    transform: rotate(110deg) skew(50deg);
 }
 
-.csstransforms .opened-nav  li:nth-child(3) {
-    -webkit-transform: rotate(44deg) skew(30deg);
-    -moz-transform: rotate(44deg) skew(30deg);
-    -ms-transform: rotate(44deg) skew(30deg);
-    transform: rotate(120deg) skew(31deg);
+.csstransforms .cn-wrapper li:nth-child(5) {
+    -webkit-transform: rotate(150deg) skew(50deg);
+    -ms-transform: rotate(150deg) skew(50deg);
+    -moz-transform: rotate(150deg) skew(50deg);
+    transform: rotate(150deg) skew(50deg);
 }
 
-.csstransforms .opened-nav li:nth-child(4) {
-    -webkit-transform: rotate(76deg) skew(30deg);
-    -moz-transform: rotate(76deg) skew(30deg);
-    -ms-transform: rotate(76deg) skew(30deg);
-    transform: rotate(180deg) skew(31deg);
+.csstransforms .cn-wrapper li:nth-child(odd) a {
+    background-color: #a11313;
+    background-color: hsla(0, 88%, 63%, 1);
 }
 
-.csstransforms .opened-nav li:nth-child(5) {
-    -webkit-transform: rotate(108deg) skew(30deg);
-    -moz-transform: rotate(108deg) skew(30deg);
-    -ms-transform: rotate(108deg) skew(30deg);
-    transform: rotate(240deg) skew(31deg);
+.csstransforms .cn-wrapper li:nth-child(even) a {
+    background-color: #a61414;
+    background-color: hsla(0, 88%, 65%, 1);
 }
 
-.csstransforms .opened-nav li:nth-child(6) {
-    -webkit-transform: rotate(140deg) skew(30deg);
-    -moz-transform: rotate(140deg) skew(30deg);
-    -ms-transform: rotate(140deg) skew(30deg);
-    transform: rotate(300deg) skew(31deg);
+/* active style */
+.csstransforms .cn-wrapper li.active a {
+    background-color: #b31515;
+    background-color: hsla(0, 88%, 70%, 1);
 }
 
-.no-csstransforms .cn-wrapper {
-    overflow: hidden;
-    margin: 10em auto;
-    padding: .5em;
-    text-align: center;
+
+/* hover style */
+.csstransforms .cn-wrapper li:not(.active) a:hover,
+.csstransforms .cn-wrapper li:not(.active) a:active,
+.csstransforms .cn-wrapper li:not(.active) a:focus {
+    background-color: #b31515;
+    background-color: hsla(0, 88%, 70%, 1);
+}
+.csstransforms .cn-wrapper li:not(.active) a:focus
+{
+    position:fixed;
 }
 
-.no-csstransforms .cn-wrapper ul {
-    display: inline-block;
+
+/* fallback */
+.no-csstransforms .cn-button {
+    display: none;
 }
 
 .no-csstransforms .cn-wrapper li {
+    position: static;
     float: left;
-    width: 5em;
-    height: 5em;
-    background-color: #fff;
-    text-align: center;
     font-size: 1em;
+    height: 5em;
+    width: 5em;
+    background-color: #eee;
+    text-align: center;
     line-height: 5em;
 }
 
@@ -290,18 +259,81 @@ Table of Contents
     display: block;
     width: 100%;
     height: 100%;
-    color: inherit;
     text-decoration: none;
+    color: inherit;
+    font-size: 1.3em;
+    border-right: 1px solid #ddd;
+}
+
+.no-csstransforms .cn-wrapper li a:last-child {
+    border: none;
+}
+
+.no-csstransforms .cn-wrapper li a:hover,
+.no-csstransforms .cn-wrapper li a:active,
+.no-csstransforms .cn-wrapper li a:focus {
+    background-color: white;
+}
+
+.no-csstransforms .cn-wrapper li.active a {
+    background-color: #6F325C;
+    color: #fff;
+}
+
+.no-csstransforms .cn-wrapper {
+    font-size: 1em;
+    height: 5em;
+    width: 25.15em;
+    bottom: 0;
+    margin-left: -12.5em;
+    overflow: hidden;
+    position: fixed;
+    z-index: 10;
+    left: 50%;
+    border: 1px solid #ddd;
+}
+
+@media screen and (max-width:480px) {
+    .csstransforms .cn-wrapper {
+        font-size: .68em;
+    }
+
+    .cn-button {
+        font-size: 1em;
+    }
+
+    .csstransforms .cn-wrapper li {
+        font-size: 1.52em;
+    }
+}
+
+@media screen and (max-width:320px) {
+    .no-csstransforms .cn-wrapper {
+        width: 15.15px;
+        margin-left: -7.5em;
+    }
+
+    .no-csstransforms .cn-wrapper li {
+        height: 3em;
+        width: 3em;
+    }
 }
 
 
 .turquoise {
-
     background: #75c3bc !important;
+}
+
+.turquoise:hover {
+    background: #38b7ac !important;
 }
 
 .green {
     background: #7e9642 !important;
+}
+
+.green:hover {
+    background: #617530 !important;
 }
 
 .brown {
@@ -317,121 +349,54 @@ Table of Contents
     background: #159587 !important;
 }
 
-.brown2{
-    background: #906647 !important;
-}
-.no-csstransforms .cn-wrapper li a:hover,
-.no-csstransforms .cn-wrapper li a:active,
-.no-csstransforms .cn-wrapper li a:focus {
-    background-color: #f8f8f8;
-}
-
-.no-csstransforms .cn-wrapper li.active a{
-    background-color: #6F325C;
-    color: #fff;
-}
-
-.no-csstransforms .cn-button {
-    display: none;
-}
-
-@media only screen and (max-width: 620px) {
-    .no-csstransforms li {
-        width: 4em;
-        height: 4em;
-        line-height: 4em;
-    }
-}
-
-@media only screen and (max-width: 500px) {
-    .no-ccstransforms .cn-wrapper {
-        padding: .5em;
-    }
-
-    .no-csstransforms .cn-wrapper li {
-        width: 4em;
-        height: 4em;
-        font-size: .9em;
-        line-height: 4em;
-    }
-}
-
-@media only screen and (max-width: 480px) {
-    .csstransforms .cn-wrapper {
-        font-size: .68em;
-    }
-
-    .cn-button {
-        font-size: 1em;
-    }
-}
-
-@media only screen and (max-width:420px) {
-    .no-csstransforms .cn-wrapper li {
-        width: 100%;
-        height: 3em;
-        line-height: 3em;
-    }
-}
-
-img {
+#nav img {
     width: 80%;
 }
 
+/* --------------------------------------------------------------------------
+ * 3 -  Content Area
+ * -------------------------------------------------------------------------- */
 
-
-.overlay {
-    height: 100%;
-    width: 0;
-    position: fixed; /* Stay in place */
-    z-index: 15; /* Sit on top */
-    left: 0;
-    top: 0;
-    background-color: rgb(255,255,255); /* Black fallback color */
-    overflow-x: hidden; /* Disable horizontal scroll */
-    transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+/* ================ 3.0 - Home ================ */
+#home {
+    color: white;
+    font-size: 50px !important;
+    background-image: url("../img/space.jpg");
+    background-attachment: fixed;
 }
 
-/* Position the content inside the overlay */
-.overlay-content {
-    position: relative;
-    top: 25%; /* 25% from the top */
-    width: 100%; /* 100% width */
-    text-align: center; /* Centered text/links */
-    margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+.home-section {
+    padding:100px 0;
+    display: table;
+    width: 100%;
+    height: 100vh;
 }
 
-/* The navigation links inside the overlay */
-.overlay a {
-    padding: 8px;
-    text-decoration: none;
-    font-size: 36px;
-    color: #818181;
-    display: block; /* Display block instead of inline */
-    transition: 0.3s; /* Transition effects on hover (color) */
+.home-section h1 {
+    text-transform: uppercase;
 }
 
-/* When you mouse over the navigation links, change their color */
-.overlay a:hover, .overlay a:focus {
-    color: #f1f1f1;
+.home-section > div {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
 }
 
-/* Position the close button (top right corner) */
-.overlay .closebtn {
-    position: absolute;
-    top: 20px;
-    right: 45px;
-    font-size: 60px;
+/* ================ 3.1 - About ================ */
+#about {
+    background: #75c3bc;
 }
 
-/* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
-@media screen and (max-height: 450px) {
-    .overlay a {font-size: 20px}
-    .overlay .closebtn {
-        font-size: 40px;
-        top: 15px;
-        right: 35px;
-    }
+#about img {
+    border: 2px solid black;
+    width: 80%
+}
+
+/* ================ 3.1.1 - Timeline ================ */
+
+/* ================ 3.2 - Weather ================ */
+#weather {
+    background: #7e9642;
 }
 
 #container {
@@ -511,3 +476,158 @@ div.tooltip {
     fill: #ffab00;
     stroke: #fff;
 }
+
+
+#myCarousel .nav a small
+{
+    display: block;
+}
+#myCarousel .nav
+{
+    background: #eee;
+}
+.nav-justified > li > a
+{
+    border-radius: 0px;
+}
+.nav-pills>li[data-slide-to="0"].active a { background-color: #16a085; }
+.nav-pills>li[data-slide-to="1"].active a { background-color: #e67e22; }
+.nav-pills>li[data-slide-to="2"].active a { background-color: #2980b9; }
+.nav-pills>li[data-slide-to="3"].active a { background-color: #8e44ad; }
+
+.timeline {
+    z-index: 1;
+    position: relative;
+    padding: 0;
+    list-style: none; }
+.timeline:before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 40px;
+    width: 2px;
+    margin-left: -1.5px;
+    content: '';
+    background-color: #e9ecef; }
+.timeline > li {
+    position: relative;
+    min-height: 50px;
+    margin-bottom: 50px; }
+.timeline > li:after, .timeline > li:before {
+    display: table;
+    content: ' '; }
+.timeline > li:after {
+    clear: both; }
+.timeline > li .timeline-panel {
+    position: relative;
+    float: right;
+    width: 100%;
+    padding: 0 20px 0 100px;
+    text-align: left; }
+.timeline > li .timeline-panel:before {
+    right: auto;
+    left: -15px;
+    border-right-width: 15px;
+    border-left-width: 0; }
+.timeline > li .timeline-panel:after {
+    right: auto;
+    left: -14px;
+    border-right-width: 14px;
+    border-left-width: 0; }
+.timeline > li .timeline-image {
+    position: absolute;
+    z-index: 100;
+    left: 0;
+    width: 80px;
+    height: 80px;
+    margin-left: 0;
+    text-align: center;
+    color: black;
+    border: 7px solid #e9ecef;
+    border-radius: 100%;
+    background-color: white;}
+.timeline > li .timeline-image h4 {
+    font-size: 10px;
+    line-height: 14px;
+    margin-top: 12px; }
+.timeline > li.timeline-inverted > .timeline-panel {
+    float: right;
+    padding: 0 20px 0 100px;
+    text-align: left; }
+.timeline > li.timeline-inverted > .timeline-panel:before {
+    right: auto;
+    left: -15px;
+    border-right-width: 15px;
+    border-left-width: 0; }
+.timeline > li.timeline-inverted > .timeline-panel:after {
+    right: auto;
+    left: -14px;
+    border-right-width: 14px;
+    border-left-width: 0; }
+.timeline > li:last-child {
+    margin-bottom: 0; }
+.timeline .timeline-heading h4 {
+    margin-top: 0;
+    color: inherit; }
+.timeline .timeline-heading h4.subheading {
+    text-transform: none; }
+.timeline .timeline-body > ul,
+.timeline .timeline-body > p {
+    margin-bottom: 0; }
+
+@media (min-width: 768px) {
+    .timeline:before {
+        left: 50%; }
+    .timeline > li {
+        min-height: 100px;
+        margin-bottom: 100px; }
+    .timeline > li .timeline-panel {
+        float: left;
+        width: 41%;
+        padding: 0 20px 20px 30px;
+        text-align: right; }
+    .timeline > li .timeline-image {
+        left: 50%;
+        width: 100px;
+        height: 100px;
+        margin-left: -50px; }
+    .timeline > li .timeline-image h4 {
+        font-size: 13px;
+        line-height: 18px;
+        margin-top: 16px; }
+    .timeline > li.timeline-inverted > .timeline-panel {
+        float: right;
+        padding: 0 30px 20px 20px;
+        text-align: left; } }
+
+@media (min-width: 992px) {
+    .timeline > li {
+        min-height: 150px; }
+    .timeline > li .timeline-panel {
+        padding: 0 20px 20px; }
+    .timeline > li .timeline-image {
+        width: 150px;
+        height: 150px;
+        margin-left: -75px; }
+    .timeline > li .timeline-image h4 {
+        font-size: 18px;
+        line-height: 26px;
+        margin-top: 30px; }
+    .timeline > li.timeline-inverted > .timeline-panel {
+        padding: 0 20px 20px; } }
+
+@media (min-width: 1200px) {
+    .timeline > li {
+        min-height: 170px; }
+    .timeline > li .timeline-panel {
+        padding: 0 20px 20px 100px; }
+    .timeline > li .timeline-image {
+        width: 170px;
+        height: 170px;
+        margin-left: -85px; }
+    .timeline > li .timeline-image h4 {
+        margin-top: 40px; }
+    .timeline > li.timeline-inverted > .timeline-panel {
+        padding: 0 100px 20px 20px; } }
+
+.img-fluid{max-width:100%;height:auto}

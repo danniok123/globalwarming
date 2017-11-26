@@ -10,41 +10,187 @@
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/animate.css">
-
 	<script src="js/modernizr.js"></script>
 </head>
 
 <body>
 
-<section id="home" class="home-section">
-	<div class="wow bounceInUp">
-		<h1>What on earth</h1>
-		<p class="lead"><b>Learn more about how Global Warming impacts all of us</b></p>
-		<a href="#main" id="learn" class="btn btn-info btn-lg" role="button">Explore and Learn More</a>
-		<a href="quiz.html" class="btn btn-info btn-lg" role="button">Take a Quiz</a>
-	</div>
-</section>
+	<section id="home" class="home-section">
+		<div class="wow bounceInUp">
+			<h1>What on earth</h1>
+			<p class="lead"><b>Learn more about how Global Warming impacts all of us</b></p>
+			<a href="#about" id="learn" class="btn btn-info btn-lg" role="button">Explore and Learn More</a>
+			<a href="quiz.html" id="quiz" class="btn btn-info btn-lg" role="button">Take a Quiz</a>
+		</div>
+	</section>
 
-<div id="main">
-	<div id="container"></div>
-	<div class="component csstransforms">
+	<div id = "nav" class="component">
 		<button class="cn-button" id="cn-button"><img src="img/earthsick.png"></button>
-		<div class="cn-wrapper opened-nav" id="cn-wrapper">
+		<div class="cn-wrapper" id="cn-wrapper">
 			<ul>
-				<li><a href="#" class="green"><span>What Next</span></a></li>
-				<li><a href="#" id="back" class="brown"><span>Home</span></a></li>
-				<li><a onclick="openNav()" class="tan"><span>About</span></a></li>
-				<li><a href="#" class="olive"><span>Temperatures</span></a></li>
-				<li><a class="brown2" ><span>C02 Emissions</span></a></li>
-				<li ><a href="#" class = "turquoise"><span>Weather</span></a></li>
+				<li><a href="#about" class="turquoise"><span>About</span></a></li>
+				<li><a href="#weather" class="green"><span>Weather</span></a></li>
+				<li><a href="#" class="brown"><span>Home</span></a></li>
+				<li><a href="#" class="tan"><span>CO2</span></a></li>
+				<li><a href="#" class="olive"><span>Help</span></a></li>
 			</ul>
 		</div>
+		<div id="cn-overlay" class="cn-overlay"></div>
 	</div>
 
-	<div id="myNav" class="overlay">
-		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+	<!-- About Global Warming Section-->
+	<section id="about" class="section-padding scroller">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 col-sm-12 col-xs-12 title text-center">
+					<div class="wow fadeInDown">
+						<h1>Global Warming</h1>
+						<h4>Global Warming is a huge issue...</h4>
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-6">
+					<div class="wow slideInUp">
+						<div class="about-descr">
+							<h3>What is it?</h3>
+							<p class="lead" style="font-size: 17px">
+								Global warming is the unusually rapid increase in Earth’s average
+								surface temperature over the past century primarily due to the greenhouse
+								gases released as people burn fossil fuels. The global average surface
+								temperature rose 0.6 to 0.9 degrees Celsius (1.1 to 1.6° F) between 1906
+								and 2005, and the rate of temperature increase has nearly doubled in the
+								last 50 years. Temperatures are certain to go up further.
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-6">
+					<img src="img/icemelt.jpeg">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 col-sm-6 col-xs-6">
+					<img src="img/icemelt.jpeg">
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-6">
+					<div class="wow slideInUp">
+						<div class="about-descr">
+							<h3>What causes it?</h3>
+							<p class="lead" style="font-size: 17px">
+								The cause of global warming is mostly by humans. We contribute a lot of greenhouse
+								gases from driving our cars,
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End Global Warming Section-->
 
-		<div class="container overlay-content">
+	<!-- Timeline Section-->
+	<section class="section-padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 col-sm-12 col-xs-12 title text-center">
+					<div class="wow fadeInDown">
+						<h1>Timeline of Global Warming</h1>
+					</div>
+				</div>
+
+				<div class="col-lg-12">
+					<ul class="timeline">
+						<li>
+							<div class="timeline-image">
+								<img class="img-circle img-fluid" src="img/Earth.png" alt="">
+							</div>
+							<div class="timeline-panel">
+								<div class="timeline-heading">
+									<h4>1800s</h4>
+									<h4 class="subheading">Where it all starts</h4>
+								</div>
+								<div class="timeline-body">
+									<p class="text-muted">Mean Global Temperature is 13.7°C and the CO2 levels are around
+										290 ppm (parts per million)</p>
+								</div>
+							</div>
+						</li>
+						<li class="timeline-inverted">
+							<div class="timeline-image">
+								<img class="img-circle img-fluid" src="img/greenhouse.png" alt="">
+							</div>
+							<div class="timeline-panel">
+								<div class="timeline-heading">
+									<h4>1824</h4>
+									<h4 class="subheading">Joseph Fourier and greenhouse effect</h4>
+								</div>
+								<div class="timeline-body">
+									<p class="text-muted">
+										French physicist notes that the Earth should actually be a lot colder
+										than what it is but it's not only because the Earth's atmosphere acts as a
+										insulator, which would later be denoted as the greenhouse effect.
+									</p>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="timeline-image">
+								<img class="img-circle img-fluid" src="img/UN_logo.png" alt="">
+							</div>
+							<div class="timeline-panel">
+								<div class="timeline-heading">
+									<h4>1988</h4>
+									<h4 class="subheading">Intergovernmental Panel on Climate Change (IPCC) formed</h4>
+								</div>
+								<div class="timeline-body">
+									<p class="text-muted">
+										Two United Nations organizations formed the IPCC in order to combat greenhouse
+										gases and control them. 
+									</p>
+								</div>
+							</div>
+						</li>
+						<li class="timeline-inverted">
+							<div class="timeline-image">
+								<img class="rounded-circle img-fluid" src="img/about/4.jpg" alt="">
+							</div>
+							<div class="timeline-panel">
+								<div class="timeline-heading">
+									<h4>July 2014</h4>
+									<h4 class="subheading">Phase Two Expansion</h4>
+								</div>
+								<div class="timeline-body">
+									<p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="timeline-image">
+								<img class="rounded-circle img-fluid" src="img/hotearth.png" alt="">
+							</div>
+							<div class="timeline-panel">
+								<div class="timeline-heading">
+									<h4>2015 - 2017</h4>
+									<h4 class="subheading">Phase Two Expansion</h4>
+								</div>
+								<div class="timeline-body">
+									<p class="text-muted">
+										The mean global temperature has now risen to 14.8°C and the CO2 levels are 407.06ppm. In 2015
+										the Paris Agreement is created and the nations agreed to reduce greenhouse gases. We
+										need to do something to decrease our harm on our Earth!
+									</p>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End Timeline Section-->
+
+	<!-- Weather Section-->
+	<section id="weather" class="section-padding scroller">
+		<div class="container">
 			<div class="row">
 				<div class="col-md-12 col-sm-12 col-xs-12 text-center">
 					<div class="wow fadeInDown">
@@ -57,7 +203,11 @@
 						<div class="about-descr">
 							<h3>What is it?</h3>
 							<p class="lead" style="font-size: 17px">
-								Global Warming, also referred to as climate change, is
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vestibulum quam ac tristique faucibus.
+								Proin quis nibh eget lacus ullamcorper congue et sed lectus. Sed vestibulum quam sed sem rhoncus,
+								commodo congue risus pharetra. Vivamus fringilla porttitor mollis. Sed in tortor eleifend,
+								pellentesque tellus sed, congue metus. Praesent tempor sagittis nulla, ac iaculis eros ultricies
+								vel. Vivamus eu bibendum eros. Nunc at ligula sed enim posuere luctus.
 							</p>
 						</div>
 					</div>
@@ -78,30 +228,56 @@
 				</div>
 			</div>
 		</div>
-	</div>
-</div>
+	</section>
+	<!-- End Weather Section-->
+
 
 
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/starfield.js"></script>
 <script src="js/wow.js"></script>
+<script src="js/polyfills.js"></script>
+<script src="js/demo1.js"></script>
 <script>
 
-    $("#main").hide();
+    $(document).ready( function() {
+        $('#myCarousel').carousel({
+            interval:   4000
+        });
 
-    $("#learn").click(function () {
+        var clickEvent = false;
+        $('#myCarousel').on('click', '.nav a', function() {
+            clickEvent = true;
+            $('.nav li').removeClass('active');
+            $(this).parent().addClass('active');
+        }).on('slid.bs.carousel', function(e) {
+            if(!clickEvent) {
+                var count = $('.nav').children().length -1;
+                var current = $('.nav li.active');
+                current.removeClass('active').next().addClass('active');
+                var id = parseInt(current.data('slide-to'));
+                if(count == id) {
+                    $('.nav li').first().addClass('active');
+                }
+            }
+            clickEvent = false;
+        });
+    });
 
-        $("#home").hide();
-        $("#main").show();
+    $(window).scroll(function() {
+
+        if ($(this).scrollTop()>200)
+        {
+            $('#nav').fadeIn();
+        }
+        else
+        {
+            $('#main').fadeOut();
+        }
     });
 
 
-    $("#back").click(function () {
-
-        $("#main").hide();
-        $("#home").show();
-    });
 
 
     $(document).ready(function () {
@@ -121,10 +297,6 @@
         document.getElementById("myNav").style.width = "0%";
     }
 
-    var container = document.getElementById('container');
-    var starfield = new Starfield();
-    starfield.initialise(container);
-    starfield.start();
 </script>
 </body>
 </html>

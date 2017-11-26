@@ -54,8 +54,6 @@ queue()
                 nclimate[i].x67_human, nclimate[i].x73_consensus, nclimate[i].x78_worried, nclimate[i].x82_harmUS];
         }
 
-        console.log(data);
-
         projection.scale(1)
             .translate([0, 0]);
 
@@ -105,6 +103,7 @@ queue()
             });
 
     });
+
 var margin = {top: 50, right: 50, bottom: 50, left: 50}
     , widthh = 500 - margin.left - margin.right // Use the window's width
     , heightt = 500 - margin.top - margin.bottom; // Use the window's height
@@ -112,17 +111,14 @@ var margin = {top: 50, right: 50, bottom: 50, left: 50}
 // The number of datapoints
 var n = 21;
 
-// 5. X scale will use the index of our data
 var xScale = d3.scaleLinear()
     .domain([0, n-1]) // input
     .range([0, widthh]); // output
 
-// 6. Y scale will use the randomly generate number
 var yScale = d3.scaleLinear()
     .domain([0, 1]) // input
     .range([heightt, 0]); // output
 
-// 7. d3's line generator
 var line = d3.line()
     .x(function(d, i) { return xScale(i); }) // set the x values for the line generator
     .y(function(d) { return yScale(d.y); }) // set the y values for the line generator
