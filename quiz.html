@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
     <style>
         body {
             background-color: #d7d7d7;
@@ -50,80 +49,82 @@
     <script src="js/modernizr.js"></script>
 </head>
 <body>
-<div class="container">
-
-    <div class="navbar navbar-inverse navbar-static-top">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">What On Earth</a>
-        </div>
-        <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li ><a href="index.html">Home</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-<!-- /navbar -->
-<div class="container" id="happen">
-    <div class="row clearfix">
-    </div>
-    <div class="col-md-12 column">
-        <div id="barClass" class="progress">
-            <div id="bar" class="progress-bar" role="progressbar" style="width:1%">
+    <div class="container">
+        <div class="navbar navbar-inverse navbar-static-top">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">What On Earth</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li ><a href="index.html">Home</a>
+                    </li>
+                </ul>
             </div>
         </div>
-        <div class="panel panel-primary" id="content">
-            <div class="panel-heading">
-                <h3 class="panel-title" id="question">
-                </h3>
-            </div>
-            <div class="panel-body">
-
-
-                <div id='title'>
-                    <h3>What On Earth</h3>
-                    <p>Let's see what you think about Global Warming</p>
+    </div>
+    <!-- /navbar -->
+    <div class="container" id="happen">
+        <div class="row clearfix">
+        </div>
+        <div class="col-md-12 column">
+            <div id="barClass" class="progress">
+                <div id="bar" class="progress-bar" role="progressbar" style="width:1%">
                 </div>
-                <button id="start">Start Quiz</button>
-                <div id="answers"></div>
+            </div>
+            <div class="panel panel-primary" id="content">
+                <div class="panel-heading">
+                    <h3 class="panel-title" id="question">
+                    </h3>
+                </div>
+                <div class="panel-body">
 
-                <div id="results">
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                            <form class="form-inline">
-                                <div class="form-group">
-                                    <label for="africaD">Questions</label>
-                                    <select class="form-control" id="africaD">
-                                        <option value="q1" onclick='change(this.value)' selected>Do you think Global Warming is happening?</option>
-                                        <option value="q2" onclick='change(this.value)'>If global warming was happening, do you think it's...</option>
-                                        <option value="q3" onclick='change(this.value)'>How much do you think global warming will harm people in the United States</option>
-                                        <option value="q4" onclick='change(this.value)'>Which comes closest to your own view?</option>
-                                        <option value="q5" onclick='change(this.value)'>Are you worried about global warming?</option>
-                                    </select>
-                                </div>
-                            </form>
+
+                    <div id='title'>
+                        <h3>What On Earth</h3>
+                        <p>Let's see what you think about Global Warming</p>
+                    </div>
+                    <button id="start">Start Quiz</button>
+                    <div id="answers"></div>
+
+                    <div id="results">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <form class="form-inline">
+                                    <div class="form-group">
+                                        <label for="africaD">Questions</label>
+                                        <select class="form-control" id="africaD">
+                                            <option value="0" onclick='changeText(0)' selected>Do you think Global Warming is happening?</option>
+                                            <option value="1" onclick='changeText(1)'>If global warming was happening, do you think it's...</option>
+                                            <option value="2" onclick='change(this.value)'>How much do you think global warming will harm people in the United States</option>
+                                            <option value="3" onclick='change(this.value)'>Which comes closest to your own view?</option>
+                                            <option value="4" onclick='change(this.value)'>Are you worried about global warming?</option>
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <h3 id="resultsText"></h3>
+                        <div class="col-md-6">
+                            <div id="mapchart"></div>
+                        </div>
+                        <div class="col-md-6">
+                            <div id="linechart"></div>
                         </div>
                     </div>
-                    <h3 id="resultsText"></h3>
-                    <div id="barChart"></div>
-                    <div id="mapChart"></div>
                 </div>
-
-            </div>
-            <div class="panel-footer">
-                <button id="back" disabled>Back</button>
-                <button id="next">Next</button>
+                <div class="panel-footer">
+                    <button id="back" disabled>Back</button>
+                    <button id="next">Next</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 </body>
 </html>
@@ -157,10 +158,10 @@
         ["<p>Are you worried about global warming?<p/>", ["Not at all", "Only a little", "A moderate amount", "A great deal", "Don’t know"]]
     ].map(newQuestion);
 
-    var number = 0, totalQuestions = allQuestions.length, answers = [];
+    var number = 0, totalQuestions = allQuestions.length, answers = [], answersText = [];
+    var selectID = 0;
 
     $(document).ready(function() {
-
         function newQuestionAnswers() {
             $("#content").fadeOut(500, function() {
                 $("#answers").empty();
@@ -183,7 +184,8 @@
             var querys = allQuestions[number];
             for(var i = 0; i < $("input").length; i++) {
                 if ($("#radio" + i).is(":checked")) {
-                    answers[number] = querys.choices[i];
+                    answers[number] = i;
+                    answersText[number] = querys.choices[i];
                     break;
                 }
                 else if ( i === $("input").length -1 && !$("#radio" +i).is(":checked")) {
@@ -195,14 +197,21 @@
             return true;
         }
 
+
         function results() {
-            var content = "";
-            $("#resultsText").text("You answered: ").show(1000);
+            $("#resultsText").html("You answered: " + answersText[selectID] + "<br>" + "Here's what others think:").show(1000);
             $("#results").show(1000);
             $("#question, #answers, #next, #back").hide(10);
             console.log(answers);
         }
 
+        function changeText(id) {
+
+            selectID = id;
+
+            results();
+
+        }
 
 
         $("#back").hide();
@@ -227,7 +236,7 @@
                 if (number < totalQuestions)
                     newQuestionAnswers();
                 else
-                    results();
+                    changeText(selectID);
             }
 
             // When progressing, update the bar
