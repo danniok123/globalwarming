@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d7efaad2-4f36-4688-a7c1-35373b19d656" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/component1.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/demo1.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/polyfills.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/style.css" afterPath="$PROJECT_DIR$/css/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/main.js" afterPath="$PROJECT_DIR$/js/main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/vis-bar.js" afterPath="$PROJECT_DIR$/js/vis-bar.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quiz.html" afterPath="$PROJECT_DIR$/quiz.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -26,8 +23,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="481">
-              <caret line="146" column="64" lean-forward="false" selection-start-line="146" selection-start-column="64" selection-end-line="146" selection-end-column="64" />
+            <state relative-caret-position="1743">
+              <caret line="241" column="8" lean-forward="true" selection-start-line="241" selection-start-column="8" selection-end-line="241" selection-end-column="8" />
               <folding>
                 <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#section#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#section#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -38,11 +35,53 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="quiz.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/quiz.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="699">
+              <caret line="116" column="46" lean-forward="true" selection-start-line="116" selection-start-column="46" selection-end-line="116" selection-end-column="46" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="vis-bar.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/vis-bar.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-314">
+              <caret line="142" column="18" lean-forward="true" selection-start-line="142" selection-start-column="18" selection-end-line="142" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="nclimate2583-s3.csv" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/nclimate2583-s3.csv">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" column="85" lean-forward="true" selection-start-line="5" selection-start-column="85" selection-end-line="5" selection-end-column="85" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="bootstrap.min.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/bootstrap.min.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
+            <state relative-caret-position="57">
               <caret line="4" column="70088" lean-forward="false" selection-start-line="4" selection-start-column="70083" selection-end-line="4" selection-end-column="70088" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3165">
+              <caret line="211" column="3" lean-forward="false" selection-start-line="211" selection-start-column="3" selection-end-line="211" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -61,8 +100,8 @@
       <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="163">
-              <caret line="542" column="19" lean-forward="true" selection-start-line="542" selection-start-column="19" selection-end-line="542" selection-end-column="19" />
+            <state relative-caret-position="89">
+              <caret line="485" column="3" lean-forward="true" selection-start-line="485" selection-start-column="3" selection-end-line="485" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -97,14 +136,17 @@
       <find>slidecontainer</find>
       <find>menu</find>
       <find>substr</find>
-      <find>console</find>
       <find>section1</find>
       <find>cd-section</find>
       <find>results</find>
       <find>circle</find>
       <find>rounded-circle</find>
       <find>img-fluid</find>
+      <find>changeText</find>
+      <find>africaD</find>
       <find>fluid</find>
+      <find>state</find>
+      <find>console</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -117,14 +159,14 @@
         <option value="$PROJECT_DIR$/data/GlobalLandTemperaturesByState.csv" />
         <option value="$PROJECT_DIR$/js/vis-choropleth.js" />
         <option value="$PROJECT_DIR$/js/dataClean.js" />
-        <option value="$PROJECT_DIR$/js/main.js" />
         <option value="$PROJECT_DIR$/js/vis-radial.js" />
-        <option value="$PROJECT_DIR$/quiz.html" />
-        <option value="$PROJECT_DIR$/js/vis-bar.js" />
         <option value="$PROJECT_DIR$/js/demo1.js" />
         <option value="$PROJECT_DIR$/css/bootstrap.min.css" />
-        <option value="$PROJECT_DIR$/css/style.css" />
+        <option value="$PROJECT_DIR$/js/main.js" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/quiz.html" />
+        <option value="$PROJECT_DIR$/css/style.css" />
+        <option value="$PROJECT_DIR$/js/vis-bar.js" />
       </list>
     </option>
   </component>
@@ -135,10 +177,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1" />
-    <option name="y" value="172" />
-    <option name="width" value="1420" />
-    <option name="height" value="760" />
+    <option name="x" value="168" />
+    <option name="y" value="142" />
+    <option name="width" value="1192" />
+    <option name="height" value="618" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -195,6 +237,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/danniok123/Documents/CS171_FinalProj/globalwarming/js/vis-bar.js" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -235,18 +278,18 @@
       <workItem from="1510696603468" duration="503000" />
       <workItem from="1511487209291" duration="2346000" />
       <workItem from="1511494290042" duration="2014000" />
-      <workItem from="1511639569951" duration="31797000" />
+      <workItem from="1511639569951" duration="46075000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66931000" />
+    <option name="totallyTimeSpent" value="81209000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="172" width="1420" height="760" extended-state="0" />
+    <frame x="168" y="142" width="1192" height="618" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26478875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31543624" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -540,14 +583,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="42" lean-forward="false" selection-start-line="19" selection-start-column="42" selection-end-line="19" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/dataClean.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -604,29 +639,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/nclimate2583-s3.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="85" lean-forward="true" selection-start-line="5" selection-start-column="85" selection-end-line="5" selection-end-column="85" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/vis-radial.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="20" column="30" lean-forward="false" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/quiz.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-193">
-          <caret line="113" column="53" lean-forward="true" selection-start-line="113" selection-start-column="53" selection-end-line="113" selection-end-column="53" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -654,18 +671,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/vis-bar.js">
+    <entry file="file://$PROJECT_DIR$/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2100">
-          <caret line="140" column="80" lean-forward="true" selection-start-line="140" selection-start-column="80" selection-end-line="140" selection-end-column="80" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/bootstrap.min.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="4" column="70088" lean-forward="false" selection-start-line="4" selection-start-column="70083" selection-end-line="4" selection-end-column="70088" />
+        <state relative-caret-position="3165">
+          <caret line="211" column="3" lean-forward="false" selection-start-line="211" selection-start-column="3" selection-end-line="211" selection-end-column="3" />
           <folding />
         </state>
       </provider>
@@ -678,18 +687,52 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/css/bootstrap.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="4" column="70088" lean-forward="false" selection-start-line="4" selection-start-column="70083" selection-end-line="4" selection-end-column="70088" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/nclimate2583-s3.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="85" lean-forward="true" selection-start-line="5" selection-start-column="85" selection-end-line="5" selection-end-column="85" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="542" column="19" lean-forward="true" selection-start-line="542" selection-start-column="19" selection-end-line="542" selection-end-column="19" />
+        <state relative-caret-position="89">
+          <caret line="485" column="3" lean-forward="true" selection-start-line="485" selection-start-column="3" selection-end-line="485" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quiz.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="699">
+          <caret line="116" column="46" lean-forward="true" selection-start-line="116" selection-start-column="46" selection-end-line="116" selection-end-column="46" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/vis-bar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-314">
+          <caret line="142" column="18" lean-forward="true" selection-start-line="142" selection-start-column="18" selection-end-line="142" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="146" column="64" lean-forward="false" selection-start-line="146" selection-start-column="64" selection-end-line="146" selection-end-column="64" />
+        <state relative-caret-position="1743">
+          <caret line="241" column="8" lean-forward="true" selection-start-line="241" selection-start-column="8" selection-end-line="241" selection-end-column="8" />
           <folding>
             <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#section#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#section#1;n#body#0;n#html#0;n#!!top" expanded="true" />

@@ -1,3 +1,4 @@
+// variables for the map chart
 var stateIDs = {
     "Alabama": 1, "Alaska": 2, "Arizona": 4, "Arkansas": 5, "California": 6, "Colorado": 8,
     "Connecticut": 9, "Delaware": 10, "DistrictofColumbia": 11, "Florida": 12, "Georgia": 13,
@@ -11,22 +12,14 @@ var stateIDs = {
     "West Virginia": 54, "Wisconsin": 55, "Wyoming": 56
 };
 
-var selectMe = "Texas";
-
-d3.select("#africaD").on("change", function() {
-
-    selectMe = d3.select("#africaD").property("value");
-
-    //updateChoropleth();
-
-});
 var data = {};
+var width = 500,
+    height = 500,
+    centered;
 
-var width = 700,
-    height = 400;
-
-var projection = d3.geoAlbers();
-
+var projection = d3.geoAlbersUsa()
+    .scale(700)
+    .translate([width / 2, height / 2]);
 
 var path = d3.geoPath()
     .projection(projection);
@@ -35,9 +28,39 @@ var svg = d3.select("#mapchart").append("svg")
     .attr("width", width)
     .attr("height", height);
 
+svg.append("rect")
+    .attr("class", "background")
+    .attr("width", width)
+    .attr("height", height)
+    .on("click", clicked);
+
 var tooltip = d3.select("#mapchart").append("div")
     .attr("class", "tooltip")
     .style("opacity", 0);
+
+var g = svg.append("g");
+
+var selectMe = 1;
+
+d3.select("#quest").on("change", function() {
+    selectMe = Number(d3.select("#quest").property("value")) + 1;
+});
+
+// variables for the line graph
+
+var xScale = d3.scaleLinear()
+    .domain([0, n-1])
+    .range([0, widthh]);
+
+var yScale = d3.scaleLinear()
+    .domain([0, 1])
+    .range([heightt, 0]);
+
+var line = d3.line()
+    .x(function(d, i) { return xScale(i); })
+    .y(function(d) { return yScale(d.y); })
+    .curve(d3.curveMonotoneX);
+
 
 queue()
     .defer(d3.json, "data/us.json")
@@ -45,117 +68,126 @@ queue()
     .await(function(error, us, nclimate) {
         if (error) throw error;
 
-        var states = topojson.feature(us, us.objects.states),
-            state = states.features.filter(function(d) {
-                return d.id === stateIDs[selectMe]; })[0];
-
         for (var i = 0; i < nclimate.length; i++) {
             data[nclimate[i].County_FIPS] = [nclimate[i].County_name, nclimate[i].x65_happening,
                 nclimate[i].x67_human, nclimate[i].x73_consensus, nclimate[i].x78_worried, nclimate[i].x82_harmUS];
         }
 
-        projection.scale(1)
-            .translate([0, 0]);
-
-        var b = path.bounds(state),
-            s = .95 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height),
-            t = [350, (height - s * (b[1][1] + b[0][1])) / 2];
-
-        projection.scale(s)
-            .translate(t);
-
-        svg.append("path")
-            .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
-            .attr("class", "mesh")
-            .attr("d", path);
-
-        svg.append("path")
-            .datum(state)
-            .attr("class", "outline")
-            .attr("d", path)
-            .attr('id', 'land');
-
-        svg.append("clipPath")
-            .attr("id", "clip-land")
-            .append("use")
-            .attr("xlink:href", "#land");
-
-        svg.selectAll("path")
+        g.append("g")
+            .attr("id", "counties")
+            .selectAll("path")
             .data(topojson.feature(us, us.objects.counties).features)
             .enter().append("path")
             .attr("d", path)
-            .attr('county-id', function(d){
-                return d.id;
-            }).attr("clip-path", "url(#clip-land)")
-            .attr('class', 'county')
+            .attr("class", "county-boundary")
             .on("mousemove", function(d, i) {
                 tooltip.transition()
-                    .duration(200)
                     .style("opacity", .9);
-                tooltip.html(data[d.id][0] + "<br>" + data[d.id][1] + "%")
+                tooltip.html(data[d.id][0] + "<br>" + data[d.id][selectMe] + "%")
                     .style("left", (d3.event.pageX - 100) + "px")
-                    .style("top", (d3.event.pageY - 200) + "px");
+                    .style("top", (d3.event.pageY - 230) + "px");
             })
             .on("mouseout", function(d) {
                 tooltip.transition()
                     .duration(500)
                     .style("opacity", 0);
-            });
+            })
+            .on("click", clicked2);
 
+        g.append("g")
+            .attr("id", "states")
+            .selectAll("path")
+            .data(topojson.feature(us, us.objects.states).features)
+            .enter().append("path")
+            .attr("d", path)
+            .attr("class", "state")
+            .on("click", clicked);
+
+
+        g.append("path")
+            .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
+            .attr("id", "state-borders")
+            .attr("d", path);
     });
 
-var margin = {top: 50, right: 50, bottom: 50, left: 50}
-    , widthh = 500 - margin.left - margin.right // Use the window's width
-    , heightt = 500 - margin.top - margin.bottom; // Use the window's height
+function clicked(d) {
+    var x, y, k;
 
-// The number of datapoints
+    if (d && centered !== d) {
+        var centroid = path.centroid(d);
+        x = centroid[0];
+        y = centroid[1];
+        k = 4;
+        centered = d;
+    } else {
+        x = width / 2;
+        y = height / 2;
+        k = 1;
+        centered = null;
+    }
+
+    g.selectAll("path")
+        .classed("active", centered && function(d) { return d === centered; });
+
+    g.transition()
+        .duration(750)
+        .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
+        .style("stroke-width", 1.5 / k + "px");
+}
+
+console.log(data);
+
+function clicked2(d) {
+    var x, y, k;
+
+    x = width / 2;
+    y = height / 2;
+    k = 1;
+    centered = null;
+
+    g.selectAll("path")
+        .classed("active", function(d) { return false });
+
+
+    g.transition()
+        .duration(750)
+        .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
+        .style("stroke-width", 1.5 / k + "px");
+}
+
+var margin = {top: 50, right: 50, bottom: 50, left: 50}
+    , widthh = 500 - margin.left - margin.right
+    , heightt = 500 - margin.top - margin.bottom;
+
 var n = 21;
 
-var xScale = d3.scaleLinear()
-    .domain([0, n-1]) // input
-    .range([0, widthh]); // output
+var dataset = d3.range(n).map(function(d) { return {"y": d3.randomUniform(1)() } });
 
-var yScale = d3.scaleLinear()
-    .domain([0, 1]) // input
-    .range([heightt, 0]); // output
-
-var line = d3.line()
-    .x(function(d, i) { return xScale(i); }) // set the x values for the line generator
-    .y(function(d) { return yScale(d.y); }) // set the y values for the line generator
-    .curve(d3.curveMonotoneX) // apply smoothing to the line
-
-// 8. An array of objects of length N. Each object has key -> value pair, the key being "y" and the value is a random number
-var dataset = d3.range(n).map(function(d) { return {"y": d3.randomUniform(1)() } })
-
-// 1. Add the SVG to the page and employ #2
 var svg2 = d3.select("#linechart").append("svg")
     .attr("width", widthh + margin.left + margin.right)
     .attr("height", heightt + margin.top + margin.bottom)
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-// 3. Call the x axis in a group tag
 svg2.append("g")
     .attr("class", "x axis")
     .attr("transform", "translate(0," + heightt + ")")
-    .call(d3.axisBottom(xScale)); // Create an axis component with d3.axisBottom
+    .call(d3.axisBottom(xScale));
 
-// 4. Call the y axis in a group tag
+
 svg2.append("g")
     .attr("class", "y axis")
-    .call(d3.axisLeft(yScale)); // Create an axis component with d3.axisLeft
+    .call(d3.axisLeft(yScale));
 
-// 9. Append the path, bind the data, and call the line generator
 svg2.append("path")
-    .datum(dataset) // 10. Binds data to the line
-    .attr("class", "line") // Assign a class for styling
-    .attr("d", line); // 11. Calls the line generator
+    .datum(dataset)
+    .attr("class", "line")
+    .attr("d", line);
 
-// 12. Appends a circle for each datapoint
 svg2.selectAll(".dot")
     .data(dataset)
-    .enter().append("circle") // Uses the enter().append() method
-    .attr("class", "dot") // Assign a class for styling
+    .enter().append("circle")
+    .attr("class", "dot")
     .attr("cx", function(d, i) { return xScale(i) })
     .attr("cy", function(d) { return yScale(d.y) })
     .attr("r", 5);

@@ -47,6 +47,7 @@
     </style>
 
     <script src="js/modernizr.js"></script>
+    <script src="js/jquery.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -97,13 +98,13 @@
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <form class="form-inline">
                                     <div class="form-group">
-                                        <label for="africaD">Questions</label>
-                                        <select class="form-control" id="africaD">
-                                            <option value="0" onclick='changeText(0)' selected>Do you think Global Warming is happening?</option>
-                                            <option value="1" onclick='changeText(1)'>If global warming was happening, do you think it's...</option>
-                                            <option value="2" onclick='change(this.value)'>How much do you think global warming will harm people in the United States</option>
-                                            <option value="3" onclick='change(this.value)'>Which comes closest to your own view?</option>
-                                            <option value="4" onclick='change(this.value)'>Are you worried about global warming?</option>
+                                        <label for="quest">Questions:</label>
+                                        <select class="form-control" onchange="changeText(this.value)" id="quest">
+                                            <option value="0" selected>Do you think Global Warming is happening?</option>
+                                            <option value="1">If global warming was happening, do you think it's...</option>
+                                            <option value="2">Which comes closest to your own view?</option>
+                                            <option value="3">Are you worried about global warming?</option>
+                                            <option value="4">How much do you think global warming will harm people in the United States?</option>
                                         </select>
                                     </div>
                                 </form>
@@ -128,7 +129,7 @@
 
 </body>
 </html>
-<script src="js/jquery.min.js"></script>
+
 <script src="js/bootstrap.min.js"></script>
 
 <script src="js/queue.min.js"></script>
@@ -150,15 +151,15 @@
         ["<p>Do you think Global Warming is happening?<p/>", ["Yes", "No", "Don't Know"]],
         ["<p>If global warming was happening, do you think it's...<p/>", ["Caused mostly by human activities", "Caused by human activities and natural changes",
             "Caused mostly by natural changes in the environment", "Neither because global warming isn’t happening"]],
-        ["<p>How much do you think global warming will harm people in the\n" +
-        "United States<p/>", ["Not at all", "Only a little", "A moderate amount", "A great deal", "Don’t know"]],
         ["<p>Which comes closest to your own view?<p/>", ["Most scientists think global warming is happening",
             "There is a lot of disagreement among scientists about whether or not global warming is happening",
             "Most scientists think global warming is not happening", "Don’t know enough to say"]],
-        ["<p>Are you worried about global warming?<p/>", ["Not at all", "Only a little", "A moderate amount", "A great deal", "Don’t know"]]
+        ["<p>Are you worried about global warming?<p/>", ["Not at all", "Only a little", "A moderate amount", "A great deal", "Don’t know"]],
+        ["<p>How much do you think global warming will harm people in the\n" +
+        "United States<p/>", ["Not at all", "Only a little", "A moderate amount", "A great deal", "Don’t know"]]
     ].map(newQuestion);
 
-    var number = 0, totalQuestions = allQuestions.length, answers = [], answersText = [];
+    var number = 0, totalQuestions = 5, answers = [], answersText = [];
     var selectID = 0;
 
     $(document).ready(function() {
@@ -202,15 +203,6 @@
             $("#resultsText").html("You answered: " + answersText[selectID] + "<br>" + "Here's what others think:").show(1000);
             $("#results").show(1000);
             $("#question, #answers, #next, #back").hide(10);
-            console.log(answers);
-        }
-
-        function changeText(id) {
-
-            selectID = id;
-
-            results();
-
         }
 
 
@@ -236,7 +228,7 @@
                 if (number < totalQuestions)
                     newQuestionAnswers();
                 else
-                    changeText(selectID);
+                    results();
             }
 
             // When progressing, update the bar
@@ -278,6 +270,11 @@
 
         });
     });
+
+    function changeText(id) {
+        $("#resultsText").html("You answered: " + answersText[id] + "<br>" + "Here's what others think in your state:").show(1000);
+    }
+
 </script>
 </body>
 </html>

@@ -144,7 +144,7 @@
 								<div class="timeline-body">
 									<p class="text-muted">
 										Two United Nations organizations formed the IPCC in order to combat greenhouse
-										gases and control them. 
+										gases and control them.
 									</p>
 								</div>
 							</div>
@@ -192,10 +192,10 @@
 	<section id="weather" class="section-padding scroller">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12 col-sm-12 col-xs-12 text-center">
+				<div class="col-md-12 col-sm-12 col-xs-12 title text-center">
 					<div class="wow fadeInDown">
-						<h1>Global Warming</h1>
-						<h4>Global Warming is a huge issue...</h4>
+						<h1>Weather</h1>
+						<h4></h4>
 					</div>
 				</div>
 				<div class="col-md-6 col-sm-6 col-xs-6">
@@ -240,46 +240,6 @@
 <script src="js/polyfills.js"></script>
 <script src="js/demo1.js"></script>
 <script>
-
-    $(document).ready( function() {
-        $('#myCarousel').carousel({
-            interval:   4000
-        });
-
-        var clickEvent = false;
-        $('#myCarousel').on('click', '.nav a', function() {
-            clickEvent = true;
-            $('.nav li').removeClass('active');
-            $(this).parent().addClass('active');
-        }).on('slid.bs.carousel', function(e) {
-            if(!clickEvent) {
-                var count = $('.nav').children().length -1;
-                var current = $('.nav li.active');
-                current.removeClass('active').next().addClass('active');
-                var id = parseInt(current.data('slide-to'));
-                if(count == id) {
-                    $('.nav li').first().addClass('active');
-                }
-            }
-            clickEvent = false;
-        });
-    });
-
-    $(window).scroll(function() {
-
-        if ($(this).scrollTop()>200)
-        {
-            $('#nav').fadeIn();
-        }
-        else
-        {
-            $('#main').fadeOut();
-        }
-    });
-
-
-
-
     $(document).ready(function () {
 
         wow = new WOW({
@@ -288,15 +248,6 @@
         )
         wow.init();
     });
-    function openNav() {
-        document.getElementById("myNav").style.width = "100%";
-    }
-
-    /* Close when someone clicks on the "x" symbol inside the overlay */
-    function closeNav() {
-        document.getElementById("myNav").style.width = "0%";
-    }
-
 </script>
 </body>
 </html>
