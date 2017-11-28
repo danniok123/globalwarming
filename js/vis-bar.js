@@ -1,4 +1,3 @@
-// variables for the map chart
 var stateIDs = {
     "Alabama": 1, "Alaska": 2, "Arizona": 4, "Arkansas": 5, "California": 6, "Colorado": 8,
     "Connecticut": 9, "Delaware": 10, "DistrictofColumbia": 11, "Florida": 12, "Georgia": 13,
@@ -11,6 +10,62 @@ var stateIDs = {
     "Tennessee": 47, "Texas": 48, "Utah": 49, "Vermont": 50, "Virginia": 51, "Washington": 53,
     "West Virginia": 54, "Wisconsin": 55, "Wyoming": 56
 };
+
+var dictionary1 = {
+    01: "Alabama",
+    02: "Alaska",
+    04: "Arizona",
+    05:  "Arkansas",
+    06: "California",
+    08:  "Colorado",
+    09: "Connecticut",
+    10: "Delaware",
+    11: "District Of Columbia",
+    12:  "Florida",
+    13:  "Georgia (State)",
+    15:   "Hawaii",
+    16:    "Idaho",
+    17:    "Illinois",
+    18:    "Indiana",
+    19:    "Iowa",
+    20:    "Kansas",
+    21:    "Kentucky",
+    22:    "Louisiana",
+    23:    "Maine",
+    24:    "Maryland",
+    25:    "Massachusetts",
+    26:    "Michigan",
+    27:    "Minnesota",
+    28:    "Mississippi",
+    29:    "Missouri",
+    30:    "Montana",
+    31:    "Nebraska",
+    32:    "Nevada",
+    33:    "New Hampshire",
+    34:    "New Jersey",
+    35:    "New Mexico",
+    36:    "New York",
+    37:    "North Carolina",
+    38:    "North Dakota",
+    39:    "Ohio",
+    40:    "Oklahoma",
+    41:    "Oregon",
+    42:    "Pennsylvania",
+    44:   "Rhode Island",
+    45:    "South Carolina",
+    46:    "South Dakota",
+    47:    "Tennessee",
+    48:    "Texas",
+    49:    "Utah",
+    50:    "Vermont",
+    51:    "Virginia",
+    53:    "Washington",
+    54:    "West Virginia",
+    55:    "Wisconsin",
+    56:    "Wyoming",
+    60:    "America Samoa" }
+
+var updated_data = {};
 
 var data = {};
 var width = 500,
@@ -43,24 +98,12 @@ var g = svg.append("g");
 var selectMe = 1;
 
 d3.select("#quest").on("change", function() {
+
     selectMe = Number(d3.select("#quest").property("value")) + 1;
+
+    //updateChoropleth();
+
 });
-
-// variables for the line graph
-
-var xScale = d3.scaleLinear()
-    .domain([0, n-1])
-    .range([0, widthh]);
-
-var yScale = d3.scaleLinear()
-    .domain([0, 1])
-    .range([heightt, 0]);
-
-var line = d3.line()
-    .x(function(d, i) { return xScale(i); })
-    .y(function(d) { return yScale(d.y); })
-    .curve(d3.curveMonotoneX);
-
 
 queue()
     .defer(d3.json, "data/us.json")
@@ -101,7 +144,17 @@ queue()
             .enter().append("path")
             .attr("d", path)
             .attr("class", "state")
-            .on("click", clicked);
+            .on("click", clicked)
+            .on("mouseover", function(d) {
+                new_dict = {};
+                for (var key in data) {
+                    var dummy_array = data[key];
+                    if (dummy_array[0].split(", ")[1] == dictionary1[d.id]) {
+                        new_dict[key] = data[key];
+                    }
+                }
+                console.log(new_dict);
+            })
 
 
         g.append("path")
@@ -154,40 +207,3 @@ function clicked2(d) {
         .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
         .style("stroke-width", 1.5 / k + "px");
 }
-
-var margin = {top: 50, right: 50, bottom: 50, left: 50}
-    , widthh = 500 - margin.left - margin.right
-    , heightt = 500 - margin.top - margin.bottom;
-
-var n = 21;
-
-var dataset = d3.range(n).map(function(d) { return {"y": d3.randomUniform(1)() } });
-
-var svg2 = d3.select("#linechart").append("svg")
-    .attr("width", widthh + margin.left + margin.right)
-    .attr("height", heightt + margin.top + margin.bottom)
-    .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-svg2.append("g")
-    .attr("class", "x axis")
-    .attr("transform", "translate(0," + heightt + ")")
-    .call(d3.axisBottom(xScale));
-
-
-svg2.append("g")
-    .attr("class", "y axis")
-    .call(d3.axisLeft(yScale));
-
-svg2.append("path")
-    .datum(dataset)
-    .attr("class", "line")
-    .attr("d", line);
-
-svg2.selectAll(".dot")
-    .data(dataset)
-    .enter().append("circle")
-    .attr("class", "dot")
-    .attr("cx", function(d, i) { return xScale(i) })
-    .attr("cy", function(d) { return yScale(d.y) })
-    .attr("r", 5);
