@@ -146,13 +146,13 @@ function updatevisualization() {
         .attr("stroke-width", 1)
         .attr("stroke", "black")
         .attr("d", arc)
-        .on("mouseover", function(d) {
+        .on("mousemove", function(d) {
             tooltips_radial.transition()
                 .duration(200)
                 .style("opacity", .9);
             tooltips_radial.html(d.value + " °F")
-                .style("left", (d3.event.pageX-500) + "px")
-                .style("top", (d3.event.pageY-3600) + "px")
+                .style("left", (d3.event.pageX) + "px")
+                .style("top", (d3.event.pageY) + "px")
                 .style("display", "block");
         })
         .on("mouseout", function(d) {
