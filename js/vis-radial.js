@@ -151,8 +151,8 @@ function updatevisualization() {
                 .duration(200)
                 .style("opacity", .9);
             tooltips_radial.html(d.value + " °F")
-                .style("left", (d3.event.pageX) + "px")
-                .style("top", (d3.event.pageY) + "px")
+                .style("left", (d3.event.pageX - 500) + "px")
+                .style("top", (d3.event.pageY - 3400) + "px")
                 .style("display", "block");
         })
         .on("mouseout", function(d) {
