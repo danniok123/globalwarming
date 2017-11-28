@@ -111,11 +111,9 @@
                             </div>
                         </div>
                         <h3 id="resultsText"></h3>
+                        <h4 id="resultsText2"></h4>
                         <div class="col-md-12">
                             <div id="mapchart"></div>
-                        </div>
-                        <div class="col-md-6">
-                            <div id="linechart"></div>
                         </div>
                     </div>
                 </div>
@@ -138,6 +136,16 @@
 <script src="js/d3-tip.js"></script>
 <script src="js/vis-bar.js"></script>
 <script>
+
+    var result= "";
+
+    var dct = {
+        "Yes": ["Yes", "Caused mostly by human activities", "A moderate amount", "A great deal", "Most scientists think global warming is happening"],
+        "No:": ["No", "Don't Know", "There is a lot of disagreement among scientists about whether or not global warming is happening",
+            "Most scientists think global warming is not happening", "Don’t know enough to say", "Caused by human activities and natural changes",
+            "Caused mostly by natural changes in the environment", "Neither because global warming isn’t happening", "Not at all", "Only a little",
+            "Don’t know"]
+    }
 
     function newQuestion(params) {
         var tmp = {
@@ -200,7 +208,15 @@
 
 
         function results() {
-            $("#resultsText").html("You answered: " + answersText[selectID] + "<br>" + "Here's what others think:").show(1000);
+            if(dct["Yes"].includes(answersText[selectID])) {
+                result = "This is the percentage that has the same opinion as you";
+            }
+
+
+
+            $("#resultsText").html("You answered: " + answersText[selectID] + "<br>" + "Please select your state so" +
+                "that you can see what others think!").show(1000);
+            $("#resultsText2").html(result);
             $("#results").show(1000);
             $("#question, #answers, #next, #back").hide(10);
         }

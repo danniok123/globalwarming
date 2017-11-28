@@ -444,13 +444,11 @@ items should be rotated by x, minus (sum of angles - 180)2s (for this demo) */
     stroke-linejoin: round;
 }
 
-path {
-    fill: #ccc;
-    stroke: #fff;
-    stroke-width: .5px;
-}
+
 #states {
     fill: #aaa;
+    stroke: #fff;
+    stroke-width: .5px;
 }
 
 #states .active {
@@ -505,24 +503,39 @@ div.tooltip {
     pointer-events: all;
 }
 
+.axis path,
+.axis line {
+    shape-rendering: crispEdges;
+}
 
+.x.axis path {
+    display: none;
+}
 
-#myCarousel .nav a small
-{
-    display: block;
+.toolTip {
+    position: absolute;
+    text-align: center;
+    width: 60px;
+    height: auto;
+    padding: 2px;
+    font: 12px sans-serif;
+    background: lightsteelblue;
+    border: 0px;
+    border-radius: 8px;
+    pointer-events: none;
 }
-#myCarousel .nav
-{
-    background: #eee;
+
+.button1 {
+    padding: 10px 24px;
+    border-radius: 80%;
+    background-color: #4CAF50;
+    color: white;
 }
-.nav-justified > li > a
-{
-    border-radius: 0px;
+
+.yearz {
+    font: 20px Verdana;
 }
-.nav-pills>li[data-slide-to="0"].active a { background-color: #16a085; }
-.nav-pills>li[data-slide-to="1"].active a { background-color: #e67e22; }
-.nav-pills>li[data-slide-to="2"].active a { background-color: #2980b9; }
-.nav-pills>li[data-slide-to="3"].active a { background-color: #8e44ad; }
+
 
 .timeline {
     z-index: 1;

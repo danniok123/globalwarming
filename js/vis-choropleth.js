@@ -1,147 +1,335 @@
-// Referenced https://bl.ocks.org/mbostock/4060606 for help
+var global_data_christi_choropleth;
+var annual_state_data = {}
 
-var filtered;
-var malariaDataByCountryId = {};
+var dictionary_christi_choropleth = {
+    01: "Alabama",
+    02: "Alaska",
+    04: "Arizona",
+    05:  "Arkansas",
+    06: "California",
+    08:  "Colorado",
+    09: "Connecticut",
+    10: "Delaware",
+    11: "District Of Columbia",
+    12:  "Florida",
+    13:  "Georgia (State)",
+    15:   "Hawaii",
+    16:    "Idaho",
+    17:    "Illinois",
+    18:    "Indiana",
+    19:    "Iowa",
+    20:    "Kansas",
+    21:    "Kentucky",
+    22:    "Louisiana",
+    23:    "Maine",
+    24:    "Maryland",
+    25:    "Massachusetts",
+    26:    "Michigan",
+    27:    "Minnesota",
+    28:    "Mississippi",
+    29:    "Missouri",
+    30:    "Montana",
+    31:    "Nebraska",
+    32:    "Nevada",
+    33:    "New Hampshire",
+    34:    "New Jersey",
+    35:    "New Mexico",
+    36:    "New York",
+    37:    "North Carolina",
+    38:    "North Dakota",
+    39:    "Ohio",
+    40:    "Oklahoma",
+    41:    "Oregon",
+    42:    "Pennsylvania",
+    44:   "Rhode Island",
+    45:    "South Carolina",
+    46:    "South Dakota",
+    47:    "Tennessee",
+    48:    "Texas",
+    49:    "Utah",
+    50:    "Vermont",
+    51:    "Virginia",
+    53:    "Washington",
+    54:    "West Virginia",
+    55:    "Wisconsin",
+    56:    "Wyoming",
+    60:    "America Samoa" }
 
-var margin = {top: 10, right: 10, bottom: 10, left: 10};
-
-var width = 980 - margin.left - margin.right,
-    height = 700 - margin.top - margin.bottom;
-
-var svg = d3.select("#chart-area")
-    .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-var projection = d3.geoMercator()
-    .center([-10, 0])
-    .scale(450)
-    .translate([width / 2, height / 2]);
-
-var path = d3.geoPath()
-    .projection(projection);
-
-// have to use scaleQuantize since data isn't continuous
-var color = d3.scaleQuantize()
-    .range(colorbrewer.Blues["6"]);
-
-// First data they should see
-var selectMe = "UN_population";
-
-d3.select("#africaD").on("change", function() {
-
-    selectMe = d3.select("#africaD").property("value");
-
-    updateChoropleth();
-
-});
-
-// Create tooltip
-var tooltip = d3.select("#chart-area")
-    .append("div")
-    .attr("class", "d3-tip")
-    .style("display", "none");
-
-// need dictionary for correct label names
-tipData = {
-    "UN_population" : "Population",
-    "At_risk" :"At Risk",
-    "At_high_risk" : "At High Risk",
-    "Suspected_malaria_cases" : "Suspected Malaria Cases",
-    "Malaria_cases" : "Malaria Cases"
-};
+var slider_choropleth = document.getElementById("myRangeChoropleth");
+var output_choropleth = document.getElementById("yearChoropleth");
+output_choropleth.innerHTML = slider_choropleth.value;
 
 
-// Create legend
-// Example from http://bl.ocks.org/KoGor/5685876
+var chorocolor = d3.schemeRdBu[11];
 
-var ls_w = 20, ls_h = 20;
+var color_choropleth = d3.scaleThreshold()
+    .domain([0, 20,25,40,45,50,55,60,65,70])
+    .range(chorocolor);
 
-var legend = svg.selectAll("g.legend")
-    .data(color.range())
+var legend_labels = ["0", "20","25","40","45","50","55","60","65","70","75","80°F"];
+
+var svg = d3.select('#choroMap').append("svg")
+    .attr("width", 1000)
+    .attr("height", 600)
+    .append("g");
+
+var legend_choropleth = svg.selectAll("g.legend")
+    .data([0,20,25,40,45,50,55,60,65,70])
     .enter().append("g")
     .attr("class", "legend");
 
-legend.append("rect")
-    .attr("x", 160)
-    .attr("y", function(d, i){
-        return height - (i*ls_h) - 10*ls_h;
-    })
+var ls_w = 20, ls_h = 20;
+
+legend_choropleth.append("rect")
+    .attr("x", 890)
+    .attr("y", function(d, i){ return 600 - (i*ls_h) - 2*ls_h;})
     .attr("width", ls_w)
     .attr("height", ls_h)
-    .style("fill", function(d) {
-        return d;
-    })
-    .attr("class", "legend-rect");
+    .style("fill", function(d, i) { return color_choropleth(d); })
+    .style("opacity", 0.8);
 
-legend.append("text")
-    .attr("x", 190)
-    .attr("y", function(d, i){
-        return height - (i*ls_h) - 10*ls_h + 14;
-    })
-    .attr("class", "legendtext");
+legend_choropleth.append("text")
+    .attr("x", 920)
+    .attr("y", function(d, i){ return 600 - (i*ls_h) - ls_h - 4;})
+    .text(function(d, i){ return legend_labels[i]; });
 
+var tooltips = d3.select("body").append("div")
+    .attr("class", "toolTip")
+    .style("opacity", 0)
+    .style("display", "none");
 
-// Pre append legend for the no data one
-svg.append("rect")
-    .attr("class", "legend-rect")
-    .attr("x", 160)
-    .attr("y", height - 9*ls_h)
-    .attr("width", ls_w)
-    .attr("height", ls_h)
-    .style("fill", "#2c3e50");
+var path = d3.geoPath();
 
-
-svg.append("text")
-    .attr("class", "legendtext")
-    .attr("x", 190)
-    .attr("y", height - 8*ls_h - 4)
-    .text("No Data");
-
-
-// Use the Queue.js library to read two files
-
-queue()
-  .defer(d3.json, "https://d3js.org/us-10m.v1.json")
-  .defer(d3.csv, "data/GlobalTemperaturebyState.csv")
-  .await(function(error, mapTopJson, landTempDataCsv){
+years_choropleth = [1895, 2010]
+$(function() {
+    $("#sliding-choropleth").slider({
+        range: true,
+        min: Math.min.apply(null, years_choropleth),
+        max: Math.max.apply(null, years_choropleth),
+        values: [ Math.min.apply(null, years_choropleth), Math.max.apply(null, years_choropleth) ],
+        slide: function(event, ui){
+            $("#amount").val(ui.values[0] + " - " + ui.values[1] );
+        }
+    });
+    $("#amount").val($("#sliding-choropleth").slider("values", 0 ) +
+        " - " + $( "#sliding-choropleth" ).slider( "values", 1 ) );
+});
 
 
+d3.csv("data/GlobalLandTemperaturesByState.csv", function(error, data) {
+    global_data_christi_choropleth = data;
+    for (i = 0; i < data.length; i++){
+        var split_string;
+        if (data[i].dt.includes("/")){
+            split_string = data[i].dt.split("/").reverse();
+        }
+        else {
+            split_string = data[i].dt.split("-");
+        }
+        if (split_string[0] in annual_state_data){
+            var object = annual_state_data[split_string[0]];
+            if (data[i].State in object){
+                if (data[i].AverageTemperature != "") {
+                    object[data[i].State].push(data[i].AverageTemperature)
+                }
+            }
+            else {
+                if (data[i].AverageTemperature != "") {
+                    object[data[i].State] = []
+                    if (data[i].AverageTemperature != "") {
+                        object[data[i].State].push(data[i].AverageTemperature)
+                    }
+                }
+            }
+        }
+        else {
+            annual_state_data[split_string[0]] = {}
+            annual_state_data[split_string[0]][data[i].State] = []
+            if (data[i].AverageTemperature != "") {
+                annual_state_data[split_string[0]][data[i].State].push(data[i].AverageTemperature)
+            }
+        }
+    }
+    for (i in annual_state_data){
+        object = annual_state_data[i];
+        for (j in object){
+            if (object[j].length > 0) {
+                var length = object[j].length
+                var total = 0
+                for(k = 0; k < object[j].length; k++){
+                    total = total + Number(object[j][k])
+                }
+                object[j] = total / length
+                object[j] = object[j] * 9/5 + 32
+            }
+            else{
+                object[j] = 0
+            }
+        }
+    }
+    d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
+        if (error) throw error;
+        current_year_data = annual_state_data[slider_choropleth.value];
+        svg.append("g")
+            .attr("class", "states")
+            .selectAll("path")
+            .data(topojson.feature(us, us.objects.states).features)
+            .enter().append("path")
+            .attr("d", path)
+            .attr("fill", function(d) {
+                return color_choropleth(current_year_data[dictionary_christi_choropleth[parseInt(d.id)]]);
+            })
+            .on("mouseover", function(d) {
+                //d3.select(this).transition().duration(300).style("opacity", 0.8).style("fill", "red")
+                tooltips.transition()
+                    .duration(200)
+                    .style("opacity", .9);
+                tooltips.html(dictionary_christi_choropleth[parseInt(d.id)] + "<br>" + Math.round(current_year_data[dictionary_christi_choropleth[parseInt(d.id)]]) + " °F")
+                    .style("left", d3.event.pageX + "px")
+                    .style("top", d3.event.pageY + "px")
+                    .style("display", "inline");
+            })
+            .on("mouseout", function() {
+                // d3.select(this)
+                //   .transition().duration(300)
+                //   .style("opacity", 1).style("fill", function(d) {
+                //     return color(current_year_data[dictionary_christi_choropleth[parseInt(d.id)]]);
+                //   })
+                tooltips.transition()
+                    .duration(500)
+                    .style("opacity", 0);
+            });
+    });
+});
 
-      color.domain([0, d3.max(filtered, function(d) {
-          return d[selectMe];
-      })]);
+function update_choropleth() {
+    var slider = document.getElementById("myRangeChoropleth");
+    var output = document.getElementById("yearChoropleth");
+    output.innerHTML = slider.value;
+    selected = d3.select("#myRangeChoropleth").property("value");
+    //console.log(annual_state_data[selected])
+    current_year_data = annual_state_data[selected];
 
-      // Drawing choropleth
-
-      var choro = svg.selectAll(".region")
-          .data(topojson.feature(mapTopJson, mapTopJson.objects.collection).features)
-          .enter()
-          .append("path")
-          .attr("class", "region")
-          .attr("fill", function(d) {
-              return "#2c3e50";
-          })
-          .attr("d", path);
-
-      // Update choropleth
-      updateChoropleth();
-  });
-    
-
-function updateChoropleth() {
-
-    // update the color domain
-    color.domain([0, d3.max(filtered, function(d) {
-        return d[selectMe];
-    })]);
-
-    // update colors
-    svg.selectAll(".region")
-        .attr("fill", function(d) {
-            return "#2c3e50";
+    d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
+        if (error) throw error;
+        current_year_data = annual_state_data[slider.value];
+        var sector = svg.selectAll(".states").data(topojson.feature(us, us.objects.states).features);
+        var exitTransition = d3.transition().duration(1100).each(function() {
+            sector.exit()
+                .transition().duration(1100)
+                .remove();
         });
 
+        var updateTransition = exitTransition.transition().duration(1100).each(function() {
+            sector.transition()
+                .attr("class", "states")
+                .attr("d", path)
+                .attr("fill", function(d) {
+                    return color_choropleth(current_year_data[dictionary_christi_choropleth[parseInt(d.id)]]);
+                });
+        });
+
+        var enterTransition = updateTransition.transition().duration(1100).each(function() {
+            sector.enter().append("path")
+                .attr("class", "states")
+                .attr("d", path)
+                .attr("fill", function(d) {
+                    return color_choropleth(current_year_data[dictionary_christi_choropleth[parseInt(d.id)]]);
+                })
+                .on("mouseover", function(d) {
+                    // d3.select(this).transition().duration(300).style("opacity", 0.5).style("fill", "red")
+                    tooltips.html(dictionary_christi_choropleth[parseInt(d.id)] + "<br>" + Math.round(current_year_data[dictionary_christi_choropleth[parseInt(d.id)]]) + " °F")
+                        .style("left", d3.event.pageX + "px")
+                        .style("top", d3.event.pageY + "px")
+                        .style("display", "inline")
+                        .style("opacity", 1);
+                })
+                .on("mouseout", function() {
+                    // d3.select(this)
+                    //   .transition().duration(300)
+                    //   .style("opacity", 1).style("fill", function(d) {
+                    //     return color(current_year_data[dictionary[parseInt(d.id)]]);
+                    //   });
+                    tooltips.transition()
+                        .duration(500)
+                        .style("opacity", 1);
+                })
+                .transition().duration(1100);
+        });
+    });
+}
+
+function updateLapseChoropleth(year) {
+
+    var slider = document.getElementById("myRangeChoropleth");
+    var output = document.getElementById("yearChoropleth");
+    output.innerHTML = year;
+    slider.value = year;
+
+    d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
+        if (error) throw error;
+        current_year_data = annual_state_data[year];
+        var sector = svg.selectAll(".states").data(topojson.feature(us, us.objects.states).features);
+
+        var exitTransition = d3.transition().duration(1100).each(function() {
+            sector.exit()
+                .transition().duration(1100)
+                .remove();
+        });
+
+        var updateTransition = exitTransition.transition().duration(1100).each(function() {
+            sector.transition()
+                .attr("class", "states")
+                .attr("d", path)
+                .attr("fill", function(d) {
+                    //console.log(current_year_data[dictionary_christi_choropleth[parseInt(d.id)]]);
+                    return color_choropleth(current_year_data[dictionary_christi_choropleth[parseInt(d.id)]]);
+                });
+        });
+
+        var enterTransition = updateTransition.transition().duration(1100).each(function() {
+            sector.enter().append("path")
+                .attr("class", "states")
+                .attr("d", path)
+                .attr("fill", function(d) {
+                    return color_choropleth(current_year_data[dictionary_christi_choropleth[parseInt(d.id)]]);
+                })
+                .on("mouseover", function(d) {
+                    //d3.select(this).transition().duration(300).style("opacity", 0.5).style("fill", "red")
+                    tooltips.html(dictionary_christi_choropleth[parseInt(d.id)] + "<br>" + Math.round(current_year_data[dictionary_christi_choropleth[parseInt(d.id)]]) + " °F")
+                        .style("left", d3.event.pageX + "px")
+                        .style("top", d3.event.pageY + "px")
+                        .style("display", "inline")
+                        .style("opacity", 1);
+                })
+                .on("mouseout", function() {
+                    // d3.select(this)
+                    //   .transition().duration(300)
+                    //   .style("opacity", 1).style("fill", function(d) {
+                    //     console.log(current_year_data[dictionary[parseInt(d.id)]]);
+                    //     return color(current_year_data[dictionary[parseInt(d.id)]]);
+                    //   });
+                    tooltips.transition()
+                        .duration(500)
+                        .style("opacity", 1);
+                })
+                .transition().duration(1100);
+        });
+    });
+}
+
+function timelapseChoropleth() {
+    lower_range = $('#sliding-choropleth').slider("values")[0];
+    upper_range = $('#sliding-choropleth').slider("values")[1];
+    var i = lower_range;
+    function loop () {
+        setTimeout(function () {
+            updateLapseChoropleth(i)
+            i++;
+            if (i <= upper_range) {
+                loop();
+            }
+        }, 100)
+    }
+    loop();
 }

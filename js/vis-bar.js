@@ -68,12 +68,12 @@ var dictionary1 = {
 var updated_data = {};
 
 var data = {};
-var width = 500,
+var width = 900,
     height = 500,
     centered;
 
 var projection = d3.geoAlbersUsa()
-    .scale(700)
+    .scale(1000)
     .translate([width / 2, height / 2]);
 
 var path = d3.geoPath()
