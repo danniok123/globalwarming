@@ -30,10 +30,10 @@
 		<div class="cn-wrapper" id="cn-wrapper">
 			<ul>
 				<li><a href="#about" class="turquoise"><span>About</span></a></li>
-				<li><a href="#weather" class="green"><span>Weather</span></a></li>
-				<li><a href="#weather2" class="brown"><span>Home</span></a></li>
-				<li><a href="#c02" class="tan"><span>CO2</span></a></li>
-				<li><a href="#" class="olive"><span>Help</span></a></li>
+				<li><a href="#evidence" class="tan" ><span>Evidence</span></a></li>
+				<li><a href="#home" class="brown"><span>Home</span></a></li>
+				<li><a href="#weather" class="green" ><span>Weather</span></a></li>
+				<li><a href="#c02" class="olive"><span>CO2</span></a></li>
 			</ul>
 		</div>
 		<div id="cn-overlay" class="cn-overlay"></div>
@@ -65,20 +65,25 @@
 					</div>
 				</div>
 				<div class="col-md-6 col-sm-6 col-xs-6">
-					<img src="img/icemelt.jpeg">
+					<img class="wow slideInDown" src="img/icemelt.jpeg">
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-6 col-sm-6 col-xs-6">
-					<img src="img/icemelt.jpeg">
+					<img class="wow slideInDown" src="img/cause.jpg">
 				</div>
 				<div class="col-md-6 col-sm-6 col-xs-6">
 					<div class="wow slideInUp">
 						<div class="about-descr">
 							<h3>What causes it?</h3>
 							<p class="lead" style="font-size: 17px">
-								The cause of global warming is mostly by humans. We contribute a lot of greenhouse
-								gases from driving our cars,
+								Global warming occurs when carbon dioxide (CO2) and other
+								air pollutants and greenhouse gases collect in the atmosphere
+								and absorb sunlight and solar radiation that have bounced off
+								the earth’s surface. Normally, this radiation would escape into
+								space—but these pollutants, which can last for years to centuries
+								in the atmosphere, trap the heat and cause the planet to get hotter.
+								That's what's known as the greenhouse effect!
 							</p>
 						</div>
 					</div>
@@ -192,17 +197,72 @@
 	</section>
 	<!-- End Timeline Section-->
 
-	<section id="weather2" class="section-padding scroller">
+	<!-- Evidence Section -->
+	<section id="evidence" class="section-padding scroller">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 col-sm-12 col-xs-12 title text-center">
+					<div class="wow fadeInDown">
+						<h1>Evidence</h1>
+						<h4>How do we know Global Warming is happening?</h4>
+					</div>
+				</div>
+				<div class="col-md-5 col-sm-5 col-xs-5">
+					<div class="wow slideInUp">
+						<div class="about-descr">
+							<h3>Global Temperature Rising</h3>
+							<p class="lead" style="font-size: 17px">
+								Every year, the global temperature is rising due to the increase in
+								carbon dioxide and other human-made emissions. The planet's average
+								surface temperature has risen about 2.0 degrees Fahrenheit (1.1 degrees
+								Celsius) since the late 19th century.
+							</p>
+						</div>
+					</div>
+					<div class="wow slideInUp">
+						<div class="about-descr">
+							<h3>Why is this a big deal</h3>
+							<p class="lead" style="font-size: 17px">
+								Every year, the global temperature is rising due to the increase in
+								carbon dioxide and other human-made emissions. The planet's average
+								surface temperature has risen about 2.0 degrees Fahrenheit (1.1 degrees
+								Celsius) since the late 19th century.
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-7 col-sm-7 col-xs-7 wow slideInUp">
+					<input type="range" style="width:300px"onchange="updatemy()" min="1895" max="2016" value="2000" class="slider" id="myRange">
+					<p class="yearz">Year: <span id="year"></span></p>
+					<label for="amount2">Time range:</label>
+					<input type="text" id="amount2" readonly style="border:0; color: #4CAF50; font-weight:bold;">
+					<p></p>
+
+					<div id="slider-range" style="width: 200px"></div>
+					<button type="button" class="btn btn-lg btn-warning button1" id = "rad" onclick="timelapse()">Start!</button>
+					<div id="radialbar"></div>
+				</div>
+				<div class="col-md-5 col-sm-5 col-xs-5">
+
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End Evidence Section -->
+
+	<!-- Weather Section -->
+	<section id="weather" class="section-padding scroller">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 col-sm-12 col-xs-12 title text-center">
 					<div class="wow fadeInDown">
 						<h1>Weather</h1>
-						<h4></h4>
+						<h4>Let’s take a look at how temperatures have been changing throughout the years in the US! Check out the cool map below: what trends do you see?</h4>
 					</div>
 				</div>
 				<div id="slidecontainer">
-					<input type="range" onchange="update_choropleth()" min="1895" max="2012" value="2000" class="slider" id="myRangeChoropleth">
+					<input type="range" style="width:300px" onchange="update_choropleth()" min="1895" max="2012" value="2000" class="slider" id="myRangeChoropleth">
 					<p class="yearz">Year: <span id="yearChoropleth"></span></p>
 				</div>
 
@@ -211,71 +271,90 @@
 				</p>
 
 				<div id="sliding-choropleth" style="width: 200px"></div>
-				<button class="button1" onclick="timelapseChoropleth()">Start!</button>
+				<button type="button" class="btn btn-lg btn-warning button1" onclick="timelapseChoropleth()">Start!</button>
 
 				<div id="choroMap"></div>
 			</div>
-		</div>
-	</section>
-
-	<!-- Weather Section-->
-	<section id="weather" class="section-padding scroller">
-		<div class="container">
 			<div class="row">
-				<div class="col-md-12 col-sm-12 col-xs-12 title text-center">
-					<div class="wow fadeInDown">
-						<h1>Weather</h1>
-						<h4></h4>
-					</div>
+				<div class="col-md-6 space">
+					<p class="lead" style="font-size: 17px">Wow, it looks like it’s getting hot in the US! According to scientists from NASA, nearly a third of all temperatures in the whole world are classified as “above average” compared to other years. Evidence also shows that 2000 to 2009 was hotter than any other decade in at least the past 1300 years. This warming is altering the earth's climate system, including its land, atmosphere, oceans, and ice, in far-reaching ways. If the planet keeps on with the current temperature trends, then our planet will become unlivable in the next 100 years. But even though we know that Global Warming is happening, what exactly is causing it?</p>
 				</div>
-				<div class="col-lg-12">
-					<div id="slidecontainer2">
-						<input type="range" onchange="updatemy()" min="1895" max="2016" value="2000" class="slider" id="myRange">
-
-						<p class="yearz">Year: <span id="year"></span></p>
-
-					</div>
-
-
-					<p class="some-padding" style="padding: 20px">
-						<label for="amount">Time range:</label>
-						<input type="text" id="amount2" readonly style="border:0; color: #4CAF50; font-weight:bold;">
-					</p>
-
-					<div id="slider-range" style="width: 200px"></div>
-					<button class="button1" onclick="timelapse()">Start!</button>
-				</div>
-				<div id="radialbar"></div>
 			</div>
 		</div>
 	</section>
-	<!-- End Weather Section-->
+	<!-- End Weather Section -->
 
+	<!-- C02 Section -->
 	<section id="c02" class="section-padding scroller">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 col-sm-12 col-xs-12 title text-center">
 					<div class="wow fadeInDown">
-						<h1>Weather</h1>
+						<h1>What's causing it?</h1>
 						<h4></h4>
 					</div>
 				</div>
-				<div id="stacked-area-chart"></div>
-				<div id="timeline"></div>
+				<div class="col-md-6">
+					<div class="wow slideInUp">
+						<div class="about-descr">
+							<h3>Scientists believe it!</h3>
+							<p class="lead" style="font-size: 17px">
+								Most climate scientists agree the main cause of the current global warming trend is human expansion of the "greenhouse effect"
+								On Earth, human activities are changing the natural greenhouse. Over the last century the burning of fossil fuels like coal and oil has increased the concentration of atmospheric carbon dioxide (CO2). This happens because the coal or oil burning process combines carbon with oxygen in the air to make CO2. To a lesser extent, the clearing of land for agriculture, industry, and other human activities has increased concentrations of greenhouse gases.
+								Let’s take a look at the graph below, which shows what activities we humans do that increases greenhouse emissions.
+							</p>
+						</div>
+					</div>
+					<p style="font-weight: bold;">Let’s take a look at the graph below, which shows what activities we humans do that increase greenhouse emissions. </p>
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-6">
+					<img class="wow slideInDown" style="width: 80%" src="img/greenhouse-effect_med.jpeg">
+				</div>
+			</div>
+			<div id="stacked-area-chart"></div>
+		</div>
+	</section>
+	<!-- End CO2 Section-->
+
+	<!-- Conclusion Section -->
+	<section id="conclusion" class="section-padding scroller">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 col-sm-12 col-xs-12 title text-center">
+					<div class="wow fadeInDown">
+						<h1>What does this mean for us?</h1>
+						<h4></h4>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="wow slideInUp">
+						<div class="about-descr">
+							<h3>What are the consequences?</h3>
+							<p class="lead" style="font-size: 17px">
+								So what does this mean for us? Well, because fossil fuels are creating a greater greenhouse effect, they cause a rise in temperature on our planet. Higher temperatures are worsening many types of disasters, including storms, heat waves, floods, and droughts. A warmer climate creates an atmosphere that can collect, retain, and drop more water, changing weather patterns in such a way that wet areas become wetter and dry areas drier. .
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-6">
+					<img class="wow slideInDown" style="width: 80%" src="img/weather.jpg">
+				</div>
 			</div>
 		</div>
 	</section>
-	<!-- End Weather Section-->
-
+	<!-- End Conclusion Section-->
 
 
 
 	<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 	<script src="js/queue.min.js"></script>
 	<script src="js/topojson.js"></script>
 	<script src="js/d3.min.js"></script>
-<script src="js/wow.js"></script>
+	<script src="js/wow.js"></script>
+
+	<script src= "js/vis-stacked.js"></script>
+	<script src= "js/vis-stackedManager.js"></script>
 
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -283,14 +362,13 @@
 	<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 	<script src = "js/vis-radial.js"></script>
 	<script src = "js/vis-choropleth.js"></script>
-	<script src= "js/vis-stacked.js>"></script>
-	<script src= "js/vis-stackedManager.js>"></script>
+
 	<script src="js/main.js"></script>
 
-<script src="js/polyfills.js"></script>
+	<script src="js/polyfills.js"></script>
 
-<script src="js/demo1.js"></script>
-<script>
+	<script src="js/demo1.js"></script>
+	<script>
     $(document).ready(function () {
 
         wow = new WOW({
@@ -299,6 +377,6 @@
         )
         wow.init();
     });
-</script>
+	</script>
 </body>
 </html>

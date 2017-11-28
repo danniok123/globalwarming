@@ -2,7 +2,7 @@
 
 var selected = "2000";
 
-var width_radial = 960,
+var width_radial = 500,
     height_radial = 500,
     barHeight = height_radial / 2 - 40;
 
@@ -24,7 +24,7 @@ var svg_radial = d3.select('#radialbar').append("svg")
     .attr("width", width_radial)
     .attr("height", height_radial)
     .append("g")
-    .attr("transform", "translate(" + width_radial/2 + "," + height_radial/2 + ")");
+    .attr("transform", "translate(" + (width_radial - 230) + "," + height_radial/2 + ")");
 
 var tooltips_radial = d3.select("#radialbar").append("div")
     .attr("class", "toolTip")
@@ -150,7 +150,10 @@ function updatevisualization() {
             tooltips_radial.transition()
                 .duration(200)
                 .style("opacity", .9);
-            tooltips_radial.html(d.value + " °F");
+            tooltips_radial.html(d.value + " °F")
+                .style("left", (d3.event.pageX-500) + "px")
+                .style("top", (d3.event.pageY-3600) + "px")
+                .style("display", "block");
         })
         .on("mouseout", function(d) {
             tooltips_radial.transition()
@@ -247,6 +250,7 @@ function updatelapse(selected) {
 function timelapse() {
     lower_range = $('#slider-range').slider("values")[0];
     upper_range = $('#slider-range').slider("values")[1];
+    document.getElementById("rad").disabled = true;
     var i = lower_range;
     function loop () {
         setTimeout(function () {
@@ -258,4 +262,5 @@ function timelapse() {
         }, 100)
     }
     loop();
+    document.getElementById("rad").disabled = false;
 }

@@ -111,7 +111,9 @@
                             </div>
                         </div>
                         <h3 id="resultsText"></h3>
-                        <h4 id="resultsText2"></h4>
+                        <h4>Please select your state so you can see the opinions of others!</h4>
+                        <h6>Relative to the specific question, the percentages displayed are people who believe that
+                         global warming is happening.</h6>
                         <div class="col-md-12">
                             <div id="mapchart"></div>
                         </div>
@@ -208,15 +210,7 @@
 
 
         function results() {
-            if(dct["Yes"].includes(answersText[selectID])) {
-                result = "This is the percentage that has the same opinion as you";
-            }
-
-
-
-            $("#resultsText").html("You answered: " + answersText[selectID] + "<br>" + "Please select your state so" +
-                "that you can see what others think!").show(1000);
-            $("#resultsText2").html(result);
+            $("#resultsText").html("You answered: " + answersText[selectID] + "<br>").show(1000);
             $("#results").show(1000);
             $("#question, #answers, #next, #back").hide(10);
         }
@@ -288,8 +282,10 @@
     });
 
     function changeText(id) {
-        $("#resultsText").html("You answered: " + answersText[id] + "<br>" + "Here's what others think in your state:").show(1000);
+
+        $("#resultsText").html("You answered: " + answersText[id]).show(1000);
     }
+
 
 </script>
 </body>
