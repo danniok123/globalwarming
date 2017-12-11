@@ -259,12 +259,18 @@ function update_choropleth() {
     });
 }
 
-function updateLapseChoropleth(year) {
+function updateLapseChoropleth(year,lower_range,upper_range) {
 
     var slider = document.getElementById("myRangeChoropleth");
     var output = document.getElementById("yearChoropleth");
     output.innerHTML = year;
     slider.value = year;
+
+    keys = Object.keys(annual_state_data[lower_range]);
+    annual_state_data_diff = {};
+    keys.forEach(function(d){
+        annual_state_data_diff[d] = annual_state_data[upper_range][d] - annual_state_data[lower_range][d];
+    });
 
     d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
         if (error) throw error;
@@ -284,7 +290,15 @@ function updateLapseChoropleth(year) {
                 .attr("fill", function(d) {
                     //console.log(current_year_data[dictionary_christi_choropleth[parseInt(d.id)]]);
                     return color_choropleth(current_year_data[dictionary_christi_choropleth[parseInt(d.id)]]);
-                });
+                })
+                .attr("stroke", function(d) {
+                    var stateName = dictionary_christi_choropleth[parseInt(d.id)];
+
+                    if (year == upper_range && annual_state_data_diff[stateName] >= 1)
+                        return "black";
+                    return "None";
+                })
+                .attr("stroke-width", 1.5);
         });
 
         var enterTransition = updateTransition.transition().duration(1100).each(function() {
@@ -318,13 +332,102 @@ function updateLapseChoropleth(year) {
     });
 }
 
+function highlightDifferences() {
+    var outlinePath = d3.geoPath();
+
+    keys = Object.keys(annual_state_data[lower_range]);
+
+    d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
+        if (error) throw error;
+        current_year_data = annual_state_data[year];
+
+        features = topojson.feature(us, us.objects.states).features;
+
+        filteredFeatures = features.filter(function(d) {
+            found = false;
+            dictToArray.forEach(function(e){
+                if(e[0] === dictionary_christi_choropleth[d.id])
+                    found = true;
+            });
+            return found;
+        });
+
+        console.log(dictToArray);
+        console.log(features);
+        console.log(filteredFeatures);
+
+
+        var sector = svg.selectAll(".stateOutlines").data(filteredFeatures);
+
+        var exitTransition = d3.transition().duration(1100).each(function() {
+            sector.exit()
+                .transition().duration(1100)
+                .remove();
+        });
+
+        var updateTransition = exitTransition.transition().duration(1100).each(function() {
+            sector.transition()
+                .attr("class", "stateOutlines")
+                .attr("d", outlinePath)
+                .attr("fill", "None")
+                .on("mouseover", function(d) {
+                    //d3.select(this).transition().duration(300).style("opacity", 0.5).style("fill", "red")
+                    tooltips.html(dictionary_christi_choropleth[parseInt(d.id)] + "<br>" + Math.round(current_year_data[dictionary_christi_choropleth[parseInt(d.id)]]) + " °F")
+                        .style("left", d3.event.pageX + "px")
+                        .style("top", d3.event.pageY + "px")
+                        .style("display", "inline")
+                        .style("opacity", 1);
+                })
+                .on("mouseout", function() {
+                    // d3.select(this)
+                    //   .transition().duration(300)
+                    //   .style("opacity", 1).style("fill", function(d) {
+                    //     console.log(current_year_data[dictionary[parseInt(d.id)]]);
+                    //     return color(current_year_data[dictionary[parseInt(d.id)]]);
+                    //   });
+                    tooltips.transition()
+                        .duration(500)
+                        .style("opacity", 1);
+                });
+        });
+
+        var enterTransition = updateTransition.transition().duration(1100).each(function() {
+            sector.enter().append("path")
+                .attr("class", "stateOutlines")
+                .attr("d", outlinePath)
+                .attr("fill", "None")
+                .attr("stroke", "black")
+                .on("mouseover", function(d) {
+                    //d3.select(this).transition().duration(300).style("opacity", 0.5).style("fill", "red")
+                    tooltips.html(dictionary_christi_choropleth[parseInt(d.id)] + "<br>" + Math.round(current_year_data[dictionary_christi_choropleth[parseInt(d.id)]]) + " °F")
+                        .style("left", d3.event.pageX + "px")
+                        .style("top", d3.event.pageY + "px")
+                        .style("display", "inline")
+                        .style("opacity", 1);
+                })
+                .on("mouseout", function() {
+                    // d3.select(this)
+                    //   .transition().duration(300)
+                    //   .style("opacity", 1).style("fill", function(d) {
+                    //     console.log(current_year_data[dictionary[parseInt(d.id)]]);
+                    //     return color(current_year_data[dictionary[parseInt(d.id)]]);
+                    //   });
+                    tooltips.transition()
+                        .duration(500)
+                        .style("opacity", 1);
+                })
+                .transition().duration(1100);
+        });
+    });
+};
+
 function timelapseChoropleth() {
     lower_range = $('#sliding-choropleth').slider("values")[0];
     upper_range = $('#sliding-choropleth').slider("values")[1];
     var i = lower_range;
     function loop () {
         setTimeout(function () {
-            updateLapseChoropleth(i)
+            updateLapseChoropleth(i,lower_range,upper_range)
             i++;
             if (i <= upper_range) {
                 loop();
@@ -332,4 +435,5 @@ function timelapseChoropleth() {
         }, 100)
     }
     loop();
+
 }

@@ -1,3 +1,5 @@
+// Variables for the map chart
+
 var stateIDs = {
     "Alabama": 1, "Alaska": 2, "Arizona": 4, "Arkansas": 5, "California": 6, "Colorado": 8,
     "Connecticut": 9, "Delaware": 10, "DistrictofColumbia": 11, "Florida": 12, "Georgia": 13,
@@ -8,62 +10,18 @@ var stateIDs = {
     "New York": 36, "North Carolina": 37, "North Dakota": 38, "Ohio": 39, "Oklahoma": 40,
     "Oregon": 41, "Pennsylvania": 42, "Rhode Island": 44, "South Carolina": 45, "South Dakota": 46,
     "Tennessee": 47, "Texas": 48, "Utah": 49, "Vermont": 50, "Virginia": 51, "Washington": 53,
-    "West Virginia": 54, "Wisconsin": 55, "Wyoming": 56
-};
+    "West Virginia": 54, "Wisconsin": 55, "Wyoming": 56 };
 
 var dictionary1 = {
-    01: "Alabama",
-    02: "Alaska",
-    04: "Arizona",
-    05:  "Arkansas",
-    06: "California",
-    08:  "Colorado",
-    09: "Connecticut",
-    10: "Delaware",
-    11: "District Of Columbia",
-    12:  "Florida",
-    13:  "Georgia (State)",
-    15:   "Hawaii",
-    16:    "Idaho",
-    17:    "Illinois",
-    18:    "Indiana",
-    19:    "Iowa",
-    20:    "Kansas",
-    21:    "Kentucky",
-    22:    "Louisiana",
-    23:    "Maine",
-    24:    "Maryland",
-    25:    "Massachusetts",
-    26:    "Michigan",
-    27:    "Minnesota",
-    28:    "Mississippi",
-    29:    "Missouri",
-    30:    "Montana",
-    31:    "Nebraska",
-    32:    "Nevada",
-    33:    "New Hampshire",
-    34:    "New Jersey",
-    35:    "New Mexico",
-    36:    "New York",
-    37:    "North Carolina",
-    38:    "North Dakota",
-    39:    "Ohio",
-    40:    "Oklahoma",
-    41:    "Oregon",
-    42:    "Pennsylvania",
-    44:   "Rhode Island",
-    45:    "South Carolina",
-    46:    "South Dakota",
-    47:    "Tennessee",
-    48:    "Texas",
-    49:    "Utah",
-    50:    "Vermont",
-    51:    "Virginia",
-    53:    "Washington",
-    54:    "West Virginia",
-    55:    "Wisconsin",
-    56:    "Wyoming",
-    60:    "America Samoa" }
+    01: "Alabama", 02: "Alaska", 04: "Arizona", 05: "Arkansas", 06: "California", 08: "Colorado", 09: "Connecticut",
+    10: "Delaware", 11: "District Of Columbia", 12: "Florida", 13: "Georgia (State)", 15: "Hawaii",
+    16: "Idaho", 17: "Illinois", 18: "Indiana", 19: "Iowa", 20: "Kansas", 21: "Kentucky", 22: "Louisiana",
+    23: "Maine", 24: "Maryland", 25: "Massachusetts", 26: "Michigan", 27: "Minnesota", 28: "Mississippi",
+    29: "Missouri", 30:"Montana", 31: "Nebraska", 32: "Nevada", 33: "New Hampshire", 34: "New Jersey",
+    35: "New Mexico", 36: "New York", 37: "North Carolina", 38: "North Dakota", 39: "Ohio", 40: "Oklahoma",
+    41: "Oregon", 42: "Pennsylvania", 44: "Rhode Island", 45: "South Carolina", 46: "South Dakota", 47: "Tennessee",
+    48: "Texas", 49: "Utah", 50: "Vermont", 51: "Virginia", 53: "Washington", 54: "West Virginia", 55: "Wisconsin",
+    56: "Wyoming", 60: "America Samoa" };
 
 var updated_data = {};
 
@@ -95,15 +53,44 @@ var tooltip = d3.select("#mapchart").append("div")
 
 var g = svg.append("g");
 
+var content = '';
+
+var contentText = {
+    1: "believe it's happening",
+    2: "beleive it's caused mostly by human activities",
+    3: "believe that most scientists think global warming is happening",
+    4: "are worried about global warming",
+    5: "believe global warming is harming the US"
+}
+
 var selectMe = 1;
 
 d3.select("#quest").on("change", function() {
 
-    selectMe = Number(d3.select("#quest").property("value")) + 1;
-
-    //updateChoropleth();
+    selectMe =  Number(d3.select("#quest").property("value")) + 1;
 
 });
+
+
+// Variables for the line chart
+
+var lineHeight = 500;
+var lineWidth = 500;
+
+var xScale = d3.scaleOrdinal()
+    .range([0, lineWidth]);
+
+var yScale = d3.scaleLinear()
+    .range([lineHeight, 0]);
+
+var line = d3.line()
+    .curve(d3.curveBasis);
+
+var svg2 = d3.select('#linechart')
+    .append("svg")
+    .attr("width", 500)
+    .attr("height", 500);
+
 
 queue()
     .defer(d3.json, "data/us.json")
@@ -126,7 +113,7 @@ queue()
             .on("mousemove", function(d, i) {
                 tooltip.transition()
                     .style("opacity", .9);
-                tooltip.html(data[d.id][0] + "<br>" + data[d.id][selectMe] + "%")
+                tooltip.html(data[d.id][0] + "<br>" + data[d.id][selectMe] + "% " + contentText[selectMe])
                     .style("left", (d3.event.pageX - 100) + "px")
                     .style("top", (d3.event.pageY - 230) + "px");
             })
@@ -178,11 +165,12 @@ function clicked(d) {
         centered = null;
     }
 
+    // showing the counties on click
     g.selectAll("path")
         .classed("active", centered && function(d) { return d === centered; });
 
     g.transition()
-        .duration(750)
+        .duration(100)
         .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
         .style("stroke-width", 1.5 / k + "px");
 }
@@ -200,9 +188,8 @@ function clicked2(d) {
     g.selectAll("path")
         .classed("active", function(d) { return false });
 
-
     g.transition()
-        .duration(750)
+        .duration(3000)
         .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
         .style("stroke-width", 1.5 / k + "px");
 }

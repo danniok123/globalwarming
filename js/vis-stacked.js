@@ -1,24 +1,31 @@
 StackedAreaGraph = function(_parentElement, _data, _colorScale, _totalWidth, _totalHeight){
     this.parentElement = _parentElement;
     this.data = _data;
-    //console.log(this.data);
+    this.displayData = this.data;
+    this.selectedKeys = [];
     this.colorScale = _colorScale;
-    this.displayData = [];
     this.margin = { top: 40, right: 0, bottom: 60, left: 60 };
     this.width = 1200 - this.margin.left - this.margin.right;
     this.height = 400 - this.margin.top - this.margin.bottom;
     this.legendWidth = 400;
+    this.transDur = 1500;
+    this.delayDur = 700;
 
     this.initVis();
 };
 
 StackedAreaGraph.prototype.initVis = function(){
-    this.initSVG();
-    this.initAxes();
-    this.stackData();
-    this.initLegend();
-    this.initAreaFunction();
-    this.wrangleData(this.x.domain());
+    stackVis = this;
+
+    stackVis.initSVG();
+    stackVis.initAxes();
+    stackVis.stackData();
+    stackVis.initLegend();
+    stackVis.initAreaFunction();
+    stackVis.displayData = stackVis.stackedData;
+    stackVis.dataCategories = stackVis.colorScale.domain();
+    stackVis.selectedKeys = stackVis.dataCategories;
+    stackVis.wrangleData(this.x.domain());
 };
 
 StackedAreaGraph.prototype.initSVG = function() {
@@ -31,45 +38,46 @@ StackedAreaGraph.prototype.initSVG = function() {
 };
 
 StackedAreaGraph.prototype.initLegend = function() {
-    vis = this;
+    stackVis = this;
 
-    vis.legend = vis.svg.append("g")
+    stackVis.legend = stackVis.svg.append("g")
         .attr("class", "legend")
-        .attr("transform", "translate(" + (vis.width - vis.legendWidth) + "," + 25 + ")");
+        .attr("transform", "translate(" + (stackVis.width - stackVis.legendWidth) + "," + 25 + ")");
 
-    vis.legend.append("text")
+    stackVis.legend.append("text")
         .attr("font-size", 25 + "px")
         .attr("fill", "black")
         .text("Legend")
-        .attr("x", vis.legendWidth/4)
+        .attr("x", stackVis.legendWidth/4)
         .attr("y", 0);
 
-    vis.legendRect = vis.legend.selectAll(".legendRect")
-        .data(vis.dataCategories)
+    stackVis.legendRect = stackVis.legend.selectAll(".legendRect")
+        .data(stackVis.dataCategories)
         .attr("class", "legendRect")
         .enter().append("rect")
         .attr("x", 50)
         .attr("y", function(d,i) { return 25 + i * 20; })
         .attr("width", 10)
         .attr("height", 10)
-        .style("fill", function(d,i) { return vis.colorScale(vis.dataCategories[vis.dataCategories.length - (i+1)]); });
+        .style("fill", function(d,i) { return stackVis.colorScale(stackVis.dataCategories[stackVis.dataCategories.length - (i+1)]); });
 
-    vis.legendText = vis.legend.selectAll(".legendText")
-        .data(vis.dataCategories)
+    stackVis.legendText = stackVis.legend.selectAll(".legendText")
+        .data(stackVis.dataCategories)
         .attr("class", "legendText")
         .enter().append("text")
         .attr("x", 80)
         .attr("y", function(d,i) { return 35 + i * 20; })
         .attr("font-size", 15 + "px")
         .attr("fill", "black")
-        .text(function(d,i) { console.log("G " + (vis.dataCategories.length - i)); return vis.dataCategories[vis.dataCategories.length - (i+1)]; })
+        .style("opacity", 0.5)
+        .text(function(d,i) { return stackVis.dataCategories[stackVis.dataCategories.length - (i+1)]; })
 };
 
 StackedAreaGraph.prototype.initAxes = function() {
     // Scales and axes
     this.x = d3.scaleTime()
         .range([0, this.width - this.legendWidth])
-        .domain(d3.extent(this.data, function(d) { return d.Month; }));
+        .domain(d3.extent(this.displayData, function(d) { return d.Year; }));
 
     this.y = d3.scaleLinear()
         .range([this.height, 0]);
@@ -99,7 +107,7 @@ StackedAreaGraph.prototype.initAxes = function() {
         .attr("fill", "black")
         .text("Millions of Tons of Carbon Dioxide")
         .attr("x", -50)
-        .attr("y", -40)
+        .attr("y", -45)
         .attr("transform", "rotate(270)");
 };
 
@@ -108,69 +116,112 @@ StackedAreaGraph.prototype.stackData = function() {
     stack = d3.stack()
         .keys(this.dataCategories);
 
-    this.stackedData = stack(this.data);
-    //console.log(this.stackedData);
+    this.stackedData = stack(this.displayData);
 };
 
 StackedAreaGraph.prototype.initAreaFunction = function() {
-    vis = this;
-    vis.area = d3.area()
+    stackVis = this;
+    stackVis.area = d3.area()
         .curve(d3.curveCardinal)
-        .x(function(d) { return vis.x(d.data.Month); })
-        .y0(function(d) { return vis.y(d[0]); })
-        .y1(function(d) { return vis.y(d[1]); });
+        .x(function(d) { return stackVis.x(d.data.Year); })
+        .y0(function(d) { return stackVis.y(d[0]); })
+        .y1(function(d) { return stackVis.y(d[1]); });
+};
+
+StackedAreaGraph.prototype.filterData = function(){
+    stackVis = this;
+
+    var tempData = [];
+
+    stackVis.selectedKeys.forEach(function(d){
+        stackVis.stackedData.forEach(function(e){
+            if(d === e.key)
+                tempData[tempData.length] = e;
+        });
+    });
+
+    stackVis.displayData = tempData;
 };
 
 StackedAreaGraph.prototype.wrangleData = function(newDomain){
-    vis = this;
+    stackVis = this;
 
-    vis.displayData = vis.stackedData;
-    vis.x.domain(newDomain);
+    stackVis.x.domain(newDomain);
+    stackVis.filterData();
 
-    vis.updateVis();
+    stackVis.updateVis();
+};
+
+StackedAreaGraph.prototype.hoverArea = function(stackVis,d) {
+    var currKey = d.key;
+
+    console.log(this);
+
+    stackVis.legendText._groups[0].forEach(function(d){
+        if(d.textContent === currKey) {
+            d.style.opacity = 1;
+        }
+        else{
+
+        }
+    });
+};
+
+StackedAreaGraph.prototype.clickArea = function(stackVis,d) {
+    stackVis.selectedKeys = [d.key];
+    this.wrangleData(this.x.domain());
+};
+
+StackedAreaGraph.prototype.unHoverArea = function(stackVis,d) {
+    var currKey = d.key;
+
+    stackVis.legendText._groups[0].forEach(function(d){
+        if(d.textContent === currKey) {
+            d.style.opacity = 0.5;
+        }
+    });
 };
 
 StackedAreaGraph.prototype.updateVis = function() {
-    vis = this;
+    stackVis = this;
     // Update domain
     // Get the maximum of the multi-dimensional array or in other words, get the highest peak of the uppermost layer
-    vis.y.domain([0, d3.max(vis.displayData, function(d) {
+    stackVis.y.domain([0, d3.max(stackVis.displayData, function(d) {
         return d3.max(d, function(e) {
             return e[1];
         });
     })
     ]);
 
-    vis.dataCategories = vis.colorScale.domain();
-
     // Draw the layers
-    vis.categories = vis.svg.selectAll(".area")
-        .data(vis.displayData);
+    stackVis.categories = stackVis.svg.selectAll(".area")
+        .data(stackVis.displayData);
 
-    vis.categories.enter().append("path")
+    stackVis.categories.enter().append("path")
         .attr("class", "area")
-        .merge(vis.categories)
-        .style("fill", function(d,i) {
-            //console.log(vis.dataCategories);
-            //console.log(vis.colorScale);
-            return vis.colorScale(vis.dataCategories[i]);
+        .merge(stackVis.categories)
+        .style("fill", function(d) {
+            index = stackVis.colorScale.domain().indexOf(d.key);
+            return stackVis.colorScale(stackVis.dataCategories[index]);
         })
-        //.on("mouseover", function(d) { updateTooltip(this,d); })
+        .on("mouseover", function(d) { console.log(stackVis); stackVis.hoverArea(stackVis,d); })
+        //.on("click", function(d) { stackVis.clickArea(stackVis,d); })
+        .on("mouseout", function(d) { stackVis.unHoverArea(stackVis,d); })
         .attr("d", function(d) {
-            //console.log(d);
-            return vis.area(d);
+            return stackVis.area(d);
         });
 
-    vis.svg.append("defs").append("clipPath")
+    stackVis.svg.append("defs").append("clipPath")
         .attr("id", "clip")
         .append("rect")
-        .attr("width", vis.width)
-        .attr("height", vis.height);
+        .attr("width", stackVis.width)
+        .attr("height", stackVis.height);
 
-    vis.categories.exit().remove();
+    stackVis.categories.exit().remove();
 
 
     // Call axis functions with the new domain
-    vis.svg.select(".x-axis").call(vis.xAxis);
-    vis.svg.select(".y-axis").call(vis.yAxis);
+    stackVis.svg.select(".x-axis").call(stackVis.xAxis);
+    stackVis.svg.select(".y-axis").call(stackVis.yAxis);
 };
+
