@@ -35,6 +35,9 @@ Table of Contents
     margin-top: 20px;
 }
 
+html {
+    background: #272b30;
+}
 /* ================ 1.2 - HTML Headings ================ */
 
 
@@ -454,12 +457,106 @@ items should be rotated by x, minus (sum of angles - 180)2s (for this demo) */
     background-repeat: no-repeat, no-repeat;
 }
 
+#hurt {
+    background: linear-gradient(
+            rgba(0, 0, 0, 0.7),
+            rgba(0, 0, 0, 0.7)
+    ), url(../img/forestfire.jpg);
+    background-attachment: fixed;
+}
+
+.testi-details {
+    background: #fff;
+    padding: 14px 24px;
+    margin-bottom: 20px;
+    box-shadow: 3px 3px 2px 0px rgba(0,0,0,0.18);
+    position: relative;
+}
+.testi-info a {
+    display: block;
+    width: 50px;
+    height: 50px;
+    background-color: #fff;
+    border-radius: 50%;
+    float: left;
+    margin-right: 10px;
+}
+
+.testi-info a img{
+    border-radius: 50%;
+}
+.testi-info h4 {
+    display: inline-block;
+    line-height: 22px;
+    font-weight: 600;
+    color: white;
+    margin-top: 8px;
+}
+
+.testi-details::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-color: transparent;
+    border-left: 0;
+    bottom: -40px;
+    left: 100px;
+    border-top-color: #fff;
+    border-width: 20px;
+}
+.testi-details::before {
+    content: '';
+    position: absolute;
+    transform: rotate(45deg);
+    width: 0px;
+    height: 0px;
+    bottom: -30px;
+    left: 45px;
+    border-style: solid;
+    border-width: 15px;
+    border-color: transparent;
+    z-index: -1;
+    box-shadow: 3px -13px 5px 0px rgba(0, 0, 0, 0.18);
+    border-left: 0;
+}
+
 #about img {
     width: 60%
 }
 
 #about2 img {
     width: 60%
+}
+
+.borders{
+    border-bottom: 3px solid black;
+    border-right: 3px solid black;
+
+}
+
+.borders2{
+    border-right: 3px solid black;
+
+}
+
+
+
+.grid {
+    display: flex;                       /* establish flex container */
+    flex-wrap: wrap;                     /* enable flex items to wrap */
+    justify-content: space-around;
+
+}
+.cell {
+    flex: 0 0 32%;                       /* don't grow, don't shrink, width */
+    height: 50px;
+    margin-bottom: 5px;
+    background-color: #999;
+}
+.cell:nth-child(3n) {
+    background-color: #F00;
 }
 
 .panel.panel-horizontal {
@@ -511,288 +608,6 @@ items should be rotated by x, minus (sum of angles - 180)2s (for this demo) */
     text-transform: uppercase;
     color: orange;
     margin-top: 100px;
-}
-
-/* ================ 3.2 - Evidence ================ */
-#evidence h1{
-    text-transform: uppercase;
-}
-
-#container {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    z-index: -1;
-}
-
-/* ================ 3.3 - Weather ================ */
-#weather {
-    background: #ecf0f1;
-    color: black;
-}
-
-.toolTip {
-    position: absolute;
-    display: none;
-    min-width: 80px;
-    height: auto;
-    background: none repeat scroll 0 0 #ffffff;
-    border: 1px solid #6F257F;
-    padding: 14px;
-    text-align: center;
-}
-
-.space {
-    margin-top: 100px;
-}
-
-.bar {
-    fill: #2980b9;
-}
-
-.bar:hover {
-    fill: #f1c40f;
-}
-
-.outline {
-    fill: none;
-    stroke: #000;
-    stroke-width: 1.5px;
-}
-
-.feature {
-    fill: #ccc;
-}
-
-.mesh {
-    fill: none;
-    stroke: #fff;
-    stroke-width: .5px;
-    stroke-linejoin: round;
-}
-
-
-#states {
-    fill: #aaa;
-    stroke: #fff;
-    stroke-width: .5px;
-}
-
-#states .active {
-    display:none;
-}
-
-#state-borders {
-    fill: none;
-    stroke: #fff;
-    stroke-width: 1.5px;
-    stroke-linejoin: round;
-    stroke-linecap: round;
-    pointer-events: none;
-}
-
-.county-boundary {
-    fill: #aaa;
-    stroke: #fff;
-    stroke-width: .5px;
-}
-
-.county-boundary:hover, .state:hover {
-    fill: orange;
-}
-
-div.tooltip {
-    position: absolute;
-    text-align: center;
-    min-width: 80px;
-    height: auto;
-    padding: 2px;
-    font: 12px sans-serif;
-    background: #fff;
-    border: 2px solid black;
-    pointer-events: none;
-}
-
-
-
-.background {
-    fill: none;
-    pointer-events: all;
-}
-
-.axis path,
-.axis line {
-    shape-rendering: crispEdges;
-}
-
-.x.axis path {
-    display: none;
-}
-
-.toolTip {
-    position: absolute;
-    text-align: center;
-    width: 60px;
-    height: auto;
-    padding: 2px;
-    font: 12px sans-serif;
-    background: lightsteelblue;
-    border: 0px;
-    border-radius: 8px;
-    pointer-events: none;
-}
-
-.button1 {
-    padding: 10px 24px;
-    border-radius: 80%;
-    background-color: #4CAF50;
-    color: white;
-    z-index: -10;
-}
-
-.yearz {
-    font: 20px Verdana;
-}
-
-
-.img-fluid{max-width:100%;height:auto}
-
-.browser text {
-    text-anchor: end;
-}
-
-.area {
-    opacity: 0.7;
-    clip-path: url(#clip);
-}
-.area:hover {
-    opacity: 1;
-}
-
-.brush .extent {
-    stroke: #fff;
-    fill-opacity: .125;
-    shape-rendering: crispEdges;
-}
-
-
-.button1, .slider {
-    z-index: 10;
-}
-
-.button1 {
-    margin-top: 20px !important;
-}
-
-
-.slider {
-    -webkit-appearance: none;
-    width: 100%;
-    height: 25px;
-    background: #d3d3d3;
-    outline: none;
-    opacity: 0.7;
-    -webkit-transition: .2s;
-    transition: opacity .2s;
-}
-
-.slider:hover {
-    opacity: 1;
-}
-
-.slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 25px;
-    height: 25px;
-    background: #4CAF50;
-    cursor: pointer;
-}
-
-.slider::-moz-range-thumb {
-    width: 25px;
-    height: 25px;
-    background: #4CAF50;
-    cursor: pointer;
-}
-
-#conclusion {
-    background: #159587;
-    color: #ecf0f1;
-}
-
-#conclusion img {
-    border: 2px solid black;
-}
-
-
-#c02 img {
-    border: 2px solid black;
-}
-
-
-.fullscreen-bg {
-    position: relative;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    overflow: hidden;
-}
-
-.fullscreen-bg__video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-@media (min-aspect-ratio: 16/9) {
-    .fullscreen-bg__video {
-        height: 300%;
-        top: -100%;
-    }
-}
-
-@media (max-aspect-ratio: 16/9) {
-    .fullscreen-bg__video {
-        width: 300%;
-        left: -100%;
-    }
-}
-
-@media (max-width: 767px) {
-    .fullscreen-bg {
-        background: url('../img/videoframe.jpg') center center / cover no-repeat;
-    }
-
-    .fullscreen-bg__video {
-        display: none;
-    }
-}
-
-
-.parent {
-    position: relative;
-    top: 0;
-    left: 0;
-}
-
-.parent img {
-    max-width: 100%;
-    height: 600px;
-}
-.image1 {
-    position: relative;
-    top: 0;
-    left: 0;
-}
-.image2 {
-    position: absolute;
-    bottom: 0;
 }
 
 
@@ -864,6 +679,7 @@ div.tooltip {
 }
 
 .cd-timeline-img {
+    background: #f0ca45;
     position: absolute;
     top: 0;
     left: 0;
@@ -873,15 +689,6 @@ div.tooltip {
     box-shadow: 0 0 0 4px white, inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
 }
 
-.cd-timeline-img.cd-picture {
-    background: #75ce66;
-}
-.cd-timeline-img.cd-movie {
-    background: #c03b44;
-}
-.cd-timeline-img.cd-location {
-    background: #f0ca45;
-}
 @media only screen and (min-width: 1170px) {
     .cd-timeline-img {
         width: 60px;
@@ -975,8 +782,7 @@ div.tooltip {
 }
 
 .cd-timeline-content p, .cd-timeline-content .cd-date {
-    font-size: 25px;
-    font-size: 0.8125rem;
+    font-size: 1.5rem;
 }
 .cd-timeline-content .cd-date {
     display: inline-block;
@@ -1004,12 +810,10 @@ div.tooltip {
 }
 @media only screen and (min-width: 768px) {
     .cd-timeline-content h2 {
-        font-size: 20px;
-        font-size: 1.25rem;
+        font-size: 2rem;
     }
     .cd-timeline-content p {
         font-size: 16px;
-        font-size: 1rem;
     }
     .cd-timeline-content .cd-date {
         font-size: 18px;
@@ -1192,6 +996,336 @@ div.tooltip {
     }
 }
 
+/* ================ 3.2 - Evidence ================ */
+#evidence h1{
+    text-transform: uppercase;
+}
+
+#container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: -1;
+}
+
+
+.spacebot {
+    margin-bottom: 20px !important;
+}
+
+.yearz {
+    font: 20px Verdana;
+    margin-right: 50px;
+}
+
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 25px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: #4CAF50;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: #4CAF50;
+    cursor: pointer;
+}
+
+/* ================ 3.3 - Weather ================ */
+#weather {
+    background: #ecf0f1;
+    color: black;
+}
+
+/* ================ 3.4 - CO2 ================ */
+#c02 {
+    background: white;
+}
+
+/* ================ 3.4 - Sea Level ================ */
+#sea {
+    background: #ecf0f1;
+}
+
+#sea ul {
+    list-style-type: square;
+}
+
+#sea img {
+    border: 4px solid black;
+}
+
+/* ================ 3.4 - Prevention ================ */
+
+
+.what-box .panel {
+    border: 5px solid;
+    margin-top: 30px;
+    padding: 20px;
+    height: 370px;
+}
+.what-box .panel img{
+    width: 120px;
+}
+
+/* ================ 3.5 - References ================ */
+#reference {
+    background: #272b30;
+    color: white;
+}
+
+#reference li{
+    font-size: 16px;
+}
+
+
+
+/* ================ D3 CSS ================ */
+.toolTip {
+    position: absolute;
+    display: none;
+    min-width: 80px;
+    height: auto;
+    background: none repeat scroll 0 0 #ffffff;
+    border: 1px solid #6F257F;
+    padding: 14px;
+    text-align: center;
+}
+
+.bar {
+    fill: #2980b9;
+}
+
+.bar:hover {
+    fill: #f1c40f;
+}
+
+.outline {
+    fill: none;
+    stroke: #000;
+    stroke-width: 1.5px;
+}
+
+.feature {
+    fill: #ccc;
+}
+
+.mesh {
+    fill: none;
+    stroke: #fff;
+    stroke-width: .5px;
+    stroke-linejoin: round;
+}
+
+
+#states {
+    fill: #aaa;
+    stroke: #fff;
+    stroke-width: .5px;
+}
+
+#states .active {
+    display:none;
+}
+
+#state-borders {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 1.5px;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    pointer-events: none;
+}
+
+.county-boundary {
+    fill: #aaa;
+    stroke: #fff;
+    stroke-width: .5px;
+}
+
+.county-boundary:hover, .state:hover {
+    fill: orange;
+}
+
+div.tooltip {
+    position: absolute;
+    text-align: center;
+    min-width: 80px;
+    height: auto;
+    padding: 2px;
+    font: 12px sans-serif;
+    background: #fff;
+    border: 2px solid black;
+    pointer-events: none;
+}
+
+
+
+.background {
+    fill: none;
+    pointer-events: all;
+}
+
+.axis path,
+.axis line {
+    shape-rendering: crispEdges;
+}
+
+.x.axis path {
+    display: none;
+}
+
+.toolTip {
+    position: absolute;
+    text-align: center;
+    width: 60px;
+    height: auto;
+    padding: 2px;
+    font: 12px sans-serif;
+    background: lightsteelblue;
+    border: 0px;
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+.button1 {
+    padding: 10px 24px;
+    border-radius: 80%;
+    background-color: #4CAF50;
+    color: white;
+    z-index: -10;
+}
+
+
+
+.img-fluid{max-width:100%;height:auto}
+
+.browser text {
+    text-anchor: end;
+}
+
+.area {
+    opacity: 0.7;
+    clip-path: url(#clip);
+}
+.area:hover {
+    opacity: 1;
+}
+
+.brush .extent {
+    stroke: #fff;
+    fill-opacity: .125;
+    shape-rendering: crispEdges;
+}
+
+
+.button1, .slider {
+    z-index: 10;
+}
+
+.button1 {
+    margin-top: 20px !important;
+}
+
+
+
+#conclusion {
+    background: #159587;
+    color: #ecf0f1;
+}
+
+#conclusion img {
+    border: 2px solid black;
+}
+
+
+#c02 img {
+    border: 2px solid black;
+}
+
+
+.fullscreen-bg {
+    position: relative;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+.fullscreen-bg__video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+@media (min-aspect-ratio: 16/9) {
+    .fullscreen-bg__video {
+        height: 300%;
+        top: -100%;
+    }
+}
+
+@media (max-aspect-ratio: 16/9) {
+    .fullscreen-bg__video {
+        width: 300%;
+        left: -100%;
+    }
+}
+
+@media (max-width: 767px) {
+
+    .fullscreen-bg__video {
+        display: none;
+    }
+}
+
+
+.parent {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.parent img {
+    max-width: 100%;
+    height: 600px;
+}
+.image1 {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+.image2 {
+    position: absolute;
+    bottom: 0;
+}
+
+
+
 
 .axis path,
 .axis line {
@@ -1219,4 +1353,10 @@ div.tooltip {
     color: #2c2c2c;
     border-radius: 2px;
     cursor:pointer;
+}
+
+
+ol {
+    list-style-type:decimal;
+
 }

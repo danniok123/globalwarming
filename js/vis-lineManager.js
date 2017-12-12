@@ -41,23 +41,6 @@ GMSLmanager.prototype.parseData = function() {
         d["GMSL_uncertainty_rel"] = Math.round((d["GMSL_uncertainty"] - manager2.data[0]["GMSL_uncertainty"]) * 100) / 100;
     });
 
-    /* // For GMSL.csv
-    manager.data.forEach(function(d){
-        d["altimeterType"] = +d["altimeterType"];
-        d["fileCycle"] = +d["fileCycle"];
-        d["year"] = manager.convertDecimalDate(+d["year"]);
-        d["numObs"] = +d["numObs"];
-        d["numWeightObs"] = +d["numWeightObs"];
-        d["GMSLvar"] = +d["GMSLvar"];
-        d["GMSLstdev"] = +d["GMSLstdev"];
-        d["GMSLsmoothedVar"] = +d["GMSLsmoothedVar"];
-        d["GMSLvarRef"] = +d["GMSLvarRef"];
-        d["GMSLstdevEst"] = +d["GMSLstdevEst"];
-        d["GMSLsmoothed"] = +d["GMSLsmoothed"];
-        d["GMSLsmoothedYearRemoved"] = +d["GMSLsmoothedYearRemoved"];
-        d["GMSLchange"] = Math.round((d["GMSLsmoothedYearRemoved"] - manager.data[0]["GMSLsmoothedYearRemoved"]) * 100) / 100;
-    });
-    */
 };
 
 GMSLmanager.prototype.leapYear = function(year) {

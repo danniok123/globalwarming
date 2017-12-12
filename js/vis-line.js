@@ -136,15 +136,11 @@ GMSLlineGraph.prototype.wrangleData = function(newDomain){
     vis.updateVis();
 };
 
-GMSLlineGraph.prototype.addTooltips = function() {
-    vis.tip = d3.tip()
-        .attr('class', 'd3-tip')
-        .offset([-10, 0])
-        .html(function(d) {
-            return "<strong>" + vis.formatDate(d.Time) + "</strong> <br>" + "GMSL : " + d[vis.colLabel] + "</br>";
-        });
-    vis.gLine.call(vis.tip);
-};
+/*
+
+GMSlineGraph.prototype.updateSeaChart = function(time, GMSL) {
+
+}*/
 
 GMSLlineGraph.prototype.moveArea = function(dataPoint) {
     vis.maxYValue = dataPoint[vis.colLabel];
@@ -168,10 +164,12 @@ GMSLlineGraph.prototype.addCircles = function() {
         .data(vis.data, function(d) { return d; });
     vis.circles.enter().append("circle")
         .attr("class", "circle")
-        .attr("fill", "grey")
-        .on('mouseover', vis.tip.show)
+        .attr("fill", "red")
+        .on('mouseover', function(d) {
+            $("#lineData").html("<strong>" + vis.formatDate(d.Time) + "</strong> <br>" + "GMSL : " + d[vis.colLabel] + "</br>")
+
+        })
         .on('click', function(d) { return vis.moveArea(d); } )
-        .on('mouseout', vis.tip.hide)
         .attr("r", vis.circleRad)
         .merge(vis.circles)
         .attr("cx", function(d) {return vis.x(d.Time)})
@@ -231,7 +229,6 @@ GMSLlineGraph.prototype.addArea = function() {
 GMSLlineGraph.prototype.updateVis = function() {
     vis = this;
 
-    vis.addTooltips();
     vis.addRefLines();
     vis.addLine();
     vis.addArea();

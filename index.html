@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="css/style.css">
 
     <!-- Bootstrap and other CSS -->
-	<link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/animate.css">
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
@@ -65,6 +65,7 @@
                 </div>
             </div>
             <div class="arrow bounce">
+                <p>Scroll Down!</p>
                 <button class="fa fas fa-angle-down fa-3x" href="#about2"></button>
             </div>
         </div>
@@ -305,19 +306,20 @@
                                 surface temperature has risen about 2.0 degrees Fahrenheit (1.1 degrees
                                 Celsius) since the late 19th century.
                             </p>
-                            <!-- THIS IS WHAT CHRISTI CHANGED-->
                             <div id="nov_info"></div>
-
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-7 col-sm-7 col-xs-7 wow slideInUp">
-                    <input type="range" style="width:300px"onchange="updatemy()" min="1895" max="2016" value="2000" class="slider" id="myRange">
-                    <p class="yearz">Year: <span id="year"></span></p>
-                    <label for="amount2">Time range:</label>
+                    <div class="block">
+                        <label class="yearz">Year: <span id="year"></span></label>
+                        <input type="range" style="width:300px"onchange="updatemy()" min="1895" max="2016" value="2000" class="slider" id="myRange">
+                    </div>
+                    <div class="space"></div>
+                    <label class="spacebot" for="amount2">Time range:</label>
                     <input type="text" id="amount2" readonly style="border:0; color: #4CAF50; font-weight:bold;">
-                    <p></p>
+
 
                     <div id="slider-range" style="width: 200px"></div>
                     <button type="button" class="btn btn-lg btn-warning button1" id = "radial-button" onclick="timelapse()">Start!</button>
@@ -348,12 +350,11 @@
 
                 <label for="amount">Time range:</label>
                 <input type="text" id="amount" readonly style="border:0; color:green; font-weight:bold;">
-                </p>
 
                 <div id="sliding-choropleth" style="width: 200px"></div>
                 <button type="button" class="btn btn-lg btn-warning button1" onclick="timelapseChoropleth()">Start!</button>
 
-                <div id="choroMap"></div>
+                <div class= "text-center" id="choroMap"></div>
             </div>
             <div class="row">
                 <div class="col-md-6 space">
@@ -364,8 +365,42 @@
     </section>
     <!-- End Weather Section -->
 
+    <!-- Testimonial Section -->
+    <section id="hurt" class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 wow slideInLeft" data-wow-delay="0.6s">
+                    <div class="testi-details">
+                        <p class="lead">&quot;Global Warming isn't a prediction. It is happening.&quot;</p>
+                    </div>
+
+                    <div class="testi-info">
+                        <h4>James Hensen, Columbia University Professor</h4>
+                    </div>
+                </div>
+                <div class="col-md-4 wow slideInLeft" data-wow-delay="0.3s">
+                    <div class="testi-details">
+                        <p class="lead">&quot;People need to stop financing denial of climate change.&quot;</p>
+                    </div>
+                    <div class="testi-info">
+                        <h4>Al Gore, Former VP of US</h4>
+                    </div>
+                </div>
+                <div class="col-md-4 wow slideInLeft">
+                    <div class="testi-details">
+                        <p class="lead">&quot;The climate is changing. The proper political debate would be how to deal with these risks.&quot;</p>
+                    </div>
+                    <div class="testi-info">
+                        <h4>Steven Chu, Former US Secetrary of Energy</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Testimonial Section -->
+
     <!-- C02 Section -->
-    <section id="c02" class="section-padding scroller">
+    <section id="c02" class="section-padding">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12 title text-center">
@@ -397,36 +432,139 @@
     <!-- End CO2 Section-->
 
     <!-- Sea Level Section -->
-    <section id="sea" class="section-padding scroller">
+    <section id="sea" class="section-padding">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12 title text-center">
                     <div class="wow fadeInDown">
-                        <h1>What's causing it?</h1>
+                        <h1>Sea Level</h1>
                         <h4></h4>
                     </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                    <img class="wow slideInDown" style="width: 80%" src="img/sealevel.jpg">
                 </div>
                 <div class="col-md-6">
                     <div class="wow slideInUp">
                         <div class="about-descr">
-                            <h3>Scientists believe it!</h3>
+                            <h3>Atlantis here we come!</h3>
                             <p class="lead" style="font-size: 17px">
-                                Most climate scientists agree the main cause of the current global warming trend is human expansion of the "greenhouse effect"
-                                On Earth, human activities are changing the natural greenhouse. Over the last century the burning of fossil fuels like coal and oil has increased the concentration of atmospheric carbon dioxide (CO2). This happens because the coal or oil burning process combines carbon with oxygen in the air to make CO2. To a lesser extent, the clearing of land for agriculture, industry, and other human activities has increased concentrations of greenhouse gases.
-                                Let’s take a look at the graph below, which shows what activities we humans do that increases greenhouse emissions.
+                                Sea level has been rising over the past century, and the rate has increased in recent decades.
+                                In 2016, global sea level was 3.2 inches (82 mm) above the 1993 average—the highest annual
+                                average in the satellite record (1993-present). Sea level continues to rise at a rate of
+                                just over one-eighth of an inch (3.4 mm) per year, due to a combination of melting glaciers
+                                and ice sheets, and thermal expansion of seawater as it warms.
                             </p>
                         </div>
                     </div>
-                    <p style="font-weight: bold;">Let’s take a look at the graph below, which shows what activities we humans do that increase greenhouse emissions. </p>
-                </div>
-                <div class="col-md-6 col-sm-6 col-xs-6">
-                    <img class="wow slideInDown" style="width: 80%" src="img/greenhouse-effect_med.jpeg">
                 </div>
             </div>
-            <div id="GMSL-line-chart"></div>
+            <div class="space"></div>
+            <div class="row">
+                <p style="font-weight: bold;">Let’s take a look at the graph below, which shows what activities we humans do that increase greenhouse emissions. </p>
+                <p style="font-weight: bold;"> Click on the red circles to see the sea level rise and fall!</p>
+                <div class="col-md-8">
+                    <div id="GMSL-line-chart"></div>
+                    <p id="lineData"></p>
+                </div>
+                <div class="col-md-4">
+
+                </div>
+            </div>
+
         </div>
     </section>
-    <!-- End Sea Level Section-->
+
+    <!-- Now What Section-->
+    <section id="what" class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                    <div class="section-title wow fadeInDown">
+                        <h1>So Now What?</h1>
+                        <h4> What does this mean for us?</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row what-box">
+                <div class="col-md-3 col-sm-6 wow fadeInRightBig">
+                    <div class="panel text-center" style="border: 5px solid green;">
+                        <h3>Thawing Snow and Ice</h3>
+                        <p>
+                           With the rise in global temperature, more glaciers are starting to thaw and decrease across
+                            the world.
+                        </p>
+                        <img src="img/ice.png" class="center-block img-responsive">
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 wow fadeInRightBig" data-wow-delay="0.3s">
+                    <div class="panel text-center" style="border: 5px solid red;">
+                        <h3>Stronger Hurricanes and storms</h3>
+                        <p>With Global Warming, the effects will cause us to experience stronger storms due to rise in
+                         temperature</p>
+                        <img src="img/storm.png" class="center-block img-responsive">
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 wow fadeInRightBig" data-wow-delay="0.6s">
+                    <div class="panel text-center" style="border: 5px solid blue;">
+                        <h3>Rising Sea Level</h3>
+                        <p>It's important to use <b><span style="color:blue">chemoprophylaxis</span></b> drugs in order to prevent Malaria.
+                            There are plenty of drugs to take such as Doxycycline and Mefloquine.</p>
+                        <img src="img/pill.png" class="center-block img-responsive">
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 wow fadeInRightBig" data-wow-delay="0.9s">
+                    <div class="panel text-center" style="border: 5px solid orange;">
+                        <h3>More Heat Waves</h3>
+                        <p>If you suspect you have Malaria, go to a doctor immediately to get a formal
+                            <b><span style="color:orange">diagonis</span></b> even if you are taking
+                            anti-malaria drugs. It can help save your life!</p>
+                        <img src="img/stethoscope.png" class="center-block img-responsive">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Now What Section-->
+
+    <section id = "reference" class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12 title text-center">
+                    <div class="wow fadeInDown">
+                        <h1>References</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Data</h2>
+                </div>
+                <div class="col-md-6">
+                    <h2>Information</h2>
+                    <ol>
+                        <li>
+                            The global warming quotes come from <a target="_blank" href="https://www.weforum.org/agenda/2015/11/15-quotes-on-climate-change-by-world-leaders/">here</a> and
+                            <a href="https://www.brainyquote.com/topics/global_warming"> here</a>.
+                        </li>
+                        <li>
+                            The quick facts section comes from <a target="_blank" href="https://climate.nasa.gov/">NASA</a>.
+                        </li>
+                        <li>
+                            Video of the polar bear comes from <a target="_blank" href="https://news.nationalgeographic.com/2017/12/polar-bear-starving-arctic-sea-ice-melt-climate-change-spd/">National Geographic</a>.
+                        </li>
+                        <li>
+                            Timeline information comes from <a target="_blank" href="https://history.aip.org/climate/timeline.htm">here</a> and <a target="_blank" href="http://www.bbc.com/news/science-environment-15874560">BBC</a>.
+                        </li>
+                        <li>
+                            Textual information comes from <a target="_blank" href="https://climate.nasa.gov/">NASA</a>.
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
 
 	<script src="js/jquery.min.js"></script>
@@ -463,6 +601,7 @@
 
 
 	<script>
+
 
         new TypeIt('.intro', {
             strings: ["Hi my name is Polo...", "and I want to talk about Global Warming with you!"," ", "Global Warming " +
